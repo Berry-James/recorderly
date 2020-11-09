@@ -5,7 +5,6 @@ import { Notify } from "./Notify.js";
 import { Collection } from "./Collection.js";
 import anime from './../node_modules/animejs/lib/anime.es.js';
 import { Auth } from "./Auth.js";
-import ColorThief from './../node_modules/colorthief/dist/color-thief.mjs'
 
 let pageCounter = 2
 
@@ -128,20 +127,6 @@ const Release = {
         return releaseObj;
     },
 
-    getColour: () => {
-        // COLOURTHIEF
-        const ColorThief = new ColorThief();
-        const img = document.querySelector(".release-image-modal");
-
-        if (img.complete) {
-            colorThief.getColor(img);
-            } else {
-            image.addEventListener('load', function() {
-                colorThief.getColor(img);
-            });
-            }
-    },
-
     showModal: (releaseObj) => {
         // get modal template
         const modalTemplate = document.querySelector('#template-release-modal').innerHTML;
@@ -232,10 +217,6 @@ const Release = {
                 window.location.href="#signIn";
             }
         });  */
-        
-        const testBtn = document.querySelector("#testcolour").addEventListener("click", () => {
-            Release.getColour();
-        })
 
         let formatDropdown = document.querySelector('#format-dropdown');
         formatDropdown.addEventListener("change", () => {
