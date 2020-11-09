@@ -1588,7 +1588,8 @@ div.signOut-modal {
 
   .release-mouseover, .release-modal {
     display: grid;
-    grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
+    /*         grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
+     */
     top: 0;
     width: 100vw;
     height: calc(100vh - 62px);

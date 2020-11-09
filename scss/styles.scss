@@ -561,8 +561,8 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 
     .release-mouseover, .release-modal {
         display: grid;
-        grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
-        top: 0;
+/*         grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
+ */        top: 0;
         width: 100vw;
         height: calc(100vh - 62px);
         min-width: 100vw !important;
