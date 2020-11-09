@@ -1,0 +1,20 @@
+@import '../_variables.scss';
+
+.collection-btn-hide {
+    display: none;
+}
+
+.collection-btn-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        position: absolute;
+        bottom: 20px;
+    }
+}
+
+.button {
+    color: black!important;
+}

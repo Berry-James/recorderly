@@ -1,0 +1,168 @@
+@import '../_variables.scss';
+
+// Nav
+.navbar {
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
+    padding: 10px;
+    position: sticky;
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(3px);
+    transition: 0.5s;
+    z-index: 7 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+        .RLogo {
+            display: none;
+            width: auto;
+            padding: 0;
+            height: 45px;
+        }
+
+        .navbar-end {
+            transition: 1s;
+        }
+    
+        #signInBtn {
+            transition: 0.2s;
+        }
+
+        #signInBtn:hover {
+            background-image: $gradient;
+        }
+
+    @keyframes collectionBtnKeys {
+        
+    }
+
+    @keyframes textIntro {
+        0% {
+            opacity: 0%;
+        }
+        60% {
+            opacity: 0%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+    
+    #collectionBtn, #wishlistBtn {
+/*         background-image: none;
+        background-color: white; */
+        margin-right: 10px;
+        transition: 0.5s;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+
+        img {
+            min-height: 40px;
+        }
+
+        p {
+            display: none;
+            margin-left: 10px;
+            color: black;
+        }
+
+    }
+
+    @keyframes btnSpin {
+        from {
+            transform: translateX(0px) rotate(0deg);
+        }
+        to {
+            transform: translateX(-20px) rotate(270deg);
+        }
+    }
+
+    #wishlistBtn:hover {
+        img {
+            animation: btnSpin;
+            animation-fill-mode: forwards;
+        }
+
+        p {
+            display: block;
+        }
+    }
+
+/*     #collectionBtn:hover, #wishlistBtn:hover {
+      justify-content: left;
+            background-color: transparent;
+
+        img {
+            transform: translateX(-20px) rotate(270deg);
+        }
+
+        p {
+            display: flex;
+            color: white;
+            animation: textIntro 0.3s;
+            background-color: transparent;
+        }
+        
+    } */
+
+
+    #signInBtn {
+        background-image: none;
+        background-color: white;
+        color: $dark-grey;
+        width: auto;
+        margin-right: 10px;
+    }
+  }
+
+  .navbarBg {
+      background-color: rgba(255,255,255,0.5);;
+  }
+
+.nav-title {
+    font-family: $title;
+    color: $yellow;
+    font-weight: 0;
+    font-size: 30px;
+    transition: 1s;
+}
+
+.hamburger {
+    color: $white;
+    text-shadow: 0 0 4px black;
+    font-size: 1.5rem;
+
+}
+
+.searchInput {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 0.2em rgba(0,0,0,0.3));
+    background: white;
+    width: 450px;
+    color:#3b3b3b;
+    font-size: 1.2rem;
+    font-family: $body;
+    transition: 0.2s;
+    padding: 10px 10px 10px 15px;
+}
+
+.searchInput:focus {
+    outline: none;
+    width: 480px;
+}
+
+.searchInput:hover {
+    outline: none;
+    width: 480px;
+}
+
+.searchBtn {
+    background-color: $yellow;
+    border-radius: 0px 10px 10px 0px;
+    color: white !important;
+    height: 2.4rem !important;
+    width: 2.5rem !important;
+}

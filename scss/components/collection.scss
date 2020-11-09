@@ -1,0 +1,51 @@
+#QRSource {
+    width: 50%;
+    height: 50%;
+    margin: 2% auto;
+
+}
+
+.release-collection-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.loader-collection {
+    position: absolute;
+    top: 40%;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+    height: 10%;
+}
+
+
+.vinyl-container, .cd-container, .cassette-container, .digital-container {
+    width: 100vw;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .text-container {
+        display: block;
+        width: 90vw;
+    }
+
+    hr {
+        height: 1px;    
+    }
+}
+
+.digital-container div:nth-child(n+2) {
+    
+}
+
+.collection-item-display {
+    width: 50vw;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 75px;
+    background: #000;
+}

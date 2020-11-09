@@ -1,0 +1,57 @@
+@import '.././variables';
+
+@keyframes tutorialBounce {
+    0% {
+        transform: translateY(0%)
+    }
+    50% {
+        transform: translateY(5%);
+    }
+    100% {
+        transform: translateY(0%)
+    }
+}
+
+.tutorialDiv {
+    position: absolute;
+    z-index: 7;
+    width: 350px;
+    height: 75px;
+    background-color: $almost-white;
+    border-radius: 100px;
+    padding: 25px 10px 25px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: tutorialBounce 2s ease-in-out alternate infinite;
+    font-family: $body;
+    font-size: 1.2rem;
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.3));
+}
+
+.tutorialConfirm {
+    z-index: 7;
+    width: 100px;
+    height: 100;
+    background-color: $yellow;
+    border-radius: 100px;
+    color: white;
+    text-align: center;
+    padding: 10px 20px 10px;
+    position: absolute;
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.3));
+
+}
+
+
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(2px);
+    z-index: 6;
+
+  }
