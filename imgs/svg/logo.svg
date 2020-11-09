@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 137.58333 137.58333"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath890">
+      <circle
+         style="fill:#800000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.264583"
+         id="circle892"
+         cx="101.6756"
+         cy="145.14287"
+         r="68.791664" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath894">
+      <circle
+         style="fill:#800000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.264583"
+         id="circle896"
+         cx="101.6756"
+         cy="145.14287"
+         r="68.791664" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath902">
+      <rect
+         style="fill:#800000;fill-opacity:1;stroke-width:0.264583"
+         id="rect904"
+         width="151.19048"
+         height="169.33333"
+         x="29.482143"
+         y="63.122021" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath906">
+      <rect
+         style="fill:#800000;fill-opacity:1;stroke-width:0.264583"
+         id="rect908"
+         width="151.19048"
+         height="169.33333"
+         x="29.482143"
+         y="63.122021" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="40.110214"
+     inkscape:cy="69.903147"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <sodipodi:guide
+       position="68.690374,185.56558"
+       orientation="1,0"
+       id="guide865" />
+    <sodipodi:guide
+       position="2.5253814,68.892956"
+       orientation="0,-1"
+       id="guide867" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.883934,-76.351189)">
+    <circle
+       style="fill:#f8b920;fill-opacity:1;fill-rule:evenodd;stroke-width:0.264583"
+       id="path34"
+       cx="101.6756"
+       cy="145.14285"
+       r="68.791664"
+       clip-path="url(#clipPath906)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:86.6667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.604639"
+       x="40.254242"
+       y="188.66165"
+       id="text40"
+       clip-path="url(#clipPath902)"
+       transform="translate(15.445444,-6.749811)"><tspan
+         sodipodi:role="line"
+         id="tspan38"
+         x="40.254242"
+         y="188.66165"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:86.6667px;font-family:Pacifico;-inkscape-font-specification:Pacifico;fill:#ffffff;stroke-width:0.604639">R</tspan></text>
+  </g>
+</svg>

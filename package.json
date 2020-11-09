@@ -1,0 +1,20 @@
+{
+  "name": "webdesigna3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Berry",
+  "license": "ISC",
+  "dependencies": {
+    "animejs": "^3.2.0",
+    "bulma": "^0.9.0",
+    "colorthief": "^2.3.2",
+    "mustache": "^4.0.1",
+    "particles.js": "^2.0.0",
+    "sass": "^1.26.11",
+    "wavify": "^1.0.0"
+  }
+}
