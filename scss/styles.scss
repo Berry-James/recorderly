@@ -461,11 +461,6 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
     }
 }
 
-
-
-
-
-
 @media screen and (max-width: 768px) {
 
     // SEARCHBAR
@@ -546,11 +541,11 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
         }
     }
 
-    
+/*     
     .myModal {
         top: 526px !important;
         border-radius: 0;
-    }
+    } */
 
     // COLLECTION PAGE
     .cd-container, .cassette-container, .digital-container, .vinyl-container {
@@ -559,10 +554,18 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 
     // RELEASE/COLLECTION MODAL
 
+    .myModal {
+        top: 76px !important;
+        left: 0;
+        transform: translate(0, 0);
+        border-radius: 0;
+
+    }
+
     .release-mouseover, .release-modal {
         display: grid;
 /*         grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
- */        top: 0;
+ */        top: 76px;
         width: 100vw;
         height: calc(100vh - 62px);
         min-width: 100vw !important;
