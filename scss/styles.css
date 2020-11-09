@@ -544,6 +544,10 @@ hr {
   margin-top: 2%;
   justify-content: center;
 }
+.modal-text-container .release-button-container i {
+  color: #fff;
+  margin-right: 10px;
+}
 
 #searchBtn {
   height: 2.5rem;
@@ -870,7 +874,7 @@ html.is.animating .transition-fade {
   }
 }
 .tutorialDiv {
-  position: absolute;
+  position: fixed;
   z-index: 7;
   width: 350px;
   height: 75px;
@@ -1300,7 +1304,7 @@ body {
   text-transform: capitalize;
   /*     margin: 1% 0 1% 0;
    */
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .myModal {
@@ -1529,6 +1533,7 @@ div.signOut-modal {
     width: 250px;
     font-size: 1rem;
     text-align: center;
+    transform: translateY(150px);
   }
 
   #start-btn {
@@ -1567,8 +1572,8 @@ div.signOut-modal {
     width: 80vw;
   }
   .sign-in-container .form-wrapper #form-sign-in .field:last-of-type {
-    position: absolute;
-    bottom: 5%;
+    position: relative;
+    margin-top: 30px;
   }
   .sign-in-container .form-wrapper .form-img {
     top: 0;
@@ -1586,8 +1591,21 @@ div.signOut-modal {
     justify-content: space-evenly;
   }
 
+  .control-bar {
+    height: 30px;
+  }
+  .control-bar .filters-icon-wrapper {
+    height: 25px;
+  }
+  .control-bar .size-slider {
+    display: none;
+  }
+  .control-bar .size-slider label {
+    display: none;
+  }
+
   .myModal {
-    top: 76px !important;
+    top: 72px !important;
     left: 0;
     transform: translate(0, 0);
     border-radius: 0;
@@ -1610,27 +1628,39 @@ div.signOut-modal {
     grid-row-start: 1;
     grid-row-end: 2;
     border-radius: 0;
+    max-height: 35vh;
   }
   .release-mouseover .modal-top-content .modal-image-container, .release-modal .modal-top-content .modal-image-container {
     padding: 0;
+    max-height: 35vh;
+  }
+  .release-mouseover .modal-top-content .modal-image-container .modal-images, .release-modal .modal-top-content .modal-image-container .modal-images {
+    height: 40vh;
   }
   .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-format, .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-format-slide, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-format, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-format-slide {
-    width: 300px !important;
-    height: 300px !important;
+    width: 250px !important;
+    height: 250px !important;
   }
   .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-modal, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-modal {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
   .release-mouseover .modal-text-container, .release-modal .modal-text-container {
-    justify-content: space-evenly;
+    padding-top: 50px;
+    justify-content: flex-start;
     grid-row-start: 2;
     grid-row-end: 3;
     justify-self: start;
-    min-height: 43vh;
+    min-height: 65vh;
   }
   .release-mouseover .modal-text-container .release_artist, .release-modal .modal-text-container .release_artist {
-    font-size: 3em;
+    font-size: 1.8em;
+  }
+  .release-mouseover .modal-text-container #release-more-info-btn, .release-modal .modal-text-container #release-more-info-btn {
+    display: none;
+  }
+  .release-mouseover .modal-text-container #release-discogs-link, .release-modal .modal-text-container #release-discogs-link {
+    display: none;
   }
   .release-mouseover .release-modal, .release-modal .release-modal {
     min-width: 0;
@@ -1639,6 +1669,17 @@ div.signOut-modal {
   .release-button-container {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+  .release-button-container .button {
+    padding: 5px;
+    text-align: center;
+  }
+  .release-button-container .button span {
+    display: none;
+  }
+  .release-button-container .button i {
+    font-size: 1.5rem;
+    text-align: center;
   }
 
   .myModal {
@@ -1681,13 +1722,13 @@ div.signOut-modal {
     padding-right: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     width: 100vw;
     margin-right: 0;
     flex-grow: 1;
   }
   .main-text .main-title {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   .main-text a {
     width: 50vw;
@@ -1729,7 +1770,11 @@ div.signOut-modal {
   .img-column .level {
     display: none;
   }
+  .img-column .svg-wrapper {
+    width: 100vw;
+  }
   .img-column .svg-wrapper svg {
+    min-width: 100vw;
     transform: rotate(180deg);
     top: 0;
     right: 0;
@@ -1738,16 +1783,15 @@ div.signOut-modal {
   }
 
   .mobile-main-img {
-    margin-top: 150px;
+    margin-top: 82px;
     display: block;
     text-align: center;
-    margin-bottom: 10%;
     /*         display: flex;
             justify-content: center; */
   }
   .mobile-main-img img {
     position: relative;
-    height: 300px;
+    height: 200px;
   }
 
   .mobile-svg {
@@ -1765,6 +1809,7 @@ div.signOut-modal {
     width: 100vw;
     padding: 0;
     margin: 0;
+    height: auto;
   }
 
   #brand-logo {
