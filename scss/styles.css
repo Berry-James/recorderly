@@ -1435,7 +1435,7 @@ div.signOut-modal {
   animation: 0.5s ease-in-out 0s 1 errimgintro;
 }
 
-@media all and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   /*     .text-column {
           justify-content: center;
           align-items: center;
@@ -1507,7 +1507,7 @@ div.signOut-modal {
     opacity: 100%;
   }
 }
-@media all and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .searchBar {
     margin-left: 18px;
     margin-right: 18px;
