@@ -10,7 +10,7 @@ const User = {
     id: null,
 
     getSpecifiedUsers: () => {
-        fetch(`http://recorderly-backend.herokuapp.com/api/users/${window.url.search}`)
+        fetch(`https://recorderly-backend.herokuapp.com/api/users/${window.url.search}`)
         .then(res => res.json())
             .then(user => {
                 resolve(user);
@@ -21,7 +21,7 @@ const User = {
    
     create: (userData) => {
         // send userData to backend API using fetch - POST
-        fetch('http://recorderly-backend.herokuapp.com/api/users', {
+        fetch('https://recorderly-backend.herokuapp.com/api/users', {
             method: 'post',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)

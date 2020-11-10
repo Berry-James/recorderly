@@ -24,7 +24,7 @@ const Collection = {
                 strip.forEach(e => delete collectionObj[e]);
 
                 return new Promise((resolve, reject) => {
-                    fetch(`http://recorderly-backend.herokuapp.com/api/users/${userId}`, {
+                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -52,7 +52,7 @@ const Collection = {
                 const strip = ['data_quality', 'lowest_price', 'most_recent_release', 'most_recent_release_url', 'num_for_sale', 'resource_url', 'versions_url', 'videos', 'notes', 'main_release_url'];
                 strip.forEach(e => delete collectionObj[e]);
                 return new Promise((resolve, reject) => {
-                    fetch(`http://recorderly-backend.herokuapp.com/api/users/${userId}/user_collection/delete`, {
+                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}/user_collection/delete`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -97,7 +97,7 @@ const Collection = {
             loader.className = "loading-icon";
             loader.setAttribute("src", "./imgs/svg/loader-main.svg");
             App.rootEL.appendChild(loader);
-            fetch(`http://recorderly-backend.herokuapp.com/api/users/${userID}`)
+            fetch(`https://recorderly-backend.herokuapp.com/api/users/${userID}`)
             .then(console.log(`getting collection ID = ${userID}`))
             .then(res => res.json())
             .then(releases => {
@@ -112,7 +112,7 @@ const Collection = {
 
     getSpecifiedCollection: (id) => {
         return new Promise((resolve, reject) => {
-            fetch(`http://recorderly-backend.herokuapp.com/api/users/${id}`)
+            fetch(`https://recorderly-backend.herokuapp.com/api/users/${id}`)
             .then(console.log(`getting collection ID = ${id}`))
             .then(res => res.json())
             .then(releases => {
