@@ -19,7 +19,7 @@ const Wishlist = {
             .then(collectionObj => {
                 resolve(collectionObj);
                 return new Promise((resolve, reject) => {
-                    fetch(`http://localhost:8081/api/users/${userId}`, {
+                    fetch(`http://recorderly-backend.herokuapp.com/api/users/${userId}`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -44,7 +44,7 @@ const Wishlist = {
             .then(collectionObj => {
                 resolve(collectionObj);
                 return new Promise((resolve, reject) => {
-                    fetch(`http://localhost:8081/api/users/${userId}`, {
+                    fetch(`http://recorderly-backend.herokuapp.com/api/users/${userId}`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -82,7 +82,7 @@ const Wishlist = {
             loader.className = "loading-icon";
             loader.setAttribute("src", "./imgs/svg/loader-main.svg");
             App.rootEL.appendChild(loader);
-            fetch(`http://localhost:8081/api/users/${userID}`)
+            fetch(`http://recorderly-backend.herokuapp.com/api/users/${userID}`)
             .then(console.log(`getting collection ID = ${userID}`))
             .then(res => res.json())
             .then(releases => {
@@ -97,7 +97,7 @@ const Wishlist = {
 
     getSpecifiedCollection: (id) => {
         return new Promise((resolve, reject) => {
-            fetch(`http://localhost:8081/api/users/${id}`)
+            fetch(`http://recorderly-backend.herokuapp.com/api/users/${id}`)
             .then(console.log(`getting collection ID = ${id}`))
             .then(res => res.json())
             .then(releases => {

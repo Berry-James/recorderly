@@ -9,7 +9,7 @@ const Auth = {
 
     signIn: (userData) => {
         // send userData to backend API using fetch - POST
-        fetch('http://localhost:8081/api/auth/signin', {
+        fetch('http://recorderly-backend.herokuapp.com/api/auth/signin', {
             method: 'post',
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(userData)
@@ -51,7 +51,7 @@ const Auth = {
         // 1. check if jwt token exists in local storage
         if(localStorage.getItem('token')){
             // validate token using backend API - make fetch request (GET)
-            fetch('http://localhost:8081/api/auth/validate', {
+            fetch('http://recorderly-backend.herokuapp.com/api/auth/validate', {
                 headers: { "Authorization": `Bearer ${localStorage.token}` }
             })
             .then(res => {

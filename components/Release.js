@@ -56,7 +56,7 @@ const Release = {
 
     getReleaseById: () => {
         return new Promise((resolve, reject) => {
-            let url = new URL(`http://localhost:8081/api/users`);
+            let url = new URL(`http://recorderly-backend.herokuapp.com/api/users`);
             let params = { ids: ids };
             url.search = new URLSearchParams(params).toString();
             
@@ -160,7 +160,7 @@ const Release = {
         // DETERMINE COLLECTION BUTTON STATE
         // if user is signed in AND has release in collection, change button text\
          let userId = localStorage.getItem('userId');
-            fetch(`http://localhost:8081/api/users/${userId}`)
+            fetch(`http://recorderly-backend.herokuapp.com/api/users/${userId}`)
             .then(res => res.json())
             .then(collection => {
                 let collectionArray = []
