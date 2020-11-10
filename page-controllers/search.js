@@ -68,7 +68,6 @@ function searchPageController(){
             Release.get()
             .then(release => {
 
-                console.log("got genres!")
                 release.forEach(genre => {
                     if (genre.type != "release") {
                     }
@@ -79,14 +78,6 @@ function searchPageController(){
                     genreDropDown.appendChild(genreOption);
                 })
 
-                release.forEach(artist => {
-                    let artistDropdown = document.querySelector("#artistDropdown");
-                    let artistOption = document.createElement("option");
-                    let artistName = artist.title.toString().split("-")[0];
-                    artistOption.innerHTML = artistName;
-                    artistOption.setAttribute("value", artistName);
-                    artistDropdown.appendChild(artistOption);
-
                 release.forEach(style => {
                     let styleDropdown = document.querySelector("#styleDropdown");
                     let styleOption = document.createElement("option");
@@ -95,8 +86,6 @@ function searchPageController(){
                         styleOption.setAttribute("value", name);
                     });
                     styleDropdown.appendChild(styleOption);
-                })
-
                 })
             })
             
@@ -137,79 +126,6 @@ function searchPageController(){
             });  
         } 
 
-        function getInStyle() {
-            let styleDropdown = document.getElementById("styleDropdown");
-            let optionSelected = styleDropdown.options[styleDropdown.selectedIndex].text;
-            Release.get()
-            let releaseArray = Release.results.filter(function (e) {
-                return e.genre[0] === optionSelected;
-            });
-            releaseDiv.innerHTML = null;
-            releaseArray.forEach(release => {
-                let slider = document.querySelector("#releaseSizeRange");
-                slider.addEventListener("input",function()
-                {
-                    releaseItem.el.style.width = `${slider.value}px`;
-                    releaseItem.el.style.height = `${slider.value}px`;               
-                }) 
-                releaseArray.push(release);
-                let releaseItem = Release.createReleaseObj(release);
-                releaseDiv.appendChild(releaseItem.el);
-            });
-            let releaseThings = document.querySelectorAll(".release-entry");         
-            anime({
-                targets: releaseThings,
-                keyframes: [
-                    { opacity: 0, translateX: 0},
-                    { opacity: 1, translateX: 0},
-                ],
-                delay: anime.stagger(75, {easing: 'linear'})
-            });  
-        } 
-
-        function getInArtist() {
-            let artistDropdown = document.getElementById("artistDropdown");
-            let optionSelected = artistDropdown.options[artistDropdown.selectedIndex].text;
-            let artistList = [];
-            Release.get()
-            
-            let artists = Release.results;
-            artists.forEach(artist => {
-                let artistName = artist.title.split("-")[0];
-                artistList.push(artistName);
-            })
-            
-
-            let releaseArray = artistList.filter(function (e) {
-                return e.includes(optionSelected);
-            });
-            console.log(releaseArray);
-            releaseDiv.innerHTML = null;
-            releaseArray.forEach(release => {
-
-                // Slide bar
-                let slider = document.querySelector("#releaseSizeRange");
-                slider.addEventListener("input",function()
-                {
-                    releaseItem.el.style.width = `${slider.value}px`;
-                    releaseItem.el.style.height = `${slider.value}px`;               
-                }) 
-
-                releaseArray.push(release);
-                let releaseItem = Release.createReleaseObj(release);
-                releaseDiv.appendChild(releaseItem.el);
-            });
-            let releaseThings = document.querySelectorAll(".release-entry");         
-            anime({
-                targets: releaseThings,
-                keyframes: [
-                    { opacity: 0, translateX: 0},
-                    { opacity: 1, translateX: 0},
-                ],
-                delay: anime.stagger(75, {easing: 'linear'})
-            });  
-        } 
-
         function getSearchResults(){
             releaseDiv.innerHTML = null;
             let loadingAnim = document.createElement("img");
@@ -219,7 +135,6 @@ function searchPageController(){
             Release.get()
             .then(releases => {
                 
-                console.log("got releases!");
                 // loop through releases array
                 releases.forEach(release => {
                         let slider = document.querySelector("#releaseSizeRange");
@@ -279,7 +194,6 @@ function searchPageController(){
             nextPageBtn.addEventListener("click", () => {
                 Release.getNextPage()
                 .then(releases => {
-                    console.log("got more releases!");
                     // loop through parts array
                     releases.forEach(release => {
                         if (release.type != "release") {
@@ -312,10 +226,7 @@ function searchPageController(){
                                 delay: anime.stagger(75, {easing: 'linear'})
                             });      
                         }
-                    })
-
- 
-                    
+                    })     
   
                 })
                 .catch(err => {
@@ -326,137 +237,10 @@ function searchPageController(){
             
         }
 
-/*          function getNextPage(){
-            window.onscroll = function(ev) {
-                let pageCounter = 2;
-                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { 
-                    pageCounter ++;
-                    console.log(pageCounter);
-                    return new Promise((resolve, reject) => {
-                        // fetch parts.json
-                        fetch(`https://api.discogs.com/database/search?q=${document.getElementById("searchBar").value}&token=VGCcdPkiXMOSimYzzdmpboMlvbMhSlZejvcNwWYL&page=2&per_page=50`)
-                        .then(res => res.json())
-                        .then(parts => {
-                            resolve(parts.results);
-                            console.log(parts.results);
-                            parts.forEach(part => {
-                                if (part.type != "release") {
-                            
-                                }else{
-                                    const release = Part.createPartObj(part);
-                                    releaseDiv.appendChild(release.el);
-                                }
-                            });
-                        })
-                        .catch(err => {
-                            reject(err);
-                        })
-                    });   
-                }
-            };
-        } */
-
- /*        function coverAnimate() {
-        
-        // Create the renderer and add it to the page's body element
-        var renderer = new THREE.WebGLRenderer( { alpha: true } );
-        renderer.setPixelRatio( window.devicePixelRatio );
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        document.body.appendChild( renderer.domElement );
-      
-        // Create the scene to hold the object
-        var scene = new THREE.Scene();
-      
-        // Create the camera
-        var camera = new THREE.PerspectiveCamera(
-          35,                                     // Field of view
-          window.innerWidth / window.innerHeight, // Aspect ratio
-          0.1,                                    // Near plane distance
-          1000                                    // Far plane distance
-        );
-      
-        // Position the camera
-        camera.position.set( -5, 0, 20 );
-      
-      
-        // Add the lights
-      
-        var light = new THREE.PointLight( 0xffffff, .4 );
-        light.position.set( 10, 10, 10 );
-        scene.add( light );
-      
- 
-      
-      
-        // Load the textures (book images)
-        var textureLoader = new THREE.TextureLoader();
-        THREE.ImageUtils.crossOrigin = '';
-        var bookCoverTexture = textureLoader.load( 'https://cors-anywhere.herokuapp.com/https://img.discogs.com/gDfE0-wPiR1LRCAvRO31tu46uwc=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-15636825-1594982655-4662.jpeg.jpg' );
-        var bookSpineTexture = textureLoader.load( 'southern-gems-spine.png' );
-        var bookBackTexture = textureLoader.load( 'southern-gems-back.png' );
-        var bookPagesTexture = textureLoader.load( 'southern-gems-pages.png' );
-        var bookPagesTopBottomTexture = textureLoader.load( 'southern-gems-pages-topbottom.png' );  
-      
-      
-        // Use the linear filter for the textures to avoid blurriness
-        bookCoverTexture.minFilter
-          = bookSpineTexture.minFilter
-          = bookBackTexture.minFilter
-          = bookPagesTexture.minFilter
-          = bookPagesTopBottomTexture.minFilter
-          = THREE.LinearFilter;
-      
-      
-        // Create the materials
-      
-        var bookCover = new THREE.MeshLambertMaterial( { color: 0xffffff, map: bookCoverTexture } );
-        var bookSpine = new THREE.MeshLambertMaterial( { color: 0xffffff, map: bookSpineTexture } );
-        var bookBack = new THREE.MeshLambertMaterial( { color: 0xffffff, map: bookBackTexture } );
-        var bookPages = new THREE.MeshLambertMaterial( { color: 0xffffff, map: bookPagesTexture } );
-        var bookPagesTopBottom = new THREE.MeshLambertMaterial( { color: 0xffffff, map: bookPagesTopBottomTexture } );
-      
-        var materials = [
-          bookPages,          // Right side
-          bookSpine,          // Left side
-          bookPagesTopBottom, // Top side
-          bookPagesTopBottom, // Bottom side
-          bookCover,          // Front side
-          bookBack            // Back side
-        ];
-      
-        // Create the book and add it to the scene
-        var book = new THREE.Mesh( new THREE.BoxGeometry( 10, 10, 0.2, 4, 4, 1 ), materials );
-        scene.add( book );
-      
-
-      
-        // Begin the animation
-        animate();
-      
-      
-        /*
-          Animate a frame
-        */
-      /*
-        function animate() {
-  
-      
-          // Render the frame
-          renderer.render( scene, camera );
-      
-          // Keep the animation going
-          requestAnimationFrame( animate );
-        }
-      }
- */
         searchBar.focus();
         getNextPage(); 
         const testBtn = document.getElementById("testBtn")
-/*         testBtn.addEventListener("click", function(){
-            releaseStagger();
-        }) */
-
-});  
-};
+        });  
+    };
 
 export { searchPageController }

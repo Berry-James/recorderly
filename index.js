@@ -4,7 +4,6 @@ import { App } from './components/App.js';
 // Import Page Controllers
 import { homePageController } from './page-controllers/home.js';
 import { searchPageController } from './page-controllers/search.js';
-import { userProfileController } from './page-controllers/user.js';
 import { collectionPageController } from './page-controllers/collection.js';
 import { wishlistPageController } from './page-controllers/wishlist.js';
 import { signUpPageController } from './page-controllers/signUp.js';
@@ -51,9 +50,6 @@ App.addRoute('#', homePageController);
 
 // #search
 App.addRoute('#search', searchPageController);
-
-// #userProfile
-App.addRoute('#userProfile', userProfileController);
 
 // #collection
 App.addRoute('#collection', collectionPageController);

@@ -5,7 +5,7 @@ import { Nav } from './Nav.js';
 import { Collection } from './Collection.js';
 
 const App = {
-    // properties
+    // App properties
     name: "Recorderly",
     version: "0.1.0",
     author: "James Berry",
@@ -13,17 +13,8 @@ const App = {
     routes: {},
     user_collection: [],
 
-    // methods
-    init: () => {
-        if(Auth.authenticated) {
-            Collection.getUserCollection()
-            .then(releases => {
-                releases.user_collection.forEach(id => {
-                    App.user_collection.push(id.collectionObj.id) 
-                })
-            })
-        }
-    
+    // Initialise notification, check auth status, init router
+    init: () => { 
         Notify.init();
         Auth.check(() => {
             App.router();
@@ -49,7 +40,7 @@ const App = {
         // run the route.controller
         }/* if(!route){
             alert('no route present');
-        } */
+        } 
         
 /*         else{
         // show 404 alert

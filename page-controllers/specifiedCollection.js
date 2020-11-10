@@ -43,7 +43,7 @@ function specifiedCollectionPageController(){
             .then(releases => {
                 let userName = releases.email.split('@')[0];
                 const userField = document.querySelector("#user-specific");
-                userField.querySelector("span").innerText = userName;
+                userField.querySelector("span").innerText = `${userName}'s Collection`;
                 releases.user_collection.forEach(release => {
                     release.collectionObj.userFormat = release.format;
                     let collectionItem = Collection.createCollectionObj(release.collectionObj);

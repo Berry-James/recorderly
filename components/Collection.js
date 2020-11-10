@@ -34,8 +34,11 @@ const Collection = {
                     })
                     .then(Notify.show(`📀 <b>${collectionObj.title}</b> added to collection!`))
                 })
-            })
-        })
+                .catch(err => {
+                    reject(err);
+                });
+            });
+        });
     }, 
     
     remove: (data) => {
@@ -48,6 +51,7 @@ const Collection = {
             .then(res => res.json())
             .then(collectionObj => {
                 resolve(collectionObj);
+
                 // STRIP USELESS INFO
                 const strip = ['data_quality', 'lowest_price', 'most_recent_release', 'most_recent_release_url', 'num_for_sale', 'resource_url', 'versions_url', 'videos', 'notes', 'main_release_url'];
                 strip.forEach(e => delete collectionObj[e]);
@@ -70,7 +74,7 @@ const Collection = {
         })
         .catch(err => {
             reject(err)
-        })
+        });
     }, 
 
     search: () => {
@@ -78,14 +82,12 @@ const Collection = {
         let searchBar = document.querySelector(".searchInput")
         collectionItems.forEach(item => {
             let name = item.querySelector('.release-title').innerText.toLowerCase();
-            
+
+            // hide items not found in search query
             if(!name.includes(searchBar.value.toLowerCase())) {
                 item.style.display = 'none';
             }else{
                 item.style.display = 'flex';
-/*                 item.style.opacity = '0';
-                item.style.animation = 'collectionFadeIn 0.5s linear';
-                item.style.animationfillmode = 'forwards'; */
             }
         })
     },
@@ -98,7 +100,6 @@ const Collection = {
             loader.setAttribute("src", "./imgs/svg/loader-main.svg");
             App.rootEL.appendChild(loader);
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userID}`)
-            .then(console.log(`getting collection ID = ${userID}`))
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
@@ -113,11 +114,9 @@ const Collection = {
     getSpecifiedCollection: (id) => {
         return new Promise((resolve, reject) => {
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${id}`)
-            .then(console.log(`getting collection ID = ${id}`))
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
-                console.log(releases);
                 
             })
             .catch(err => {
@@ -190,9 +189,8 @@ const Collection = {
             
         })
 
-        
+        // Change class for format depending on image (spin/slide)
         let imgType = document.querySelector("#release-format")
-
         if(collectionObj.data.userFormat == 'Digital Files'){
            imgType.classList.add('release-image-format-slide');
            imgType.classList.remove('release-image-format');

@@ -45,7 +45,6 @@ const Modal = {
         // add esc key press function to trigger Modal.remove()
         Modal.modalEscKey = (e) => {
             if(e.keyCode == 27){
-                console.log("esc key!");
                 Modal.remove();
             }
         }

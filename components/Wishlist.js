@@ -98,11 +98,9 @@ const Wishlist = {
             loader.setAttribute("src", "./imgs/svg/loader-main.svg");
             App.rootEL.appendChild(loader);
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userID}`)
-            .then(console.log(`getting wishlist ID = ${userID}`))
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
-                console.log(releases);
                 App.rootEL.removeChild(loader);
             })
             .catch(err => {
@@ -111,29 +109,11 @@ const Wishlist = {
         })
     },
 
-    getSpecifiedCollection: (id) => {
-        return new Promise((resolve, reject) => {
-            fetch(`https://recorderly-backend.herokuapp.com/api/users/${id}`)
-            .then(console.log(`getting wishlist ID = ${id}`))
-            .then(res => res.json())
-            .then(releases => {
-                resolve(releases);
-                console.log(releases);
-                
-            })
-            .catch(err => {
-                reject(err);
-            })
-        })
-
-    },
-
     createWishObj: (item) => {
         // create empty object
         const wishObj = {};
         // set data from parameter
         wishObj.data = item;
-        console.log(wishObj.data);
         // get template HTML
         wishObj.template = document.querySelector('#template-collection-entry').innerHTML;
         // create div element

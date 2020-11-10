@@ -24,7 +24,6 @@ function homePageController(){
     App.loadPage('Home', 'template-page-home', data, () => {
 
         particlesJS.load('particles-js', 'assets/home.json', function() {
-            console.log('callback - particles.js config loaded');
           });
 
         Random.generateRandomHome();
@@ -37,7 +36,7 @@ function homePageController(){
 
         if(Auth.authenticated) {
             homeText.querySelector("h1").innerText = `Welcome Back ${User.email.split('@')[0].charAt(0).toUpperCase() + User.email.split('@')[0].slice(1)}!`;
-            homeText.querySelector(".body-text").innerText = 'Got anything new to add today?';
+            homeText.querySelector(".body-text").innerText = 'Your collection is waiting to be expanded upon.';
             const seeMore = homeText.querySelector('#see-more-btn');
             seeMore.innerText = 'My Collection';
             seeMore.addEventListener("click", () => {

@@ -9,26 +9,27 @@ const Burger = {
     active: false,
 
     show: (content) => {
+
         // set burger status to active
         Burger.active = true;
 
-        let hamburgerBtn = document.querySelector("#hamburger");
+        const hamburgerBtn = document.querySelector("#hamburger");
 
         // create overlay div
-        let burgerOverlay = document.createElement('div');
+        const burgerOverlay = document.createElement('div');
         burgerOverlay.className = 'burger-overlay';
         // append to rootEl
         App.rootEL.appendChild(burgerOverlay);
-        // create modalDiv
-        let burgerDiv = document.createElement('div');
+        // create burgerDiv
+        const burgerDiv = document.createElement('div');
         burgerDiv.className = 'burger-div';
-        // create ModalContent
-        let burgerContent = document.createElement('div');
+        // create burgerContent
+        const burgerContent = document.createElement('div');
         burgerContent.classname = 'burger-content';
         // insert content
         burgerContent.innerHTML = content;
         // create header w/title
-        let burgerHeader = document.createElement('div');
+        const burgerHeader = document.createElement('div');
         burgerHeader.className = 'burger-header'
         burgerHeader.innerHTML = '<h1>Navigation</h1>'
 
@@ -46,14 +47,14 @@ const Burger = {
         profile.appendChild(profileImg);
         profile.appendChild(profileText);
 
-        // append modalContent to modalDiv
+        // append burgerContent to burgerDiv
         burgerDiv.appendChild(burgerHeader);
         if (Auth.authenticated===true){
             burgerDiv.appendChild(profile);
         }
         burgerDiv.appendChild(burgerContent);
         
-        // append modalDiv to rootEl
+        // append burgerDiv to rootEl
         App.rootEL.appendChild(burgerDiv);
         
         // ANIM
@@ -67,29 +68,27 @@ const Burger = {
         const burgerBtn = document.querySelector("#hamburger");
         burgerBtn.classList.add("burger-rotate");
 
-
-
-        // modal overlay click event listener
+        // Burger overlay click event listener
         burgerOverlay.addEventListener("click", (e) => {
             Burger.remove();
             hamburgerBtn.style.display = "flex";
 
         });
 
-        let aboutBtn = document.querySelector("#about-btn");
-        let aboutContent = document.querySelector("#template-about-modal").innerHTML;
+        const aboutBtn = document.querySelector("#about-btn");
+        const aboutContent = document.querySelector("#template-about-modal").innerHTML;
         aboutBtn.addEventListener("click", function() {
             Modal.show(aboutContent)
-        })
+        });
 
-        let helpBtn = document.querySelector("#help-btn");
-        let helpContent = document.querySelector("#template-help-modal").innerHTML;
+        const helpBtn = document.querySelector("#help-btn");
+        const helpContent = document.querySelector("#template-help-modal").innerHTML;
         helpBtn.addEventListener("click", function() {
             Modal.show(helpContent)
-        })
+        });
 
-        let signBtn = document.getElementById("signInBtn-burger");
-        
+        // change button text and icon depending on auth status
+        const signBtn = document.getElementById("signInBtn-burger");
         if(Auth.authenticated) {
             signBtn.querySelector("p").innerText = 'Sign Out';
             signBtn.querySelector("i").className = 'fas fa-sign-out-alt';
@@ -99,12 +98,11 @@ const Burger = {
             signBtn.querySelector("p").innerText = 'Sign In';
             signBtn.querySelector("i").className = 'fas fa-sign-in-alt';
             signBtn.href="#signIn";
-        }
+        };
 
-        // add esc key press function to trigger Modal.remove()
+        // add esc key press function to trigger Burger.remove()
         Burger.burgerEscKey = (e) => {
             if(e.keyCode == 27){
-                console.log("esc key!");
                 Burger.remove();
                 hamburgerBtn.style.display = "flex";
 
@@ -128,7 +126,8 @@ const Burger = {
             complete: () => {
                 burgerOverlay.remove();
             }
-        })
+        });
+
         // burger exit animation
         anime({
             targets: burgerDiv,
@@ -140,9 +139,9 @@ const Burger = {
                 burgerDiv.remove();
             }
         });
+
         const burgerBtn = document.querySelector("#hamburger");
         burgerBtn.classList.remove("burger-rotate");
-
 
         // stop listening for esc key
         document.removeEventListener('keydown', Burger.burgerEscKey);

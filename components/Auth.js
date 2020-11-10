@@ -50,7 +50,6 @@ const Auth = {
                     User.email = res.user.email;
                     User.id = res.user._id;
                     User.collection = res.user.user_collection;
-                    console.log(User.id);
                     // 4. redirect to homepage
                     location.hash = '#';
                     // 5. show welcome notification
@@ -87,7 +86,6 @@ const Auth = {
                 }else{
                     // token valid!
                     res.json().then(res => {
-                        console.log("user authorised");
                         // set Auth.authenticated = true
                         Auth.authenticated = true;
                         // set user Info (res.user)
@@ -97,12 +95,6 @@ const Auth = {
                         User.email = res.user.email;
                         User.vehicle = res.user.vehicle;
                         User.vehicleImg = res.user.vehicle_img;
-
-                        // get user collection and push to array
-                        function getUserCollection() {
-                            Collection.getCollection();
-                            console.log('done')
-                        }
 
                         // callback
                         if(typeof callback == 'function'){

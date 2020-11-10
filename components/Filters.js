@@ -35,50 +35,6 @@ const Filters = {
         });  
     }, 
 
-    getInArtist: () => {
-        let artistDropdown = document.getElementById("artistDropdown");
-        let optionSelected = artistDropdown.options[artistDropdown.selectedIndex].text;
-        let artistList = [];
-        Release.get()
-        
-        let artists = Release.results;
-        artists.forEach(artist => {
-            let artistName = artist.title.split("-")[0];
-            artistList.push(artistName);
-        })
-        
-
-        let releaseArray = artistList.filter(function (e) {
-            return e.includes(optionSelected);
-        });
-        console.log(releaseArray);
-        releaseDiv.innerHTML = null;
-        releaseArray.forEach(release => {
-
-            // Slide bar
-            let slider = document.querySelector("#releaseSizeRange");
-            slider.addEventListener("input",function()
-            {
-                releaseItem.el.style.width = `${slider.value}px`;
-                releaseItem.el.style.height = `${slider.value}px`;               
-            }) 
-
-            releaseArray.push(release);
-            let releaseItem = Release.createReleaseObj(release);
-            releaseDiv.appendChild(releaseItem.el);
-        });
-        let releaseThings = document.querySelectorAll(".release-entry");         
-        anime({
-            targets: releaseThings,
-            keyframes: [
-                { opacity: 0, translateX: 0},
-                { opacity: 1, translateX: 0},
-            ],
-            delay: anime.stagger(75, {easing: 'linear'})
-        });  
-    }, 
-
-
     getInStyle: () => {
         const releaseDiv = document.getElementById("myData");
         let styleDropdown = document.getElementById("styleDropdown");
@@ -121,11 +77,6 @@ const Filters = {
         let filterContent = document.createElement('div');
         filterContent.className = 'filter-content';
 
-/*         // Create Title
-        let filterTitle = document.createElement("h5");
-        filterTitle.innerText = 'Filter Results';
-        filterContent.appendChild(filterTitle); */
-
         // create genre filter 
         let genreFilter = document.createElement("select");
         // set attributes and classes
@@ -140,15 +91,6 @@ const Filters = {
         styleFilter.setAttribute("id", "styleDropdown");
         styleFilter.className = "dropdown";
 
-        // create artist filter
-        let artistFilter = document.createElement("select");
-        // set attributes and classes
-        artistFilter.setAttribute("name", "artists");
-        artistFilter.setAttribute("id", "artistDropdown");
-        artistFilter.className = "dropdown";
-
-
-
         genreFilter.addEventListener("change", () => {
             Filters.getInGenre();
         });
@@ -159,7 +101,6 @@ const Filters = {
 
         // append genre filter to filter content
         filterContent.appendChild(genreFilter);
-        filterContent.appendChild(artistFilter);
         filterContent.appendChild(styleFilter);
 
         // append content to main div
@@ -187,7 +128,6 @@ const Filters = {
         // add esc key press function to trigger Modal.remove()
         Filters.filterEscKey = (e) => {
             if(e.keyCode == 27){
-                console.log("esc key!");
                 Filter.remove();
             }
         }

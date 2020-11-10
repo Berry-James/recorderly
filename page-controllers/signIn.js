@@ -6,7 +6,6 @@ import { Auth } from '../components/Auth.js';
 
 function signInPageController(){
     particlesJS.load('particles-js', 'assets/particles.json', function() {
-        console.log('callback - particles.js config loaded');
       });
 
     App.loadPage('Sign In', 'template-page-sign-in', {}, () => {

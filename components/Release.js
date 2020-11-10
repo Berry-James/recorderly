@@ -43,13 +43,11 @@ const Release = {
         .then(res => res.json())
         .then(releases => {
             resolve(releases.results);
-            console.log(releases.results);
         })
         .catch(err => {
             reject(err);
         })
         pageCounter ++
-        console.log(pageCounter);
     });      
 
     },
@@ -65,7 +63,6 @@ const Release = {
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
-                console.log(url);
             })
             .catch(err => {
                 reject(err);
@@ -162,21 +159,19 @@ const Release = {
         const itag = collectionBtn.querySelector("i");
         // DETERMINE COLLECTION BUTTON STATE
         // if user is signed in AND has release in collection, change button text\
-         let userId = localStorage.getItem('userId');
+        if(Auth.authenticated){
+            let userId = localStorage.getItem('userId');
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`)
             .then(res => res.json())
             .then(collection => {
-                console.log(collection.user_collection);
                 let collectionArray = []
                 collection.user_collection.forEach(element => {
                     if(!element.collectionObj.id){
                     } else {
                         collectionArray.push(element.collectionObj.id)
-                        console.log(element.collectionObj.id, 'true')
 
                     }
                 })
-                console.log(releaseObj.data.id);
                 if(Auth.authenticated && collectionArray.indexOf(releaseObj.data.id) === -1) {
                     itag.className = 'fas fa-plus';
                     span.innerText = 'Collection';
@@ -207,6 +202,14 @@ const Release = {
         wishBtn.addEventListener("click", () => {
             Wishlist.add();
         })
+        } else if(!Auth.authenticated) {
+            const collectionBtn = document.querySelector("#addToCollectionBtn");
+            collectionBtn.querySelector("span").innerText = 'Sign in';
+            collectionBtn.addEventListener("click", () => {
+                window.location.href = "#signIn";
+            })
+        }
+
 
         let formatDropdown = document.querySelector('#format-dropdown');
         formatDropdown.addEventListener("change", () => {

@@ -6,7 +6,6 @@ import { User } from '../components/User.js';
 function signUpPageController(){
 
     particlesJS.load('particles-js', 'assets/particles.json', function() {
-        console.log('callback - particles.js config loaded');
       });
 
 

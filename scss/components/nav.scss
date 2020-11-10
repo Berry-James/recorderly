@@ -39,10 +39,6 @@
             filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.8));
         }
 
-    @keyframes collectionBtnKeys {
-        
-    }
-
     @keyframes textIntro {
         0% {
             opacity: 0%;
@@ -72,7 +68,6 @@
             margin-left: 10px;
             color: black;
         }
-
     }
 
     #collectionBtn:hover, #wishlistBtn:hover {

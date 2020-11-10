@@ -64,8 +64,6 @@
 
 .more-info-text {
     position: relative;
-/*     top: 20vh;
-    left: 20%; */
     margin: auto;
     flex-direction: column;
     font-family: $body;
@@ -111,36 +109,12 @@
     height: auto;
 }
 
-// wave
-
-/* @keyframes svgIntro {
-    from {
-        opacity: 0;
-        width: 0vh;
-
-    }
-    to {
-        opacity: 1;
-        width: 100vh;
-
-    }
-} */
-
-@keyframes waveIntro {
-    from {
-        transform: translateX(100vw) rotateZ(90deg)
-    }
-    to {
-        transform: translateX(0vw) rotateZ(90deg);
-    }
-}
 
 .svg-wrapper {
     opacity: 0;
 
     svg {
-/*         animation: waveIntro 2s linear;
- */        z-index: 2;
+      z-index: 2;
         width: 100vh;
         height: 100%;
         position: fixed;
@@ -153,20 +127,6 @@
     
 }
 
-/* .svg-wrapper {
-
-    svg {
-        animation: 2s ease-in 0s 1 svgIntro;
-        width: 1000px;
-        height: 1000px;
-        left: 1000px;
-        bottom: 0;
-        position: absolute;
-        transform: rotate(270deg);
-    }
-    
-} */
-
 .img-wrapper {
     width: 100vw;
 }
@@ -177,18 +137,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-
-
-// swup
-.transition-fade {
-    transition: 0.4s;
-    opacity: 1;
-}
-
-html.is.animating .transition-fade {
-    opacity: 0;
 }
 
 
