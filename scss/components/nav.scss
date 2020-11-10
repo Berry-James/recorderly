@@ -56,14 +56,15 @@
     }
     
     #collectionBtn, #wishlistBtn {
-        margin-right: 10px;
+        margin: 0 10px;
         transition: 0.5s;
         text-align: center;
         display: flex;
         flex-direction: row;
+        padding: 0;
 
         img {
-            min-height: 40px;
+            min-height: 30px;
         }
 
         p {
@@ -102,10 +103,18 @@
 }
 
 .hamburger {
-    color: $white;
-    text-shadow: 0 0 4px black;
+    color: $dark-grey;
     font-size: 1.5rem;
+    transition: 0.2s ease-out;
+}
 
+.burger-rotate {
+    transform: rotate(90deg);
+    color: #fff;
+}
+
+.hamburger:hover {
+    color: #fff;
 }
 
 .searchInput {

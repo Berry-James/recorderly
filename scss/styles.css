@@ -10148,14 +10148,15 @@ hr {
   }
 }
 .navbar #collectionBtn, .navbar #wishlistBtn {
-  margin-right: 10px;
+  margin: 0 10px;
   transition: 0.5s;
   text-align: center;
   display: flex;
   flex-direction: row;
+  padding: 0;
 }
 .navbar #collectionBtn img, .navbar #wishlistBtn img {
-  min-height: 40px;
+  min-height: 30px;
 }
 .navbar #collectionBtn p, .navbar #wishlistBtn p {
   display: none;
@@ -10188,9 +10189,18 @@ hr {
 }
 
 .hamburger {
-  color: #ffffff;
-  text-shadow: 0 0 4px black;
+  color: #312b2b;
   font-size: 1.5rem;
+  transition: 0.2s ease-out;
+}
+
+.burger-rotate {
+  transform: rotate(90deg);
+  color: #fff;
+}
+
+.hamburger:hover {
+  color: #fff;
 }
 
 .searchInput {

@@ -5,6 +5,7 @@ import anime from './../node_modules/animejs/lib/anime.es.js';
 
 const Burger = {
     showCloseBtn: true,
+    active: false,
 
     show: (content) => {
 
@@ -23,10 +24,6 @@ const Burger = {
         burgerContent.classname = 'burger-content';
         // insert content
         burgerContent.innerHTML = content;
-        // create modalCloseBtn
-        let burgerCloseBtn = document.createElement('button');
-        burgerCloseBtn.className = 'burger-close-btn';
-        burgerCloseBtn.innerHTML = '&times;';
         // create header w/title
         let burgerHeader = document.createElement('div');
         burgerHeader.className = 'burger-header'
@@ -45,10 +42,6 @@ const Burger = {
 
         // append modalContent to modalDiv
         burgerDiv.appendChild(burgerHeader);
-        // if showClosebtn = true, append modalCloseBtn too
-        if(Burger.showCloseBtn === true){
-            burgerHeader.appendChild(burgerCloseBtn);
-        };
         if (Auth.authenticated===true){
             burgerDiv.appendChild(profile);
         }
@@ -66,17 +59,8 @@ const Burger = {
             ]
         })
 
-/*         // ANIM ICONS
-        let hamburgerContent = document.querySelectorAll(":scope > .hamburger-content")
-        anime({
-            targets: [profile, ], 
-        }) */
-        
-        // add event listener to modalCloseBtn
-        burgerCloseBtn.addEventListener('click', (e) => {
-            Burger.remove();
-            hamburgerBtn.style.display = "flex";
-        });
+        // set burger status to active
+        Burger.active = true;
 
         // modal overlay click event listener
         burgerOverlay.addEventListener("click", (e) => {
@@ -142,7 +126,8 @@ const Burger = {
                 burgerDiv.remove();
             }
         });
-        
+        Burger.active = false;
+
         // stop listening for esc key
         document.removeEventListener('keydown', Burger.burgerEscKey);
         

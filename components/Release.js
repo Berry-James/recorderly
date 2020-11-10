@@ -162,7 +162,6 @@ const Release = {
         // DETERMINE COLLECTION BUTTON STATE
         // if user is signed in AND has release in collection, change button text\
          let userId = localStorage.getItem('userId');
-        return new Promise((resolve, reject) => {
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`)
             .then(res => res.json())
             .then(collection => {
@@ -199,7 +198,6 @@ const Release = {
             .catch(err => {
                 reject(err);
             })
-        })
 
 /*         if(Auth.authenticated && App.user_collection.indexOf(releaseObj.data.id) === -1) {
             collectionBtn.innerText = 'Add to Collection';
