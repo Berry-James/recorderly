@@ -82,19 +82,16 @@ const App = {
         Nav.show(navTemplate);
 
         // get main nav div
-        let collectionBtn = document.querySelector("#collectionBtn");
-        let signInBtn = document.querySelector("#signInBtn");
-        let burgerBtn = document.querySelector("#hamburger");
-        let burgerTemplate = document.querySelector("#template-hamburger").innerHTML;
+        const collectionBtn = document.querySelector("#collectionBtn");
+        const signInBtn = document.querySelector("#signInBtn");
+        const burgerBtn = document.querySelector("#hamburger");
+        const burgerTemplate = document.querySelector("#template-hamburger").innerHTML;
         
         burgerBtn.addEventListener("click", function(){
             if(!Burger.active) {
                 Burger.show(burgerTemplate);
-                burgerBtn.classList.add("burger-rotate");
             } else if(Burger.active) {
-                console.log(Burger.active);
                 Burger.remove();
-                burgerBtn.classList.remove("burger-rotate");
             }
         });
 

@@ -6,6 +6,7 @@ import { homePageController } from './page-controllers/home.js';
 import { searchPageController } from './page-controllers/search.js';
 import { userProfileController } from './page-controllers/user.js';
 import { collectionPageController } from './page-controllers/collection.js';
+import { wishlistPageController } from './page-controllers/wishlist.js';
 import { signUpPageController } from './page-controllers/signUp.js';
 import { signInPageController } from './page-controllers/signIn.js';
 import { specifiedCollectionPageController } from './page-controllers/specifiedCollection.js';
@@ -54,8 +55,11 @@ App.addRoute('#search', searchPageController);
 // #userProfile
 App.addRoute('#userProfile', userProfileController);
 
-// #cart
+// #collection
 App.addRoute('#collection', collectionPageController);
+
+// #collection
+App.addRoute('#wishlist', wishlistPageController);
 
 // #signUp
 App.addRoute('#signUp', signUpPageController);

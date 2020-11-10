@@ -5,6 +5,7 @@ import { Notify } from "./Notify.js";
 import { Collection } from "./Collection.js";
 import anime from './../node_modules/animejs/lib/anime.es.js';
 import { Auth } from "./Auth.js";
+import { Wishlist } from "./Wishlist.js";
 
 let pageCounter = 2
 
@@ -189,6 +190,7 @@ const Release = {
                 } else {
                     itag.className = 'fas fa-check';
                     collectionBtn.setAttribute("data-tooltip", "Item already in collection");
+                    span.innerText = null;
                     collectionBtn.classList.add("has-tooltip-active", "has-tooltip-bottom");
                     collectionBtn.addEventListener("click", () => {
                         window.location.href = '#collection';
@@ -198,41 +200,13 @@ const Release = {
             .catch(err => {
                 reject(err);
             })
-
-/*         if(Auth.authenticated && App.user_collection.indexOf(releaseObj.data.id) === -1) {
-            collectionBtn.innerText = 'Add to Collection';
-        } else if(!Auth.authenticated) {
-            collectionBtn.innerText = 'Sign in and add to collection'
-        }
-        else {
-            collectionBtn.innerText = 'Remove from Collection';
-        }  */
-
         collectionBtn.setAttribute("id", releaseObj.data.id);
 
-/*         // click event
-         collectionBtn.addEventListener('click', () => {
-            Collection.getUserCollection();
-            // if user is signed in AND release is NOT in collection...
-            if(Auth.authenticated == true && App.user_collection.indexOf(releaseObj.data.id) === -1){
-                // Add release to collection
-                Collection.add();
-                // Change button text
-                collectionBtn.innerText = 'Remove from Collection';
-                // if App.user_collection DOES NOT include the release ID, add it to the array
-                if(App.user_collection.indexOf(releaseObj.data.id) === -1) {
-                    App.user_collection.push(releaseObj.data.id);
-                }
-            // if the user collection DOES include the release...
-            }else if(App.user_collection.includes(releaseObj.data.id)) {
-                Notify.show('Release already in collection');
-            }
-            
-            else {
-                Notify.show('Please Sign in before adding items to your collection')
-                window.location.href="#signIn";
-            }
-        });  */
+        // WISHLIST BUTTON
+        let wishBtn = document.querySelector("#addToWishlistBtn");
+        wishBtn.addEventListener("click", () => {
+            Wishlist.add();
+        })
 
         let formatDropdown = document.querySelector('#format-dropdown');
         formatDropdown.addEventListener("change", () => {

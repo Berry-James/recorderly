@@ -420,6 +420,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
     .burger-div {
         height: calc(100vh - 62px);
         top: 72px;
+        width: 80vw;
     }
 
     #brand-logo {
@@ -472,6 +473,19 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 }
 
 @media screen and (max-width: 768px) {
+
+    // SIgn out modal
+    div.signOut-modal {
+        text-align: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+      }
 
     // FILTERS POPUP
     .filterDiv {
@@ -783,17 +797,19 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
     }
 
     .main-text {
-        left: 10px;
-        top: 0vh;
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        width: 100vw;
-        margin-right: 0;
-        flex-grow: 1;
+        position: absolute;
+        bottom: 0;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        width: 90vw;
+        height: 40vh;
 
         .main-title {
             font-size: 2rem;
@@ -812,7 +828,9 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
         margin-bottom: 10%; 
     }
 
-
+    .navbar {
+        width: 100vw;
+    }
 
     .navbar-end {
         .level {
@@ -861,7 +879,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
         }
     }
     .mobile-main-img {
-        margin-top: 82px;
+        margin-top: 100px;
         display: block;
         text-align: center;
 /*         display: flex;

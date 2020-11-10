@@ -24,7 +24,7 @@ const Collection = {
                 strip.forEach(e => delete collectionObj[e]);
 
                 return new Promise((resolve, reject) => {
-                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`, {
+                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}/user_collection/`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({

@@ -1,6 +1,7 @@
 import { App } from "./App.js";
 import { Auth } from "./Auth.js";
 import { Modal } from "./Modal.js";
+import { User } from "./User.js";
 import anime from './../node_modules/animejs/lib/anime.es.js';
 
 const Burger = {
@@ -8,6 +9,8 @@ const Burger = {
     active: false,
 
     show: (content) => {
+        // set burger status to active
+        Burger.active = true;
 
         let hamburgerBtn = document.querySelector("#hamburger");
 
@@ -28,11 +31,14 @@ const Burger = {
         let burgerHeader = document.createElement('div');
         burgerHeader.className = 'burger-header'
         burgerHeader.innerHTML = '<h1>Navigation</h1>'
+
         // create profile icon+ sign in status
-        let profile = document.createElement("div");
-        let profileImg = document.createElement("img");
-        let profileText = document.createElement("h2");
-        profileText.innerHTML = "Welcome back to Recorderly!";
+        const profile = document.createElement("div");
+        const profileImg = document.createElement("img");
+        const profileText = document.createElement("h2");
+        if(Auth.authenticated) {
+            profileText.innerText = `Signed in as ${User.email.split('@')[0].charAt(0).toUpperCase() + User.email.split('@')[0].slice(1)}`;
+        }
         profileImg.src="./imgs/svg/casette.svg";
         profileText.className= "profile-text"
         profile.className = "profile-container";
@@ -51,16 +57,20 @@ const Burger = {
         App.rootEL.appendChild(burgerDiv);
         
         // ANIM
-        anime({
+         anime({
             targets: burgerDiv, 
             keyframes: [
-                { opacity: 0, right: '-20%', duration: 0, easing: 'easeOutCubic' },
-                { opacity: 1, right: '0%', duration: 500, easing: 'easeOutCubic' } 
-            ]
-        })
+                { opacity: 0, right: '-20%' },
+                { opacity: 1, right: '0%' } 
+            ],
+            duration: 400,
+            easing: 'linear',
+        }) 
 
-        // set burger status to active
-        Burger.active = true;
+        const burgerBtn = document.querySelector("#hamburger");
+        burgerBtn.classList.add("burger-rotate");
+
+
 
         // modal overlay click event listener
         burgerOverlay.addEventListener("click", (e) => {
@@ -106,6 +116,7 @@ const Burger = {
     },
 
     remove: () => {
+        Burger.active = false;
         // get overlayDiv
         let burgerOverlay = document.querySelector('.burger-overlay');
         // get modalDiv
@@ -121,12 +132,14 @@ const Burger = {
             opacity: 0,
             duration: 100, 
             right: '-20%',
-            easing:  'spring',
+            easing:  'linear',
             complete: () => {
                 burgerDiv.remove();
             }
         });
-        Burger.active = false;
+        const burgerBtn = document.querySelector("#hamburger");
+        burgerBtn.classList.remove("burger-rotate");
+
 
         // stop listening for esc key
         document.removeEventListener('keydown', Burger.burgerEscKey);

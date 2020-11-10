@@ -28,6 +28,9 @@ function collectionPageController(){
             let QRSource = document.querySelector("#QRSource");
             let QRURL = document.querySelector("#QRURL");
             QRURL.setAttribute("href", `${window.location.origin}/index.html#?user=${id}`)
+            QRURL.addEventListener("click", () => {
+                
+            })
             QRSource.setAttribute("src", `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.origin}/index.html#?user=${id}`)
         })
 

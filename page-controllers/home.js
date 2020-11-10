@@ -113,43 +113,9 @@ function homePageController(){
                         duration: 400
                     })
                 }
-
-
-
-
-
-/*                 aboutPage.style.display = "block";
-
-                anime({
-                    targets: wave,
-                    keyframes: [
-                        { scale: '1' },
-                        { rotate: '-90deg', scale: '5' }
-                    ],
-                    duration: 5000,
-                })
-
-                anime({
-                    targets: homePage,
-                     keyframes: [
-                        { opacity: 1, translateY: '0%'  },
-                        { opacity: 0, translateY: '-100%' },
-                        { display: 'none' }
-                    ], 
-                    easing: 'easeOutCubic',
-                })
-                anime({
-                targets: aboutPage,
-                keyframes: [
-                    { opacity: 0, translateY: '100%', duration: 0, easing: 'easeOutCubic' },
-                    { opacity: 1, display: 'block', translateY: '0%', duration: 750, easing: 'easeOutCubic' },
-                ]
-            }) */
-
-
             }
 
-        // For jQuery
+        // Run Wavify function
         var myWave = $('#myID').wavify({
             height: 10,
             bones: 5,
@@ -157,11 +123,10 @@ function homePageController(){
             color: 'rgba(248, 185, 32, 1)',
             speed: .25
         });
-        //Hamburger.init();
 
+        
 
         imgChange();
-
     });
     
 

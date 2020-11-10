@@ -16,45 +16,63 @@ const Wishlist = {
         return new Promise((resolve, reject) => {
             fetch(`https://api.discogs.com/masters/${releaseId}?Authorization=Discogs&key=eGHyyNaoLKebhZmFQYNf&secret=AxUVWVBrFrIbUullTLmWbejTBIDLiGpQ`)
             .then(res => res.json())
-            .then(collectionObj => {
-                resolve(collectionObj);
+            .then(wishObj => {
+                resolve(wishObj);
+
+                // STRIP USELESS INFO
+                const strip = ['data_quality', 'lowest_price', 'most_recent_release', 'most_recent_release_url', 'num_for_sale', 'resource_url', 'versions_url', 'videos', 'notes', 'main_release_url'];
+                strip.forEach(e => delete wishObj[e]);
+
                 return new Promise((resolve, reject) => {
-                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`, {
+                 fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}/user_wishlist/`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                                collectionObj,
-                                format
+                                wishObj,
+                                format      
                         })
                     })
-                    .then(Notify.show(`📀 <b>${collectionObj.title}</b> added to wish list!`))
+                    .then(Notify.show(`📀 <b>${wishObj.title}</b> added to Wishlist!`))
+                })
+                .catch(err => {
+                    console.log(err);
                 })
             })
         })
     }, 
     
-    remove: () => {
+    remove: (data) => {
+        let releaseId = data.data.id; 
         let userId = localStorage.getItem('userId');
-        let releaseId = document.querySelector('.collection-btn').getAttribute("id");
         let format = document.querySelector("#format-options").innerText;
-
+ 
         return new Promise((resolve, reject) => {
             fetch(`https://api.discogs.com/masters/${releaseId}?Authorization=Discogs&key=eGHyyNaoLKebhZmFQYNf&secret=AxUVWVBrFrIbUullTLmWbejTBIDLiGpQ`)
             .then(res => res.json())
-            .then(collectionObj => {
-                resolve(collectionObj);
+            .then(wishObj => {
+                resolve(wishObj);
+                // STRIP USELESS INFO
+                const strip = ['data_quality', 'lowest_price', 'most_recent_release', 'most_recent_release_url', 'num_for_sale', 'resource_url', 'versions_url', 'videos', 'notes', 'main_release_url'];
+                strip.forEach(e => delete wishObj[e]);
                 return new Promise((resolve, reject) => {
-                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`, {
+                    fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}/user_wishlist/delete`, {
                         method: 'PUT',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                                collectionObj,
-                                format
+                                wishObj,
+                                format 
                         })
                     })
-                    .then(Notify.show(`<b>${collectionObj.title}</b> added to collection!`))
+                    .then(Notify.show(`✅ <b>${wishObj.title}</b> removed from wishlist!`))
+                    Wishlist.getUserWishlist();
+                })
+                .catch(err => {
+                    reject(err);
                 })
             })
+        })
+        .catch(err => {
+            reject(err)
         })
     }, 
 
@@ -68,14 +86,11 @@ const Wishlist = {
                 item.style.display = 'none';
             }else{
                 item.style.display = 'flex';
-/*                 item.style.opacity = '0';
-                item.style.animation = 'collectionFadeIn 0.5s linear';
-                item.style.animationfillmode = 'forwards'; */
             }
         })
     },
     
-    getUserCollection: () => {
+    getUserWishlist: () => {
         let userID = localStorage.getItem('userId')
         return new Promise((resolve, reject) => {
             let loader = document.createElement("img");
@@ -83,10 +98,11 @@ const Wishlist = {
             loader.setAttribute("src", "./imgs/svg/loader-main.svg");
             App.rootEL.appendChild(loader);
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userID}`)
-            .then(console.log(`getting collection ID = ${userID}`))
+            .then(console.log(`getting wishlist ID = ${userID}`))
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
+                console.log(releases);
                 App.rootEL.removeChild(loader);
             })
             .catch(err => {
@@ -98,7 +114,7 @@ const Wishlist = {
     getSpecifiedCollection: (id) => {
         return new Promise((resolve, reject) => {
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${id}`)
-            .then(console.log(`getting collection ID = ${id}`))
+            .then(console.log(`getting wishlist ID = ${id}`))
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
@@ -112,54 +128,56 @@ const Wishlist = {
 
     },
 
-    createCollectionObj: (item) => {
+    createWishObj: (item) => {
         // create empty object
-        const collectionObj = {};
+        const wishObj = {};
         // set data from parameter
-        collectionObj.data = item;
+        wishObj.data = item;
+        console.log(wishObj.data);
         // get template HTML
-        collectionObj.template = document.querySelector('#template-collection-entry').innerHTML;
+        wishObj.template = document.querySelector('#template-collection-entry').innerHTML;
         // create div element
-        collectionObj.el = document.createElement('div');
+        wishObj.el = document.createElement('div');
         // render()
-        collectionObj.render = () => {
+        wishObj.render = () => {
             // set div class name
-            collectionObj.el.className = 'release-entry';
+            wishObj.el.className = 'release-entry';
             // set release id to data.id
-            collectionObj.el.setAttribute('id', `release-${collectionObj.data.id}`);
+            wishObj.el.setAttribute('id', `release-${wishObj.data.id}`);
             // render HTML using mustache template
-            collectionObj.el.innerHTML = Mustache.render(collectionObj.template, collectionObj.data);
+            wishObj.el.innerHTML = Mustache.render(wishObj.template, wishObj.data);
             // run events()
-            collectionObj.events();
+            wishObj.events();
         }
         // events()
-        collectionObj.events = () => {
+        wishObj.events = () => {
             // get view-release-btn
-            const viewReleaseBtn = collectionObj.el.querySelector('.release-image');
+            const viewReleaseBtn = wishObj.el.querySelector('.release-image');
             viewReleaseBtn.addEventListener('click', () => {
-                Collection.showModal(collectionObj);
+                Wishlist.showModal(wishObj);
             });
         }
         // run render()
-        collectionObj.render();
+        wishObj.render();
         // return the object
-        return collectionObj;
+        return wishObj;
     },
 
-    showModal: (collectionObj) => {
+    showModal: (wishObj) => {
         // get modal template
-        const modalTemplate = document.querySelector('#template-collection-modal').innerHTML;
+        const modalTemplate = document.querySelector('#template-wishlist-modal').innerHTML;
         // render modal content with mustache
-        const modalContent = Mustache.render(modalTemplate, collectionObj.data);
+        const modalContent = Mustache.render(modalTemplate, wishObj.data);
         // show modal
         Modal.show(modalContent);
 
-        /* DELETE TESTING HERE */
-/*         let removeBtn = document.querySelector(".collection-btn");
-        removeBtn.setAttribute("id", collectionObj.data.id);
+        // ITEM REMOVE
+        const removeBtn = document.querySelector("#removeFromWishlistBtn")
         removeBtn.addEventListener("click", () => {
-            Collection.remove();
-        }) */
+            wishObj.el.style.display = 'none';
+            Wishlist.remove(wishObj);
+            Modal.remove();
+        });
 
         // show more button listener
         let showMoreBtn = document.querySelector("#release-more-info-btn");
@@ -177,10 +195,10 @@ const Wishlist = {
         
         let imgType = document.querySelector("#release-format")
 
-        if(collectionObj.data.userFormat == 'Digital Files'){
+        if(wishObj.data.userFormat == 'Digital Files'){
            imgType.classList.add('release-image-format-slide');
            imgType.classList.remove('release-image-format');
-        }if(collectionObj.data.userFormat == 'Cassette'){
+        }if(wishObj.data.userFormat == 'Cassette'){
             imgType.classList.add('release-image-format-slide');
             imgType.classList.remove('release-image-format');
          }
