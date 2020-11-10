@@ -127,17 +127,11 @@
      <!-- Collection page template -->
      <script type="text/template" id="template-page-cart">
         <div class="control-bar">
+            <h1 class="page-main-title" id="introText"><img src="./imgs/svg/record-stack.svg">{{ title }}</h1>
             <a class="button QR-button has-tooltip-bottom" data-tooltip="Share collection with QR code" id="QRBtn"><label>QR</label><i class="fas fa-qrcode"></i></a>
-            <div class="size-slider"> <input type="range" min="100" max="500" value="200" class="slider" id="releaseSizeRange"></div>
-            <a id="filters-btn"><i class="fas fa-ellipsis-v"></i></a>
-            <div class="filters-container">
-            </div>
         </div>
         <div class="page page-home">
             <main class="page-content">
-                <div class="container  text-center">
-                    <h1 class="page-main-title" id="introText">{{ title }}</h1>
-                </div>
                 <div id="myData" class="release-container release-collection-container"></div> 
             </main>
         </div>
@@ -147,18 +141,10 @@
      <!-- Specific Collection page template -->
      <script type="text/template" id="template-page-specifiedCollection">
         <div class="control-bar">
-            <div class="size-slider"> <input type="range" min="100" max="500" value="200" class="slider" id="releaseSizeRange"></div>
-            <div class="filters-icon-wrapper">
-                <img src="./imgs/icons/filters.png" id="filters-btn">
-            </div>
-            <div class="filters-container">
-            </div>
+            <h1 class="page-main-title" id="user-specific"><img src="./imgs/svg/record-stack.svg"><span></span></h1>
         </div>
         <div class="page page-home">
             <main class="page-content">
-                <div class="container  text-center">
-                    <h1 class="page-main-title" id="introText">{{ title }}</h1>
-                </div>
                 <div id="myData" class="release-container release-collection-container"></div> 
             </main>
         </div>
@@ -166,18 +152,11 @@
 
      <!-- Wishlist page template -->
      <script type="text/template" id="template-page-wishlist">
-<!--         <div class="control-bar">
-            <a class="button QR-button has-tooltip-bottom" data-tooltip="Share collection with QR code" id="QRBtn"><label>QR</label><i class="fas fa-qrcode"></i></a>
-            <div class="size-slider"> <input type="range" min="100" max="500" value="200" class="slider" id="releaseSizeRange"></div>
-            <a id="filters-btn"><i class="fas fa-ellipsis-v"></i></a>
-            <div class="filters-container">
-            </div>
-        </div> -->
+        <div class="control-bar">
+            <h1 class="page-main-title"><img src="./imgs/svg/heart_record.svg"><span>{{ title }}</span></h1>
+        </div>
         <div class="page page-home">
             <main class="page-content">
-                <div class="container  text-center">
-                    <h1 class="page-main-title" id="introText">{{ title }}</h1>
-                </div>
                 <div id="myData" class="release-container release-collection-container"></div> 
             </main>
         </div>

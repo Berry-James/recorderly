@@ -245,8 +245,17 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 
  .page-main-title {
     text-transform: capitalize;
-/*     margin: 1% 0 1% 0;
- */    font-size: 2em;
+    font-size: 1.5em;
+    position: absolute;
+    left: 2%;
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 30px;
+        margin-right: 15px;
+    }
+
 } 
 
 // MODAL

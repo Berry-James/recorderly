@@ -42,12 +42,6 @@ function collectionPageController(){
             }
         })
 
-        // DISPLAY FILTERS DROPDOWN ON BUTTON PRESS
-        filterBtn.addEventListener("click", () => {
-            Filters.show();
-            getResultGenres();
-        });
-
         function generateUserCollection(){
             let releaseDiv = document.querySelector(".release-container");
             releaseDiv.innerHTML = null;

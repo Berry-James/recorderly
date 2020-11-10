@@ -17,14 +17,6 @@ function specifiedCollectionPageController(){
 
     App.loadPage('Collection', 'template-page-specifiedCollection', data, () =>{
 
-        let filterBtn = document.querySelector("#filters-btn");
-
-        // DISPLAY FILTERS DROPDOWN ON BUTTON PRESS
-        filterBtn.addEventListener("click", () => {
-            Filters.show();
-            getResultGenres();
-        });
-
         function generateUserCollection(){
             let releaseDiv = document.querySelector(".release-container");
             releaseDiv.innerHTML = null;
@@ -49,6 +41,9 @@ function specifiedCollectionPageController(){
             
             Collection.getSpecifiedCollection(id)            
             .then(releases => {
+                let userName = releases.email.split('@')[0];
+                const userField = document.querySelector("#user-specific");
+                userField.querySelector("span").innerText = userName;
                 releases.user_collection.forEach(release => {
                     release.collectionObj.userFormat = release.format;
                     let collectionItem = Collection.createCollectionObj(release.collectionObj);

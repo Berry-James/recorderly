@@ -59,11 +59,8 @@ const Burger = {
         // ANIM
          anime({
             targets: burgerDiv, 
-            keyframes: [
-                { opacity: 0, right: '-20%' },
-                { opacity: 1, right: '0%' } 
-            ],
-            duration: 400,
+            right: '0%',
+            duration: 150,
             easing: 'linear',
         }) 
 
@@ -94,11 +91,13 @@ const Burger = {
         let signBtn = document.getElementById("signInBtn-burger");
         
         if(Auth.authenticated) {
-            signBtn.innerText = 'Sign Out';
+            signBtn.querySelector("p").innerText = 'Sign Out';
+            signBtn.querySelector("i").className = 'fas fa-sign-out-alt';
             signBtn.href = "#signOut";
             
         }else if(!Auth.authenticated) {
-            signBtn.innerText = 'Sign In';
+            signBtn.querySelector("p").innerText = 'Sign In';
+            signBtn.querySelector("i").className = 'fas fa-sign-in-alt';
             signBtn.href="#signIn";
         }
 
@@ -117,16 +116,20 @@ const Burger = {
 
     remove: () => {
         Burger.active = false;
-        // get overlayDiv
+        // get burger overlay
         let burgerOverlay = document.querySelector('.burger-overlay');
-        // get modalDiv
+        // get burger
         let burgerDiv = document.querySelector('.burger-div');
         anime({
-            targets: burgerOverlay, opacity: 0, duration: 100,  easing: 'linear', complete: () => {
+            targets: burgerOverlay,
+            opacity: 0,
+            easing: 'linear',
+            duration: 100,
+            complete: () => {
                 burgerOverlay.remove();
             }
         })
-        // modalDiv exit animation
+        // burger exit animation
         anime({
             targets: burgerDiv,
             opacity: 0,
