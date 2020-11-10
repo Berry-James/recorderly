@@ -15,5 +15,8 @@
     "particles.js": "^2.0.0",
     "sass": "^1.26.11",
     "wavify": "^1.0.0"
+  },
+  "devDependencies": {
+    "@creativebulma/bulma-tooltip": "^1.2.0"
   }
 }

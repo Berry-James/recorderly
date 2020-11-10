@@ -1,0 +1,14 @@
+node_modules/anymatch
+node_modules/binary-extensions
+node_modules/braces
+node_modules/chokidar
+node_modules/fill-range
+node_modules/glob-parent
+node_modules/is-binary-path
+node_modules/is-extglob
+node_modules/is-glob
+node_modules/is-number
+node_modules/normalize-path
+node_modules/picomatch
+node_modules/readdirp
+node_modules/to-regex-range

@@ -94,8 +94,19 @@
 
 .QR-button {
     margin-right: 15px;
-    color: black !important;
+    text-transform: none;
+
+
+    i {
+        color: #fff;
+        font-size: 1.5rem;
+    }
+
+    label {
+        display: none;
+    }
 }
+
 
 @keyframes loadingAnim {
     0% {

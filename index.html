@@ -13,8 +13,8 @@
     <script type="text/javascript" src="./scripts/three.js"></script>
     <script type="text/javascript" src="./scripts/OrbitControls.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <link rel="stylesheet" href="./scss/styles.css">  
+<!--     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+ -->    <link rel="stylesheet" href="./scss/styles.css">  
 
     <!-- Fonts -->  
     <link href="https://fonts.googleapis.com/css2?family=Alatsi&family=Pacifico&display=swap" rel="stylesheet">
@@ -44,8 +44,8 @@
                     <div class="navbar-start"></div>
                     <div class="navbar-end">
                         <div class="level">
-                            <a class="navbar-item wishlist-btn-hide" data-tooltip="Tooltip Text" href="#wishlist" id="wishlistBtn"><img src="./imgs/svg/heart_record.svg"><p>Wish list</p></a>
-                            <a class="navbar-item collection-btn-hide" href="#collection" id="collectionBtn"><img src="./imgs/svg/record-stack.svg"><p>Collection</p></a>
+                            <a class="navbar-item wishlist-btn-hide has-tooltip-bottom has-tooltip-primary" data-tooltip="Wishlist" href="#wishlist" id="wishlistBtn"><img src="./imgs/svg/heart_record.svg"><p>Wish list</p></a>
+                            <a class="navbar-item collection-btn-hide has-tooltip-bottom" data-tooltip="Collection" href="#collection" id="collectionBtn"><img src="./imgs/svg/record-stack.svg"><p>Collection</p></a>
                             <a class="button navbar-item" href="#signIn" id="signInBtn">Sign in</a>
                             <a class="hamburger" id="hamburger"><i class="fas fa-bars"></i></a>
                         </div>
@@ -122,11 +122,9 @@
      <!-- Collection page template -->
      <script type="text/template" id="template-page-cart">
         <div class="control-bar">
-            <button class="button QR-button" id="QRBtn">Generate QR Code</button>
+            <a class="button QR-button has-tooltip-bottom" data-tooltip="Share collection with QR code" id="QRBtn"><label>QR</label><i class="fas fa-qrcode"></i></a>
             <div class="size-slider"> <input type="range" min="100" max="500" value="200" class="slider" id="releaseSizeRange"></div>
-            <div class="filters-icon-wrapper">
-                <img src="./imgs/icons/filters.png" id="filters-btn">
-            </div>
+            <a id="filters-btn" class="has-tooptip-bottom" data-tooltip="Filters"><i class="fas fa-ellipsis-v"></i></a>
             <div class="filters-container">
             </div>
         </div>
@@ -223,7 +221,7 @@
                                     </span>
                                 </p>
                             </div>
-                            <div class="field">
+<!--                              <div class="field">
                                 <span>
                                     <p>Choose an avatar</p>
                                 </span>
@@ -235,7 +233,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <br>
+                            <br>  -->
                             <div class="field">
                                 <input type="submit" value="Create Account" class="signIn-btn" id="submitButton">
                             </div>

@@ -21,15 +21,22 @@
         }
 
         .navbar-end {
+            width: auto;
+            position: relative;
             transition: 1s;
         }
     
         #signInBtn {
-            transition: 0.2s;
+            background-image: none;
+            background-color: white;
+            color: $dark-grey;
+            width: 90px;
+            margin-right: 10px;
+            box-shadow: none;
         }
 
         #signInBtn:hover {
-            background-image: $gradient;
+            filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.8));
         }
 
     @keyframes collectionBtnKeys {
@@ -49,8 +56,6 @@
     }
     
     #collectionBtn, #wishlistBtn {
-/*         background-image: none;
-        background-color: white; */
         margin-right: 10px;
         transition: 0.5s;
         text-align: center;
@@ -76,43 +81,6 @@
         to {
             transform: translateX(-20px) rotate(270deg);
         }
-    }
-
-    #wishlistBtn:hover {
-        img {
-            animation: btnSpin;
-            animation-fill-mode: forwards;
-        }
-
-        p {
-            display: block;
-        }
-    }
-
-/*     #collectionBtn:hover, #wishlistBtn:hover {
-      justify-content: left;
-            background-color: transparent;
-
-        img {
-            transform: translateX(-20px) rotate(270deg);
-        }
-
-        p {
-            display: flex;
-            color: white;
-            animation: textIntro 0.3s;
-            background-color: transparent;
-        }
-        
-    } */
-
-
-    #signInBtn {
-        background-image: none;
-        background-color: white;
-        color: $dark-grey;
-        width: auto;
-        margin-right: 10px;
     }
   }
 

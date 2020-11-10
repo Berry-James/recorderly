@@ -59,11 +59,18 @@
     color: $dark-grey;
     height: 30px;
 
-    #filters-btn {
-        height: 100%;
-    }
-        
+
 }
 
+#filters-btn {
+    height: 100%;
+    margin-left: 25px;
+    cursor: pointer;
+    color: $dark-grey;
+    font-size: 1.5rem;
+    display: flex;
+    place-items: center center;
+}
+    
 .filters-icon-wrapper:hover {
 }
