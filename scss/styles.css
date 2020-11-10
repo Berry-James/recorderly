@@ -9977,6 +9977,11 @@ hr {
   width: 100%;
 }
 
+.sign-out-button-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
 .size-slider {
   display: flex;
   float: right;

@@ -135,11 +135,8 @@ const Burger = {
             duration: 100, 
             right: '-20%',
             easing:  'linear',
-            complete: () => {
-                burgerDiv.remove();
-            }
         });
-
+        burgerDiv.remove();
         const burgerBtn = document.querySelector("#hamburger");
         burgerBtn.classList.remove("burger-rotate");
 
