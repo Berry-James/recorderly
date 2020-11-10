@@ -23,7 +23,6 @@ function signUpPageController(){
             let formDataObj = {};
             // loop through formData entries
             for(let field of formData.entries()){
-              console.log(field[0]+', '+ field[1]);
               formDataObj[field[0]] = field[1]
 
             }

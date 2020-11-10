@@ -3,29 +3,41 @@
 .filterDiv {
     position: absolute;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     right: 0;
     top: 0;
-    width: 200px;
-    height: 500px;
-    background-color: #fff;
-    box-shadow: 0px 0px 20px rgba(235, 235, 235, 0.9);
-    border-radius: 0px 0px 0px 25px;
+    width: 100vw;
+    height: 50px;
+    background-color: $yellow;
+    box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.3);
     padding: 10px;
+
+    .filter-content {
+        width: 100vw;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 
     
     .dropdown {
-        width: 100%;
-        border-radius: 10px;
+        color: #fff;
         border-style: none;
-        background-color: $light-grey;
-        padding: 10px 5px;
-        margin: 5px 0px;
+        background: none;
         font-family: $body;
         font-size: 1rem;
         outline: none;
+        position: relative;
+        border-bottom: 2px solid #fff;
+        line-height: 100%;
+
+        option {
+            color: $dark-grey;
+        }
     }
 
     .filter-apply-btn {

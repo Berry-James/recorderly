@@ -18,6 +18,10 @@
 // Update BULMA defaults
 $primary: $yellow;
 
+.data-tooltip {
+    font-size: 1rem !important  ;
+}
+
 // Body background
 html {
     background-color: $background;
@@ -57,11 +61,12 @@ body {
 
 // LOADING ICON
 .loading-icon {
-    position: absolute;
+    position: fixed;
     left: 0; 
     right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    bottom: 0;
+    top: 0;
+    margin: auto;
 }
 
 // Buttons
@@ -202,7 +207,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    cursor: pointer;
     padding: 2% 2%;
     background: rgb(255,255,255);
 background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639093137254902) 35%, rgba(223,223,223,1) 100%);
@@ -469,6 +473,11 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 
 @media screen and (max-width: 768px) {
 
+    // FILTERS POPUP
+    .filterDiv {
+        top: 125px !important;
+    }
+
     // QR BUTTON
     .QR-button {
         background: none;
@@ -514,7 +523,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
         font-size: 1rem;
         text-align: center;
         margin: auto;
-        top: 15vh;
+        top: 0;
         right: 0;
         left: 0;
     }
@@ -609,6 +618,32 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 
     }
 
+    .modal-images:active {
+        .release-image-modal {
+             transform: none;
+        }
+        .release-image-format {
+            transform: none;
+        }
+        .release-image-format-slide {
+            transform: none;
+        }
+        
+    }
+
+    .modal-images:active {
+        .release-image-modal {
+             transform: translateX(-75px);
+        }
+        .release-image-format {
+            transform: translateX(75px) rotateZ(360deg);
+        }
+        .release-image-format-slide {
+            transform: translateX(75px);
+        }
+        
+    }
+
     .release-mouseover, .release-modal {
         display: grid;
 /*         grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
@@ -657,7 +692,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
             
 
             .release_artist {
-                font-size: 1.8em;
+                font-size: 12vw;
             }
 
             #release-more-info-btn {
@@ -678,8 +713,9 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
         flex-wrap: wrap;
 
         .button {  
-            padding: 5px;
             text-align: center;
+            width: 30vw;
+            padding: 0;
 
             span {
                 display: none;
@@ -688,8 +724,19 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
             i {
                 font-size: 1.5rem;
                 text-align: center;
+                margin: 0;
 
             }
+
+            .fa-heart {
+                color: tomato;
+            }
+
+            .fa-check {
+                color: #4ba363;
+            }
+
+
          }
     }
 
@@ -805,7 +852,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
             width: 100vw;
             svg {
                 min-width: 100vw;
-                transform: rotate(180deg);
+                transform: rotate(180deg) scale(1.5);
                 top: 0;
                 right: 0;
                 height: 30%;
@@ -856,3 +903,24 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
     }
 }
 
+@media screen and (max-height: 890px) {
+
+    .release-modal { 
+        .content {
+            min-width: auto;
+        }
+    
+    }
+
+    .modal-images {
+        .release-image-format {
+            width: 250px !important;
+            height: 250px !important;
+        }
+        
+        .release-image-modal {
+            width: 250px;
+            height: 250px;
+        }
+    }
+}

@@ -2,6 +2,7 @@ import { Notify } from "./Notify.js";
 import { User } from "./User.js";
 import { Modal } from "./Modal.js";
 import { Collection } from "./Collection.js";
+import { App } from "./App.js";
 
 const Auth = {
     // User authentication status
@@ -9,6 +10,18 @@ const Auth = {
 
     signIn: (userData) => {
         // send userData to backend API using fetch - POST
+
+        // Darken "Modal"
+        const formWrapper = document.querySelector(".form-wrapper");
+        formWrapper.classList.add("form-wrapper-darken");
+
+        // Append loading image
+        let loader = document.createElement("img");
+        loader.className = "loading-icon";
+        loader.setAttribute("src", "./imgs/svg/loader-main.svg");
+        App.rootEL.appendChild(loader);
+        
+
         fetch('https://recorderly-backend.herokuapp.com/api/auth/signin', {
             method: 'post',
             headers: { "Content-Type": "application/json"},
@@ -18,12 +31,16 @@ const Auth = {
             if(res.status !=200){
                 // problem signing in
                 res.json().then(res => {
+                    formWrapper.classList.remove("form-wrapper-darken");
+                    App.rootEL.removeChild(loader);
                     Notify.show(res.message);
                 });
                
             }else{
                 // sign in success
                 res.json().then(res => {
+                    formWrapper.classList.remove("form-wrapper-darken");
+                    App.rootEL.removeChild(loader);
                     // 1. save the token to local storage
                     localStorage.setItem('token', res.token);
                     // 2. set Auth.authenticated to true

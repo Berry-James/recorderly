@@ -3,6 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#f8b920">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#f8b920">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f8b920">
+
     <title>Recorderly</title>
     <script src="https://kit.fontawesome.com/6b3561d7c5.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
@@ -44,7 +52,7 @@
                     <div class="navbar-start"></div>
                     <div class="navbar-end">
                         <div class="level">
-                            <a class="navbar-item wishlist-btn-hide has-tooltip-bottom has-tooltip-primary" data-tooltip="Wishlist" href="#wishlist" id="wishlistBtn"><img src="./imgs/svg/heart_record.svg"><p>Wish list</p></a>
+                            <a class="navbar-item wishlist-btn-hide has-tooltip-bottom" data-tooltip="Wishlist" href="#wishlist" id="wishlistBtn"><img src="./imgs/svg/heart_record.svg"><p>Wish list</p></a>
                             <a class="navbar-item collection-btn-hide has-tooltip-bottom" data-tooltip="Collection" href="#collection" id="collectionBtn"><img src="./imgs/svg/record-stack.svg"><p>Collection</p></a>
                             <a class="button navbar-item" href="#signIn" id="signInBtn">Sign in</a>
                             <a class="hamburger" id="hamburger"><i class="fas fa-bars"></i></a>
@@ -104,10 +112,7 @@
             <main class="page-content">
                 <div class="control-bar">
                     <div class="size-slider"> <label>Adjust Size</label> <input type="range" min="100" max="500" value="250" class="slider" id="releaseSizeRange"></div>
-
-                    <div class="filters-icon-wrapper">
-                        <img src="./imgs/icons/filters.png" id="filters-btn">
-                    </div>
+                    <a id="filters-btn"><i class="fas fa-ellipsis-v"></i></a>
                     <div class="filters-container">
                     </div>              
                 </div>
@@ -124,7 +129,7 @@
         <div class="control-bar">
             <a class="button QR-button has-tooltip-bottom" data-tooltip="Share collection with QR code" id="QRBtn"><label>QR</label><i class="fas fa-qrcode"></i></a>
             <div class="size-slider"> <input type="range" min="100" max="500" value="200" class="slider" id="releaseSizeRange"></div>
-            <a id="filters-btn" class="has-tooptip-bottom" data-tooltip="Filters"><i class="fas fa-ellipsis-v"></i></a>
+            <a id="filters-btn"><i class="fas fa-ellipsis-v"></i></a>
             <div class="filters-container">
             </div>
         </div>
@@ -352,15 +357,15 @@
                 </div>
 
                 <div class="modal-text-container">
-                    <h2 class="release_artist">{{ artistName }}</h2>
-                    <p class="release_year">{{ year }}</p>
-                    <h2 class="release_name">{{ releaseName }}</h2>
-                    <p class="category">{{ genre }}</p>
+                    <h2 class="release_artist">{{ releaseName }}</h2>
+                    <h2 class="release_name">{{ artistName }}</h2>
+                    <p class="release_year">{{ year }}, {{ genre }}</p>
                     <hr>
-                    <a id="release-more-info-btn">More Info</a>
-                    <a id="release-discogs-link" href="{{discogsURL}}">Find on Discogs.com</a>
+                    <div class="text-based-modal-btns">
+                        <a id="release-more-info-btn">More Info</a>
+                    </div>
                     <div class="release-button-container">
-                        <button class="button cart-btn" id="addToCollectionBtn"><i class="fas fa-plus"></i><span>Collection</span></button>
+                        <button class="button cart-btn" id="addToCollectionBtn"><i></i><span><img src="./imgs/svg/loader-text.svg" class="loader-text"></span></button>
                         <button class="button"><i class="fas fa-heart"></i><span>Wish list</span></button>
                     </div>
 
@@ -387,6 +392,7 @@
                     <li><b>{{ position }}.</b>  <i>{{ title }}</i>  ({{ duration }})</li>
                     {{ /tracklist }}
                 </ul>
+                <a id="release-discogs-link" href="{{discogsURL}}">Find on Discogs.com</a>
             </div>
             <div class="content">
                 <div class="modal-image-container">
@@ -469,7 +475,7 @@
                     <h3>Recorderly helps keep track of your music collection.</h3>
                     <hr>
                         <h4><b>Collection</b></h4>
-                        <p>Use the search bar at the top to browse the database and find releases that are in your collection.  Choose the format you own with the drop down menu and press 'add to collection'.</p>
+                        <p>Use the search bar at the top to browse the database and find releases that are in your collection.  Choose the format you own with the drop down menu and press the '+'.</p>
                         <h4><b>Wish list</b></h4>
                         <p>Similar to the collection, but for releases you'd like to own one day.  Add items to your wish list in the same way you would to your collection, but instead press 'add to wish list' instead.</p>
                         <p>I hope you find this app useful!</p>

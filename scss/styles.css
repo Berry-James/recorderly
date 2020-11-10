@@ -10049,7 +10049,7 @@ hr {
 }
 
 .control-bar {
-  padding: 10px 25px 10px 25px;
+  padding: 10px 40px 10px 25px;
   width: 100vw;
   height: 75px;
   position: relative;
@@ -10162,6 +10162,10 @@ hr {
   margin-left: 10px;
   color: black;
 }
+.navbar #collectionBtn:hover, .navbar #wishlistBtn:hover {
+  background: none;
+  filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.8));
+}
 @keyframes btnSpin {
   from {
     transform: translateX(0px) rotate(0deg);
@@ -10247,8 +10251,6 @@ hr {
 }
 
 .modal-images {
-  height: 400px;
-  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
@@ -10258,7 +10260,7 @@ hr {
 }
 .modal-images .release-image-modal {
   animation: imgSpin 0.5s ease-out;
-  position: absolute;
+  position: relative;
   box-shadow: 0px 0px 25px black;
   width: 350px;
   height: 350px;
@@ -10292,6 +10294,14 @@ hr {
   to {
     transform: translateX(30px);
   }
+}
+
+.text-based-modal-btns {
+  display: inline;
+}
+.text-based-modal-btns a {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .format-dropdown {
@@ -10347,6 +10357,9 @@ hr {
 .modal-text-container h2 {
   font-weight: normal;
 }
+.modal-text-container h3 {
+  margin-top: 20px;
+}
 .modal-text-container .release_year {
   margin-bottom: 0 !important;
 }
@@ -10354,11 +10367,13 @@ hr {
   font-size: 1rem;
 }
 .modal-text-container hr {
-  margin: 0;
-  margin-bottom: 1%;
+  margin: 4px 0;
   width: 40%;
   text-align: center;
   background: rgba(200, 200, 200, 0.9);
+}
+.modal-text-container .loader-text {
+  height: 40px;
 }
 .modal-text-container .release-button-container {
   display: flex;
@@ -10387,6 +10402,7 @@ hr {
 }
 
 .release-entry {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   margin: 20px 10px 60px;
@@ -10407,6 +10423,7 @@ hr {
   max-height: 100%;
   transition: 0.2s;
   margin-bottom: 5px;
+  border-radius: 25px;
 }
 .release-entry .release-title {
   font-family: "Alatsi", sans-serif;
@@ -10434,6 +10451,7 @@ hr {
   pointer-events: none;
   margin-bottom: 0;
   opacity: 0;
+  border-radius: 25px;
 }
 .release-entry .content h3 {
   font-size: 1rem;
@@ -10452,6 +10470,7 @@ hr {
 }
 .release-entry:hover .release-image {
   transform: translateY(-5px) translateX(5px);
+  border-radius: 0;
 }
 .release-entry:hover .content {
   display: flex;
@@ -10460,6 +10479,7 @@ hr {
   animation: contentEntrance 0.2s linear;
   animation-fill-mode: forwards;
   transform: translateY(-5px) translateX(5px);
+  border-radius: 0;
 }
 .release-entry:hover img {
   transition: 0.2s;
@@ -10475,13 +10495,6 @@ hr {
   min-width: 550px;
 }
 
-/* .release-modal {
-
-    .release-image-modal {
-        width: 80%;
-        height: auto;
-    }
-} */
 @keyframes imgSpin {
   0% {
     opacity: 0.5;
@@ -10737,28 +10750,38 @@ html.is.animating .transition-fade {
 .filterDiv {
   position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   right: 0;
   top: 0;
-  width: 200px;
-  height: 500px;
-  background-color: #fff;
-  box-shadow: 0px 0px 20px rgba(235, 235, 235, 0.9);
-  border-radius: 0px 0px 0px 25px;
+  width: 100vw;
+  height: 50px;
+  background-color: #f8b920;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.3);
   padding: 10px;
 }
+.filterDiv .filter-content {
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .filterDiv .dropdown {
-  width: 100%;
-  border-radius: 10px;
+  color: #fff;
   border-style: none;
-  background-color: #e4e4e4;
-  padding: 10px 5px;
-  margin: 5px 0px;
+  background: none;
   font-family: "Alatsi", sans-serif;
   font-size: 1rem;
   outline: none;
+  position: relative;
+  border-bottom: 2px solid #fff;
+  line-height: 100%;
+}
+.filterDiv .dropdown option {
+  color: #312b2b;
 }
 .filterDiv .filter-apply-btn {
   justify-self: flex-start;
@@ -10816,12 +10839,17 @@ html.is.animating .transition-fade {
   height: 50px;
 }
 
+.form-wrapper-darken {
+  filter: brightness(0.5) blur(3px);
+}
+
 .form-wrapper {
+  transition: 0.8s;
   width: 500px;
   margin: auto;
   border-radius: 15px;
   background-color: white;
-  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
   animation: 1s ease-out formEntry;
   animation-delay: 0s;
   display: flex;
@@ -10885,7 +10913,7 @@ html.is.animating .transition-fade {
 #QRSource {
   width: 50%;
   height: 50%;
-  margin: 2% auto;
+  margin: 15px 15px;
 }
 
 .release-collection-container {
@@ -10926,6 +10954,10 @@ html.is.animating .transition-fade {
   background: #000;
 }
 
+.data-tooltip {
+  font-size: 1rem !important;
+}
+
 html {
   background-color: #f6f6f6;
 }
@@ -10961,11 +10993,12 @@ body {
 }
 
 .loading-icon {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  bottom: 0;
+  top: 0;
+  margin: auto;
 }
 
 /* .button {
@@ -11091,7 +11124,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  cursor: pointer;
   padding: 2% 2%;
   background: white;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(238, 238, 238, 0.6390931373) 35%, #dfdfdf 100%);
@@ -11339,6 +11371,10 @@ div.signOut-modal {
   }
 }
 @media screen and (max-width: 768px) {
+  .filterDiv {
+    top: 125px !important;
+  }
+
   .QR-button {
     background: none;
     width: auto;
@@ -11381,7 +11417,7 @@ div.signOut-modal {
     font-size: 1rem;
     text-align: center;
     margin: auto;
-    top: 15vh;
+    top: 0;
     right: 0;
     left: 0;
   }
@@ -11461,6 +11497,26 @@ div.signOut-modal {
     border-radius: 0;
   }
 
+  .modal-images:active .release-image-modal {
+    transform: none;
+  }
+  .modal-images:active .release-image-format {
+    transform: none;
+  }
+  .modal-images:active .release-image-format-slide {
+    transform: none;
+  }
+
+  .modal-images:active .release-image-modal {
+    transform: translateX(-75px);
+  }
+  .modal-images:active .release-image-format {
+    transform: translateX(75px) rotateZ(360deg);
+  }
+  .modal-images:active .release-image-format-slide {
+    transform: translateX(75px);
+  }
+
   .release-mouseover, .release-modal {
     display: grid;
     /*         grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
@@ -11504,7 +11560,7 @@ div.signOut-modal {
     min-height: 65vh;
   }
   .release-mouseover .modal-text-container .release_artist, .release-modal .modal-text-container .release_artist {
-    font-size: 1.8em;
+    font-size: 12vw;
   }
   .release-mouseover .modal-text-container #release-more-info-btn, .release-modal .modal-text-container #release-more-info-btn {
     display: none;
@@ -11521,8 +11577,9 @@ div.signOut-modal {
     flex-wrap: wrap;
   }
   .release-button-container .button {
-    padding: 5px;
     text-align: center;
+    width: 30vw;
+    padding: 0;
   }
   .release-button-container .button span {
     display: none;
@@ -11530,6 +11587,13 @@ div.signOut-modal {
   .release-button-container .button i {
     font-size: 1.5rem;
     text-align: center;
+    margin: 0;
+  }
+  .release-button-container .button .fa-heart {
+    color: tomato;
+  }
+  .release-button-container .button .fa-check {
+    color: #4ba363;
   }
 
   .myModal {
@@ -11625,7 +11689,7 @@ div.signOut-modal {
   }
   .img-column .svg-wrapper svg {
     min-width: 100vw;
-    transform: rotate(180deg);
+    transform: rotate(180deg) scale(1.5);
     top: 0;
     right: 0;
     height: 30%;
@@ -11674,6 +11738,20 @@ div.signOut-modal {
 
   .main-img {
     width: 70%;
+  }
+}
+@media screen and (max-height: 890px) {
+  .release-modal .content {
+    min-width: auto;
+  }
+
+  .modal-images .release-image-format {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .modal-images .release-image-modal {
+    width: 250px;
+    height: 250px;
   }
 }
 

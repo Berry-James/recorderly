@@ -157,32 +157,50 @@ const Release = {
         
         // get collection btn
         const collectionBtn = document.querySelector('#addToCollectionBtn');
+        const span = collectionBtn.querySelector("span");
+        const itag = collectionBtn.querySelector("i");
         // DETERMINE COLLECTION BUTTON STATE
         // if user is signed in AND has release in collection, change button text\
          let userId = localStorage.getItem('userId');
+        return new Promise((resolve, reject) => {
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`)
             .then(res => res.json())
             .then(collection => {
+                console.log(collection.user_collection);
                 let collectionArray = []
                 collection.user_collection.forEach(element => {
-                    collectionArray.push(element.collectionObj.id)
+                    if(!element.collectionObj.id){
+                    } else {
+                        collectionArray.push(element.collectionObj.id)
+                        console.log(element.collectionObj.id, 'true')
+
+                    }
                 })
                 console.log(releaseObj.data.id);
                 if(Auth.authenticated && collectionArray.indexOf(releaseObj.data.id) === -1) {
-                    collectionBtn.innerText = 'Add to Collection'
+                    itag.className = 'fas fa-plus';
+                    span.innerText = 'Collection';
                     collectionBtn.addEventListener("click", function collectionAdd() {
                         Collection.add();
                         Modal.remove();
                     })
                 } else if(!Auth.authenticated) {
-                    collectionBtn.innerText = 'Sign in to add to collection'
+                    itag.className = 'fas fa-sign-in-alt';
+                    collectionBtn.querySelector("span").innerText = 'Sign in';
                 } else {
-                    collectionBtn.innerText = 'View in Collection'
+                    itag.className = 'fas fa-check';
+                    collectionBtn.setAttribute("data-tooltip", "Item already in collection");
+                    collectionBtn.classList.add("has-tooltip-active", "has-tooltip-bottom");
                     collectionBtn.addEventListener("click", () => {
                         window.location.href = '#collection';
                     })
                 }
             })
+            .catch(err => {
+                reject(err);
+            })
+        })
+
 /*         if(Auth.authenticated && App.user_collection.indexOf(releaseObj.data.id) === -1) {
             collectionBtn.innerText = 'Add to Collection';
         } else if(!Auth.authenticated) {

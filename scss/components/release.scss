@@ -27,9 +27,6 @@
 } 
 
 .modal-images {
-
-    height: 400px;
-    width: 100%;
     position: relative;
     display: flex;
     align-items: center;
@@ -40,7 +37,7 @@
 
     .release-image-modal {
         animation: imgSpin 0.5s ease-out;
-        position: absolute;
+        position: relative;
         box-shadow: 0px 0px 25px black;
         width: 350px;
         height: 350px;
@@ -81,6 +78,16 @@
         to {
             transform: translateX(30px);
         }
+    }
+
+}
+
+.text-based-modal-btns {
+    display: inline;
+
+    a {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
 }
@@ -147,6 +154,10 @@
         font-weight: normal;
     }
 
+    h3 {
+        margin-top: 20px;
+    }
+
     .release_year {
         margin-bottom: 0 !important;
     }
@@ -156,11 +167,14 @@
     }
     
     hr {
-        margin: 0;
-        margin-bottom: 1%;
+        margin: 4px 0;
         width: 40%;
         text-align: center;
         background:rgba(200, 200, 200, 0.9);
+    }
+
+    .loader-text {
+        height: 40px;
     }
 
     .release-button-container {
@@ -193,6 +207,7 @@
 
 // RELEASE DIVS
 .release-entry {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     margin: 20px 10px 60px;
@@ -214,6 +229,7 @@
         max-height: 100%;
         transition: 0.2s;
         margin-bottom: 5px; 
+        border-radius: 25px;
 
     }
     .release-title {
@@ -242,6 +258,7 @@
         pointer-events: none;
         margin-bottom: 0;
         opacity: 0;
+        border-radius: 25px;
 
         h3 {
             font-size: 1rem;
@@ -270,6 +287,7 @@
 
     .release-image {
     transform: translateY(-5px) translateX(5px);
+    border-radius: 0;
     }
     
     .content {
@@ -279,6 +297,7 @@
         animation: contentEntrance 0.2s linear;
         animation-fill-mode: forwards;
         transform: translateY(-5px) translateX(5px);
+        border-radius: 0;
     }
     img {
         transition: 0.2s;
@@ -298,14 +317,6 @@
     }
 
 }
-
-/* .release-modal {
-
-    .release-image-modal {
-        width: 80%;
-        height: auto;
-    }
-} */
 
 @keyframes imgSpin {
     0% {

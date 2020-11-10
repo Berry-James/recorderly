@@ -121,10 +121,10 @@ const Filters = {
         let filterContent = document.createElement('div');
         filterContent.className = 'filter-content';
 
-        // Create Title
+/*         // Create Title
         let filterTitle = document.createElement("h5");
         filterTitle.innerText = 'Filter Results';
-        filterContent.appendChild(filterTitle);
+        filterContent.appendChild(filterTitle); */
 
         // create genre filter 
         let genreFilter = document.createElement("select");
@@ -147,21 +147,7 @@ const Filters = {
         artistFilter.setAttribute("id", "artistDropdown");
         artistFilter.className = "dropdown";
 
-        // Create close button
-        let closeBtn = document.createElement('button');
-        closeBtn.innerHTML = '&times;';
-        closeBtn.className = 'filter-close-btn';
-        closeBtn.classList.add('button');
-        closeBtn.addEventListener('click', ()=> {
-            App.rootEL.removeChild(filterDiv);
-        })
-        filterDiv.appendChild(closeBtn);
 
-/*         // Create confirm btn
-        let confirmBtn = document.createElement('button');
-        confirmBtn.innerHTML = 'Apply Filters';
-        confirmBtn.className = 'filter-apply-btn';
-        confirmBtn.classList.add('button'); */
 
         genreFilter.addEventListener("change", () => {
             Filters.getInGenre();
@@ -170,27 +156,32 @@ const Filters = {
         styleFilter.addEventListener("change", () => {
             Filters.getInStyle();
         })
-/*         filterDiv.appendChild(confirmBtn);
- */
+
         // append genre filter to filter content
         filterContent.appendChild(genreFilter);
         filterContent.appendChild(artistFilter);
         filterContent.appendChild(styleFilter);
 
-
         // append content to main div
         filterDiv.appendChild(filterContent);
         // append append filterdiv to rootEl
         App.rootEL.appendChild(filterDiv);
-
-
-        // ANIM
+        
+        // animate filtersDiv into view
         anime({
             targets: filterDiv, 
             keyframes: [
                 { opacity: 0, top: '65%', duration: 0, easing: 'easeOutCubic' },
-                { opacity: 1, top: '155px', right: 0, duration: 500, easing: 'easeOutCubic' }
+                { opacity: 1, top: '150px', right: 0, duration: 500, easing: 'easeOutCubic' }
             ]
+        })
+
+        // rotate dots
+        const dots = document.querySelector("#filters-btn");
+        anime({
+            targets: dots,
+            rotate: '90deg',
+            color: '#f8b920',
         })
 
         // add esc key press function to trigger Modal.remove()
@@ -213,15 +204,22 @@ const Filters = {
         }else{
             // filterDiv exit animation
             anime({
-                targets: filterDiv,
-                opacity: 0,
-                duration: 150, 
-                right: '-20%',
-                easing:  'linear',
+                targets: filterDiv, 
+                opacity: 0, 
+                top: '75px', 
+                easing: 'easeOutCubic',
                 complete: () => {
                     filterDiv.remove();
                 }
             });
+
+            const dots = document.querySelector("#filters-btn");
+            anime({
+                targets: dots,
+                rotate: '0deg',
+                color: '#312b2b'
+            })
+    
         }
  
         // stop listening for esc key

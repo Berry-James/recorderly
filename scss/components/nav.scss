@@ -74,6 +74,11 @@
 
     }
 
+    #collectionBtn:hover, #wishlistBtn:hover {
+        background: none;
+        filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.8));
+    }
+
     @keyframes btnSpin {
         from {
             transform: translateX(0px) rotate(0deg);
