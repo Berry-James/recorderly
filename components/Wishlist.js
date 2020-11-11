@@ -63,7 +63,7 @@ const Wishlist = {
                                 format 
                         })
                     })
-                    .then(Notify.show(`✅ <b>${wishObj.title}</b> removed from wishlist!`))
+                    .then(Notify.show(`✅ <b>${wishObj.title}</b> removed from wishlist!`));
                     Wishlist.getUserWishlist();
                 })
                 .catch(err => {

@@ -32,7 +32,7 @@ const Collection = {
                                 format      
                         })
                     })
-                    .then(Notify.show(`📀 <b>${collectionObj.title}</b> added to collection!`))
+                    .then(Notify.show(`📀 <b>${collectionObj.title}</b> added to collection!`));
                 })
                 .catch(err => {
                     reject(err);
@@ -64,12 +64,12 @@ const Collection = {
                                 format 
                         })
                     })
-                    .then(Notify.show(`✅ <b>${collectionObj.title}</b> removed from collection!`))
+                    .then(Notify.show(`✅ <b>${collectionObj.title}</b> removed from collection!`));
                     Collection.getUserCollection();
                 })
                 .catch(err => {
                     reject(err);
-                })
+                });
             })
         })
         .catch(err => {
