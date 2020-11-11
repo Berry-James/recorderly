@@ -115,9 +115,9 @@ const Burger = {
     remove: () => {
         Burger.active = false;
         // get burger overlay
-        let burgerOverlay = document.querySelector('.burger-overlay');
+        const burgerOverlay = document.querySelector('.burger-overlay');
         // get burger
-        let burgerDiv = document.querySelector('.burger-div');
+        const burgerDiv = document.querySelector('.burger-div');
         anime({
             targets: burgerOverlay,
             opacity: 0,
