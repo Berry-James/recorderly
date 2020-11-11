@@ -10240,6 +10240,12 @@ hr {
   width: 2.5rem !important;
 }
 
+#nav-home-logo {
+  display: none;
+  font-size: 2rem;
+  color: #312b2b;
+}
+
 @keyframes collectionFadeIn {
   from {
     opacity: 0;
@@ -11343,6 +11349,10 @@ div.signOut-modal {
 
   .Rlogo {
     display: none;
+  }
+
+  #nav-home-logo {
+    display: block;
   }
 
   div.signOut-modal {
