@@ -11353,6 +11353,7 @@ div.signOut-modal {
 
   #nav-home-logo {
     display: block;
+    margin-right: 12px;
   }
 
   div.signOut-modal {
@@ -11697,6 +11698,7 @@ div.signOut-modal {
 
   #hamburger {
     display: flex;
+    margin-left: 15px;
   }
 
   .img-column .level {
