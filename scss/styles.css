@@ -11219,14 +11219,20 @@ div.signOut-modal {
   z-index: 2;
 }
 
+#notifications {
+  position: fixed;
+  z-index: 100;
+}
+
 .notification-entry {
   background-color: #ffffff;
   border-radius: 5px;
   z-index: 1000;
-  position: fixed;
+  position: relative;
   left: 20px;
   top: 100px;
   padding: 10px 20px 10px;
+  margin: 10px 0;
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
   color: #312b2b;
   font-family: "Alatsi", sans-serif;
@@ -11344,11 +11350,7 @@ div.signOut-modal {
     width: 100%;
   }
 
-  .notification-entry {
-    width: 80vw;
-    left: 0;
-    right: 0;
-    top: 15%;
+  #notifications {
     margin: 0 auto;
   }
 
@@ -11592,21 +11594,23 @@ div.signOut-modal {
   }
 
   .release-button-container {
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
   }
   .release-button-container .button {
     text-align: center;
-    width: 30vw;
+    width: 70vw;
     padding: 0;
-  }
-  .release-button-container .button span {
-    display: none;
+    /*             span {
+                    display: none;
+                } */
   }
   .release-button-container .button i {
     font-size: 1.5rem;
     text-align: center;
     margin: 0;
+    position: absolute;
+    left: 20px;
   }
   .release-button-container .button .fa-heart {
     color: tomato;

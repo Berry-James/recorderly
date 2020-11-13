@@ -212,7 +212,9 @@ const Release = {
 
                 if(Auth.authenticated && wishlistArray.includes(releaseObj.data.id)) {
                     wishlistBtn.itag.className = 'fas fa-check';
-                    wishlistBtn.span.innerText = 'item already in list';
+                    wishlistBtn.setAttribute("data-tooltip", "Release already in wish list")
+                    wishlistBtn.classList.add("has-tooltip-active", "has-tooltip-bottom");
+                    wishlistBtn.
                     collectionBtn.addEventListener("click", () => {
                         Wishlist.remove(releaseObj);
                     });
@@ -220,9 +222,10 @@ const Release = {
 
                 } if(Auth.authenticated && collectionArray.includes(releaseObj.data.id)) {
                     collectionBtn.itag.className = 'fas fa-check';
-                    collectionBtn.setAttribute("data-tooltip", "Item already in collection");
+                    collectionBtn.setAttribute("data-tooltip", "Release already in collection");
                     collectionBtn.span.innerText = null;
                     collectionBtn.classList.add("has-tooltip-active", "has-tooltip-bottom");
+                    collectionBtn.itag.style.margin = '0 auto';
                     wishlistBtn.style.display = 'none';
 
                     collectionBtn.addEventListener("click", () => {
