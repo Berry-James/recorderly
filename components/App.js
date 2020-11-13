@@ -18,7 +18,15 @@ const App = {
         Notify.init();
         Auth.check(() => {
             App.router();
+            window.addEventListener("hashchange", () => {
+                if(document.querySelector(".burger-div")){
+                    Burger.remove();
+                } else {
+                    
+                }
+            })
             window.addEventListener('hashchange', App.router);
+
     });
 },
 

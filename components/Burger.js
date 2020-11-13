@@ -110,6 +110,14 @@ const Burger = {
         }
         // listen for esc key press
         document.addEventListener('keydown', Burger.burgerEscKey);
+
+        // BUTTON EVENTS
+        const links = document.querySelectorAll(".burger-link");
+        links.forEach(link => {
+            link.onclick = () => {
+                Burger.remove();
+            }
+        })
     },
 
     remove: () => {
