@@ -14,8 +14,22 @@ import { Wishlist } from '../components/Wishlist.js';
 
 function wishlistPageController(){
     let data = {
-        title: `${User.email.split('@')[0]}'s Wishlist`
+        title: ``
     } 
+
+    let userName = `${User.email.split('@')[0]}'s`;
+    let suffix = ' Collection';
+    if(userName.length > 10) {
+        let newName = userName.substr(0, 7);
+        newName += '...';
+        newName += suffix;
+        data.title = newName;
+    } else {
+        userName += suffix;
+        data.title = userName;
+        console.log(data.title + ' fits');
+
+    }
 
     App.loadPage('Collection', 'template-page-wishlist', data, () =>{
 

@@ -87,6 +87,14 @@ const Burger = {
             Modal.show(helpContent)
         });
 
+        const collection = document.querySelector("#burger-collection");
+        const wishlist = document.querySelector("#burger-wishlist");
+
+        if(!Auth.authenticated) {
+            collection.style.display = 'none';
+            wishlist.style.display = 'none';
+        }
+
         // change button text and icon depending on auth status
         const signBtn = document.getElementById("signInBtn-burger");
         if(Auth.authenticated) {

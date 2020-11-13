@@ -10118,6 +10118,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 100vw;
 }
 .navbar .RLogo {
   display: none;
@@ -11290,16 +11291,6 @@ div.signOut-modal {
     width: 40vw;
   }
 
-  .hamburger {
-    display: flex;
-  }
-
-  .burger-div {
-    height: calc(100vh - 62px);
-    top: 72px;
-    width: 80vw;
-  }
-
   #brand-logo {
     display: flex;
     margin: 0px;
@@ -11346,6 +11337,29 @@ div.signOut-modal {
   }
 }
 @media screen and (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .burger-div {
+    height: calc(100vh - 62px);
+    top: 72px;
+    width: 80vw;
+  }
+
+  .profile-container {
+    align-items: flex-start !important;
+  }
+
+  .profile-img {
+    width: 200px;
+    margin: 0 !important;
+  }
+
+  .page-main-title {
+    font-size: 1rem;
+  }
+
   .home-columns {
     width: 100%;
   }

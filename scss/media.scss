@@ -80,6 +80,10 @@
     }
     
     @media screen and (max-width: 768px) {
+
+        #app {
+            max-width: 100vw;
+        }
     
         // HOME 
         .home-columns {
@@ -341,14 +345,21 @@
                     .modal-images {
                         height: 40vh;
     
-                        .release-image-format, .release-image-format-slide {
+                        .release-image-format {
                             width: 250px !important;
                             height: 250px !important;
                         }
+
+                        .release-image-format-slide {
+                            width: 250px !important;
+                            height: 250px !important;
+                        }
+
                         .release-image-modal {
                             width: 250px;
                             height: 250px;
                         }
+                        
                     }
                 }
             }
