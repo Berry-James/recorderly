@@ -468,6 +468,11 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
 
 @media screen and (max-width: 768px) {
 
+    // HOME 
+    .home-columns {
+        width: 100%;
+    }
+
     // NOTIF
     .notification-entry {
         width: 80vw;

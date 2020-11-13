@@ -155,78 +155,89 @@ const Release = {
         
         // get collection btn
         const collectionBtn = document.querySelector('#addToCollectionBtn');
-        const span = collectionBtn.querySelector("span");
-        const itag = collectionBtn.querySelector("i");
-
-        // get wishlist button
+        collectionBtn.itag = collectionBtn.querySelector("i");
+        collectionBtn.span = collectionBtn.querySelector("span");
         const wishlistBtn = document.querySelector("#addToWishlistBtn");
+        wishlistBtn.itag = wishlistBtn.querySelector("i");
+        wishlistBtn.span = wishlistBtn.querySelector("span");
+/*         const itag = collectionBtn.querySelector("i");
+ *//*         const wishTag = wish
+ */
+        // get wishlist button
         // DETERMINE COLLECTION BUTTON STATE
-        // if user is signed in AND has release in collection, change button text\
+        // if user is signed in AND has release in collection, change button text
         if(Auth.authenticated){
             let userId = localStorage.getItem('userId');
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userId}`)
             .then(res => res.json())
-            .then(collection => {
+            .then(data => {
                 let collectionArray = [];
                 let wishlistArray = [];
-                collection.user_collection.forEach(element => {
+
+                // Get user collection from user_collection array generated in collection page controller
+                data.user_collection.forEach(element => {
                     if(!element.collectionObj.id){
                     } else {
                         collectionArray.push(element.collectionObj.id)
-
                     }
                 })
-                collection.wishlist.forEach(element => {
-                    if(!element.wishObj.id){
 
+                data.wishlist.forEach(element => {
+                    if(!element.wishObj.id){
                     } else {
                         wishlistArray.push(element.wishObj.id);
                     }
-                });
+                }); 
+
+                console.log(wishlistArray);
+                console.log(releaseObj.data.id);
+
 
                 if(Auth.authenticated && collectionArray.indexOf(releaseObj.data.id) === -1) {
-                    itag.className = 'fas fa-plus';
-                    span.innerText = 'Collection';
-                    collectionBtn.addEventListener("click", function collectionAdd() {
+                    collectionBtn.itag.className = 'fas fa-plus';
+                    collectionBtn.span.innerText = 'Collection';
+                    collectionBtn.addEventListener("click", () => {
                         Collection.add();
                         Modal.remove();
                     });
                 
                 if(Auth.authenticated && wishlistArray.indexOf(releaseObj.data.id) === -1) {
+                    wishlistBtn.span.innerText = 'Add to Wishlist';
+                    wishlistBtn.itag.className = 'fas fa-heart';
                     wishlistBtn.addEventListener("click", () => {
                         Wishlist.add();
                         Modal.remove();
                     });
-                }
-                if(Auth.authenticated && wishlistArray.indexOf(releaseObj.data.id) === 1) {
-                    wishlistBtn.addEventListener("click", () => {
-                        wishlistBtn.innerText = 'item already in list';
-                        alert('item already in wishlist');
+                };
+
+                if(Auth.authenticated && wishlistArray.includes(releaseObj.data.id)) {
+                    wishlistBtn.itag.className = 'fas fa-check';
+                    wishlistBtn.span.innerText = 'item already in list';
+                    collectionBtn.addEventListener("click", () => {
+                        Wishlist.remove(releaseObj);
                     });
-                }
-                } else if(!Auth.authenticated) {
-                    itag.className = 'fas fa-sign-in-alt';
-                    collectionBtn.querySelector("span").innerText = 'Sign in';
-                } else {
-                    itag.className = 'fas fa-check';
+                };
+
+                } if(Auth.authenticated && collectionArray.includes(releaseObj.data.id)) {
+                    collectionBtn.itag.className = 'fas fa-check';
                     collectionBtn.setAttribute("data-tooltip", "Item already in collection");
-                    span.innerText = null;
+                    collectionBtn.span.innerText = null;
                     collectionBtn.classList.add("has-tooltip-active", "has-tooltip-bottom");
+                    wishlistBtn.style.display = 'none';
+
                     collectionBtn.addEventListener("click", () => {
                         window.location.href = '#collection';
                     });
-                }
-            })
-            .catch(err => {
-                reject(err);
+                } 
+                else if(!Auth.authenticated) {
+                    collectionBtn.itag.className = 'fas fa-sign-in-alt';
+                    collectionBtn.querySelector("span").innerText = 'Sign in';
+                    wishlistBtn.itag.className = 'fas fa-sign-in-alt';
+                    wishlistBtn.querySelector("span").innerText = 'Sign in';
+                };
             })
         collectionBtn.setAttribute("id", releaseObj.data.id);
 
-/*         // WISHLIST BUTTON
-        let wishBtn = document.querySelector("#addToWishlistBtn");
-        wishBtn.addEventListener("click", () => {
-            Wishlist.add();
-        }) */
         } else if(!Auth.authenticated) {
             const collectionBtn = document.querySelector("#addToCollectionBtn");
             collectionBtn.querySelector("span").innerText = 'Sign in';

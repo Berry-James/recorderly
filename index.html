@@ -64,7 +64,7 @@
         <div class="page page-home"></div>
         <main class="page-content" id="home-page">
         <div id="particles-js" class="home-bg"></div>
-        <div class="columns is-centered">
+        <div class="columns is-centered home-columns">
             <svg class="mobile-svg" viewBox="0 0 1920 1080"><defs><style>.a{fill:#f8b920;}</style></defs><path class="a" d="M0,204.326s427.112,465.41,594.312,183.207,212.97,261.3,514.624,17.783,329.921,391.841,534.794,113.075,273.9-268.814,273.9-268.814V-.079H0Z"/></svg>
                 <div class="mobile-main-img" id="turntable">
                     <img src="imgs\svg\turntable2.svg" class="main-img" id="mobile-img-id">           
@@ -343,7 +343,7 @@
                     </div>
                     <div class="release-button-container">
                         <button class="button cart-btn" id="addToCollectionBtn"><i></i><span><img src="./imgs/svg/loader-text.svg" class="loader-text"></span></button>
-                        <button class="button" id="addToWishlistBtn"><i class="fas fa-heart"></i><span>Wish list</span></button>
+                        <button class="button" id="addToWishlistBtn"><i></i><span><img src="./imgs/svg/loader-text.svg" class="loader-text"></span></button>
                     </div>
 
                 </div>
@@ -364,11 +364,11 @@
                     <li><b>Style:</b> {{ styles }}</li>
                 </ul>
                 <hr>
-                <ul>
+<!--                 <ul>
                     <b>Tracklist:</b>{{ #tracklist }}
                     <li><b>{{ position }}.</b>  <i>{{ title }}</i>  ({{ duration }})</li>
                     {{ /tracklist }}
-                </ul>
+                </ul> -->
                 <a id="release-discogs-link" href="{{discogsURL}}">Find on Discogs.com</a>
             </div>
             <div class="content">
@@ -405,11 +405,11 @@
                     <li><b>Style:</b> {{ styles }}</li>
                 </ul>
                 <hr>
-                <ul>
+<!--                 <ul>
                     <b>Tracklist:</b>{{ #tracklist }}
                     <li><b>{{ position }}.</b>  <i>{{ title }}</i>  ({{ duration }})</li>
                     {{ /tracklist }}
-                </ul>
+                </ul> -->
                 <a id="release-discogs-link" href="{{discogsURL}}">Find on Discogs.com</a>
             </div>
             <div class="content">

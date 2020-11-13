@@ -62,52 +62,56 @@ function collectionPageController(){
                 releaseDiv.appendChild(container);
             })
 
-            Collection.getUserCollection()
-            .then(releases => {
-                releases.user_collection.forEach(release => {
-                    release.collectionObj.userFormat = release.format;
-                    let collectionItem = Collection.createCollectionObj(release.collectionObj);
-
-                    // CONTAINERS
-                    let vinylContainer = document.querySelector(".vinyl-container");
-                    let cdContainer = document.querySelector(".cd-container");
-                    let cassetteContainer = document.querySelector(".cassette-container");
-                    let digitalContainer = document.querySelector(".digital-container");
-
-                    if(release.format == 'Vinyl') {
-                        vinylContainer.style.display = "flex"
-                        vinylContainer.appendChild(collectionItem.el);
-                        releaseDiv.appendChild(vinylContainer);
-                    }
-                    if(release.format == 'Compact Disc'){
-                        cdContainer.style.display = "flex"
-                        cdContainer.appendChild(collectionItem.el);
-                        releaseDiv.appendChild(cdContainer);    
-                    }
-                    if(release.format == 'Cassette'){
-                        cassetteContainer.style.display = "flex"
-                        cassetteContainer.appendChild(collectionItem.el);
-                        releaseDiv.appendChild(cassetteContainer);    
-                    }
-                    if(release.format == 'Digital Files'){
-                        digitalContainer.style.display = "flex"
-                        digitalContainer.appendChild(collectionItem.el);
-                        releaseDiv.appendChild(digitalContainer);    
-                    }   
-
-                    let releasesToAnimate = document.querySelectorAll(".release-entry");         
-                    anime({
-                        targets: releasesToAnimate,
-                        keyframes: [
-                            { opacity: 0, translateY: '15px'},
-                            { opacity: 1, translateY: '0px'},
-                        ],
-                        easing: 'easeOutElastic(1, .6)',
-                        delay: anime.stagger(100, {easing: 'linear'})
-                    }); 
-
+            return new Promise(() => {
+                Collection.getUserCollection()
+                .then(releases => {
+                    releases.user_collection.forEach(release => {
+                        release.collectionObj.userFormat = release.format;
+                        let collectionItem = Collection.createCollectionObj(release.collectionObj);
+    
+                        // CONTAINERS
+                        let vinylContainer = document.querySelector(".vinyl-container");
+                        let cdContainer = document.querySelector(".cd-container");
+                        let cassetteContainer = document.querySelector(".cassette-container");
+                        let digitalContainer = document.querySelector(".digital-container");
+    
+                        if(release.format == 'Vinyl') {
+                            vinylContainer.style.display = "flex"
+                            vinylContainer.appendChild(collectionItem.el);
+                            releaseDiv.appendChild(vinylContainer);
+                        }
+                        if(release.format == 'Compact Disc'){
+                            cdContainer.style.display = "flex"
+                            cdContainer.appendChild(collectionItem.el);
+                            releaseDiv.appendChild(cdContainer);    
+                        }
+                        if(release.format == 'Cassette'){
+                            cassetteContainer.style.display = "flex"
+                            cassetteContainer.appendChild(collectionItem.el);
+                            releaseDiv.appendChild(cassetteContainer);    
+                        }
+                        if(release.format == 'Digital Files'){
+                            digitalContainer.style.display = "flex"
+                            digitalContainer.appendChild(collectionItem.el);
+                            releaseDiv.appendChild(digitalContainer);    
+                        }   
+    
+                        let releasesToAnimate = document.querySelectorAll(".release-entry");         
+                        anime({
+                            targets: releasesToAnimate,
+                            keyframes: [
+                                { opacity: 0, translateY: '15px'},
+                                { opacity: 1, translateY: '0px'},
+                            ],
+                            easing: 'easeOutElastic(1, .6)',
+                            delay: anime.stagger(100, {easing: 'linear'})
+                        }); 
+    
+                    })
                 })
-            })
+            })    
+        
+
         }
         
         generateUserCollection();

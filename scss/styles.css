@@ -10532,7 +10532,8 @@ hr {
   padding: 3% 3%;
   overflow: auto;
   opacity: 0;
-  transform: translateX(-200px);
+  /*     transform: translateX(-200px);
+   */
   min-width: 200px;
 }
 .release-modal-more-info ul {
@@ -11339,6 +11340,10 @@ div.signOut-modal {
   }
 }
 @media screen and (max-width: 768px) {
+  .home-columns {
+    width: 100%;
+  }
+
   .notification-entry {
     width: 80vw;
     left: 0;
