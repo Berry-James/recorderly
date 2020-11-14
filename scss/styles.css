@@ -11682,19 +11682,13 @@ div.signOut-modal {
   }
   .release-button-container .button {
     text-align: center;
-    width: 30vw;
     height: 50px;
-    padding: 0;
-    /*             span {
-                    display: none;
-                } */
+    padding: 0 15px;
   }
   .release-button-container .button i {
     font-size: 1.5rem;
     text-align: center;
-    margin: 0;
-    position: absolute;
-    left: 20px;
+    margin-right: 10px;
   }
   .release-button-container .button .fa-heart {
     color: tomato;

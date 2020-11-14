@@ -7,6 +7,7 @@ import { Modal } from '../components/Modal.js';
 import { Collection } from '../components/Collection.js';
 import { Tutorial } from '../components/Tutorial.js';
 import { Filters } from '../components/Filters.js';
+import { Loader } from '../components/Loader.js';
 
 
 function searchPageController(){
@@ -128,13 +129,10 @@ function searchPageController(){
 
         function getSearchResults(){
             releaseDiv.innerHTML = null;
-            let loadingAnim = document.createElement("img");
-            loadingAnim.setAttribute("src", "./imgs/svg/loader-main.svg");
-            loadingAnim.className = 'loading-icon'; 
-            App.rootEL.appendChild(loadingAnim);
+            Loader.show('Searching...');
             Release.get()
             .then(releases => {
-                
+                Loader.remove();
                 // loop through releases array
                 releases.forEach(release => {
                         let slider = document.querySelector("#releaseSizeRange");
@@ -147,7 +145,6 @@ function searchPageController(){
                         let releaseItem = Release.createReleaseObj(release);
                         releaseDiv.appendChild(releaseItem.el);
                 });
-                App.rootEL.removeChild(loadingAnim);
                 let releaseThings = document.querySelectorAll(".release-entry");         
                 anime({
                     targets: releaseThings,

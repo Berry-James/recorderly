@@ -855,24 +855,15 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
     .release-button-container {
         flex-wrap: wrap;
 
-
         .button {   
             text-align: center;
-            width: 30vw;
             height: 50px;
-            padding: 0;
-            
-
-/*             span {
-                display: none;
-            } */
+            padding: 0 15px;
             
             i {
                 font-size: 1.5rem;
                 text-align: center;
-                margin: 0;
-                position: absolute;
-                left: 20px;
+                margin-right: 10px;
 
             }
 
