@@ -4,6 +4,7 @@ import { Release } from "./Release.js";
 import { Modal } from "./Modal.js";
 import anime from './../node_modules/animejs/lib/anime.es.js';
 import { App } from "./App.js";
+import { Loader } from "./Loader.js";
 
 
 const Wishlist = {
@@ -93,15 +94,12 @@ const Wishlist = {
     getUserWishlist: () => {
         let userID = localStorage.getItem('userId')
         return new Promise((resolve, reject) => {
-            let loader = document.createElement("img");
-            loader.className = "loading-icon";
-            loader.setAttribute("src", "./imgs/svg/loader-main.svg");
-            App.rootEL.appendChild(loader);
+            Loader.show('Fetching your wish list...')
             fetch(`https://recorderly-backend.herokuapp.com/api/users/${userID}`)
             .then(res => res.json())
             .then(releases => {
                 resolve(releases);
-                App.rootEL.removeChild(loader);
+                Loader.remove();
             })
             .catch(err => {
                 reject(err);

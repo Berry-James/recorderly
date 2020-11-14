@@ -9903,7 +9903,23 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 }
 .burger-div ul a i {
   margin-right: 20px;
+  font-size: 1.4rem;
+  display: inline-flex;
+}
+.burger-div ul a i div {
   font-size: 1rem;
+  margin-left: 5px;
+  background-color: #eeeeee;
+  font-weight: normal;
+  font-family: "Alatsi", sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  border-radius: 50000px;
+  width: 25px;
+  height: 25px;
 }
 .burger-div ul a:hover {
   font-weight: bold;
@@ -10966,7 +10982,7 @@ body {
   width: 100%;
 }
 
-.loading-icon {
+.loading-wrapper {
   position: fixed;
   left: 0;
   right: 0;
@@ -10974,6 +10990,12 @@ body {
   top: 0;
   margin: auto;
   z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  font-family: "Alatsi", sans-serif;
 }
 
 .button {

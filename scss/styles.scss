@@ -60,7 +60,8 @@ body {
 
 
 // LOADING ICON
-.loading-icon {
+
+.loading-wrapper {
     position: fixed;
     left: 0; 
     right: 0; 
@@ -68,6 +69,12 @@ body {
     top: 0;
     margin: auto;
     z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    font-family: $body;
 }
 
 .button {

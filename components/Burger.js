@@ -95,6 +95,14 @@ const Burger = {
         if(!Auth.authenticated) {
             collection.style.display = 'none';
             wishlist.style.display = 'none';
+        } else {
+            let wishCounter = document.createElement("div");
+            wishCounter.innerText = User.wishCount;
+            wishlist.querySelector("i").appendChild(wishCounter);
+            let collectionCounter = document.createElement("div");
+            collectionCounter.innerText = User.collectionCount;
+            collection.querySelector("i").appendChild(collectionCounter);
+
         }
 
         // change button text and icon depending on auth status

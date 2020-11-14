@@ -82,7 +82,7 @@ function collectionPageController(){
             })
 
             return new Promise(() => {
-                Collection.getUserCollection()
+                Collection.getUserCollection()  
                 .then(releases => {
                     releases.user_collection.forEach(release => {
                         release.collectionObj.userFormat = release.format;

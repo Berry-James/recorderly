@@ -3,6 +3,7 @@ import { Auth } from "./Auth.js";
 import { Burger } from './Burger.js';
 import { Nav } from './Nav.js';
 import { Collection } from './Collection.js';
+import { User } from "./User.js";
 
 const App = {
     // App properties
@@ -18,6 +19,10 @@ const App = {
         Notify.init();
         Auth.check(() => {
             App.router();
+            if(Auth.authenticated) {
+                User.updateCounts();
+                
+            }
             window.addEventListener("hashchange", () => {
                 if(document.querySelector(".burger-div")){
                     Burger.remove();

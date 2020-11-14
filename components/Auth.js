@@ -3,6 +3,7 @@ import { User } from "./User.js";
 import { Modal } from "./Modal.js";
 import { Collection } from "./Collection.js";
 import { App } from "./App.js";
+import { Loader } from "./Loader.js";
 
 const Auth = {
     // User authentication status
@@ -11,15 +12,8 @@ const Auth = {
     signIn: (userData) => {
         // send userData to backend API using fetch - POST
 
-        // Darken "Modal"
-        const formWrapper = document.querySelector(".form-wrapper");
-        formWrapper.classList.add("form-wrapper-darken");
-
-        // Append loading image
-        let loader = document.createElement("img");
-        loader.className = "loading-icon";
-        loader.setAttribute("src", "./imgs/svg/loader-main.svg");
-        App.rootEL.appendChild(loader);
+        // loader
+        Loader.show('Signing you in..')
         
 
         fetch('https://recorderly-backend.herokuapp.com/api/auth/signin', {
@@ -31,16 +25,14 @@ const Auth = {
             if(res.status !=200){
                 // problem signing in
                 res.json().then(res => {
-                    formWrapper.classList.remove("form-wrapper-darken");
-                    App.rootEL.removeChild(loader);
                     Notify.show(res.message);
+                    Loader.remove();
                 });
                
             }else{
                 // sign in success
                 res.json().then(res => {
-                    formWrapper.classList.remove("form-wrapper-darken");
-                    App.rootEL.removeChild(loader);
+                    Loader.remove();
                     // 1. save the token to local storage
                     localStorage.setItem('token', res.token);
                     // 2. set Auth.authenticated to true
@@ -54,6 +46,7 @@ const Auth = {
                     location.hash = '#';
                     // 5. show welcome notification
                     Notify.show(`👋 Welcome ${User.email.split('@')[0]}!`)
+                    User.updateCounts();
                 });
             }
         })
@@ -90,12 +83,8 @@ const Auth = {
                         Auth.authenticated = true;
                         // set user Info (res.user)
                         // set user info in User
-                        User.firstName = res.user.first_name;
-                        User.lastName = res.user.last_name;
                         User.email = res.user.email;
-                        User.vehicle = res.user.vehicle;
-                        User.vehicleImg = res.user.vehicle_img;
-
+                        User.updateCounts()
                         // callback
                         if(typeof callback == 'function'){
                             callback();
