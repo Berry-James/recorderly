@@ -10205,10 +10205,6 @@ hr {
   color: #fff;
 }
 
-.hamburger:hover {
-  color: #fff;
-}
-
 .searchInput {
   border: none;
   outline: none;
@@ -10243,7 +10239,7 @@ hr {
 
 #nav-home-logo {
   display: none;
-  font-size: 2rem;
+  font-size: 1.9rem;
   color: #312b2b;
 }
 
@@ -10730,29 +10726,32 @@ hr {
   right: 0;
   top: 0;
   width: 100vw;
-  height: 50px;
+  height: 60px;
   background-color: #f8b920;
   box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.3);
   padding: 10px;
 }
 .filterDiv .filter-content {
   width: 100vw;
-  height: 50px;
+  height: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
 }
 .filterDiv .dropdown {
-  color: #fff;
+  color: #312b2b;
   border-style: none;
   background: none;
   font-family: "Alatsi", sans-serif;
   font-size: 1rem;
   outline: none;
   position: relative;
-  border-bottom: 2px solid #fff;
   line-height: 100%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 0 10px;
 }
 .filterDiv .dropdown option {
   color: #312b2b;
@@ -11234,6 +11233,7 @@ div.signOut-modal {
   top: 100px;
   padding: 10px 20px 10px;
   margin: 10px 0;
+  max-width: calc(100vw - 40px);
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.2));
   color: #312b2b;
   font-family: "Alatsi", sans-serif;
@@ -11337,12 +11337,31 @@ div.signOut-modal {
   }
 }
 @media screen and (max-width: 768px) {
+  .myModal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+  }
+  .myModal .modal-close-btn {
+    top: 0;
+  }
+  .myModal .help-modal {
+    width: 90vw;
+    margin: auto;
+    border-radius: 25px;
+    margin-top: auto;
+  }
+  .myModal .about-content .modal-text-container {
+    border-radius: 25px;
+  }
+
   .hamburger {
     display: flex;
   }
 
   .burger-div {
-    height: calc(100vh - 62px);
+    position: fixed;
+    height: 80vh;
     top: 72px;
     width: 80vw;
   }
@@ -11373,7 +11392,8 @@ div.signOut-modal {
   }
 
   #nav-home-logo {
-    display: block;
+    display: inline-flex;
+    align-items: center;
     margin-right: 12px;
   }
 
@@ -11396,15 +11416,20 @@ div.signOut-modal {
 
   .filterDiv {
     top: 125px !important;
-    height: 150px;
+    height: fit-content;
+    padding: 30px 0;
+    background-color: #312b2b;
   }
   .filterDiv .filter-content {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
+    padding-right: 15px;
+    justify-content: space-evenly;
     padding-left: 10px;
   }
   .filterDiv .filter-content select {
     margin: 5px 0;
+    width: 50vw;
   }
 
   .QR-button {
@@ -11450,9 +11475,9 @@ div.signOut-modal {
     font-size: 1rem;
     text-align: center;
     margin: auto;
-    top: 0;
+    top: 82px !important;
     right: 0;
-    left: 0;
+    left: 0 !important;
   }
 
   #start-btn {
@@ -11471,30 +11496,44 @@ div.signOut-modal {
     display: none;
   }
 
-  .sign-in-container .form-wrapper {
+  .sign-in-container, .signInColumn {
+    padding: 0 !important;
+    height: calc(100vh - 62px);
+    position: absolute;
+    bottom: 0;
+    box-shadow: none;
+    filter: none;
+    width: 100vw;
+    right: 0;
+  }
+  .sign-in-container .form-wrapper, .signInColumn .form-wrapper {
+    position: absolute;
     display: inline-block;
     width: 100vw;
     height: calc(100vh - 62px);
     border-radius: 0px;
+    top: 0;
+    /*             top: 142px;
+     */
   }
-  .sign-in-container .form-wrapper h1 {
+  .sign-in-container .form-wrapper h1, .signInColumn .form-wrapper h1 {
     text-align: center;
     font-size: 15vw;
   }
-  .sign-in-container .form-wrapper #form-sign-in {
+  .sign-in-container .form-wrapper #form-sign-in, .signInColumn .form-wrapper #form-sign-in {
     margin-top: 5%;
   }
-  .sign-in-container .form-wrapper #form-sign-in .signIn-btn {
+  .sign-in-container .form-wrapper #form-sign-in .signIn-btn, .signInColumn .form-wrapper #form-sign-in .signIn-btn {
     width: 80vw;
   }
-  .sign-in-container .form-wrapper #form-sign-in .field {
+  .sign-in-container .form-wrapper #form-sign-in .field, .signInColumn .form-wrapper #form-sign-in .field {
     width: 80vw;
   }
-  .sign-in-container .form-wrapper #form-sign-in .field:last-of-type {
+  .sign-in-container .form-wrapper #form-sign-in .field:last-of-type, .signInColumn .form-wrapper #form-sign-in .field:last-of-type {
     position: relative;
     margin-top: 30px;
   }
-  .sign-in-container .form-wrapper .form-img {
+  .sign-in-container .form-wrapper .form-img, .signInColumn .form-wrapper .form-img {
     top: 0;
     position: relative;
     border-radius: 0px;
@@ -11553,10 +11592,12 @@ div.signOut-modal {
   }
 
   .release-mouseover, .release-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: grid;
     /*         grid-template-rows: calc(50vh - 32px) calc(50vh - 32px);
      */
-    top: 76px;
     width: 100vw;
     height: calc(100vh - 62px);
     min-width: 100vw !important;
@@ -11569,16 +11610,25 @@ div.signOut-modal {
     grid-row-start: 1;
     grid-row-end: 2;
     border-radius: 0;
-    max-height: 35vh;
+    /*             max-height: 35vh; */
   }
   .release-mouseover .modal-top-content .modal-image-container, .release-modal .modal-top-content .modal-image-container {
     padding: 0;
-    max-height: 35vh;
+    /*                 max-height: 35vh;
+     */
+  }
+  .release-mouseover .modal-top-content .modal-image-container .format-dropdown, .release-modal .modal-top-content .modal-image-container .format-dropdown {
+    margin-bottom: 8px;
   }
   .release-mouseover .modal-top-content .modal-image-container .modal-images, .release-modal .modal-top-content .modal-image-container .modal-images {
     height: 40vh;
+    margin-bottom: 0;
   }
-  .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-format, .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-format-slide, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-format, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-format-slide {
+  .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-format, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-format {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .release-mouseover .modal-top-content .modal-image-container .modal-images .release-image-format-slide, .release-modal .modal-top-content .modal-image-container .modal-images .release-image-format-slide {
     width: 250px !important;
     height: 250px !important;
   }
@@ -11587,12 +11637,13 @@ div.signOut-modal {
     height: 250px;
   }
   .release-mouseover .modal-text-container, .release-modal .modal-text-container {
-    padding-top: 50px;
+    padding-top: 10px;
     justify-content: flex-start;
     grid-row-start: 2;
     grid-row-end: 3;
     justify-self: start;
-    min-height: 65vh;
+    /*             min-height: 65vh;
+     */
   }
   .release-mouseover .modal-text-container .release_artist, .release-modal .modal-text-container .release_artist {
     font-size: 12vw;
@@ -11603,17 +11654,14 @@ div.signOut-modal {
   .release-mouseover .modal-text-container #release-discogs-link, .release-modal .modal-text-container #release-discogs-link {
     display: none;
   }
-  .release-mouseover .release-modal, .release-modal .release-modal {
-    min-width: 0;
-  }
 
   .release-button-container {
-    flex-direction: column;
     flex-wrap: wrap;
   }
   .release-button-container .button {
     text-align: center;
-    width: 70vw;
+    width: 30vw;
+    height: 50px;
     padding: 0;
     /*             span {
                     display: none;
@@ -11672,13 +11720,14 @@ div.signOut-modal {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    position: absolute;
+    /*         position: absolute;
+     */
     bottom: 0;
     margin: 0 auto;
     left: 0;
     right: 0;
     width: 90vw;
-    height: 40vh;
+    height: 60vh;
   }
   .main-text .main-title {
     font-size: 2rem;
@@ -11693,10 +11742,17 @@ div.signOut-modal {
     width: auto;
     margin-top: auto;
     margin-bottom: 10%;
+    position: fixed;
+    bottom: 15px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: fit-content;
   }
 
   .navbar {
     width: 100%;
+    background-color: #fff;
   }
 
   .navbar-end .level #collectionBtn {
@@ -11732,7 +11788,7 @@ div.signOut-modal {
   }
   .img-column .svg-wrapper svg {
     min-width: 100vw;
-    transform: rotate(180deg) scale(1.5);
+    transform: rotate(180deg);
     top: 0;
     right: 0;
     height: 30%;
@@ -11758,8 +11814,8 @@ div.signOut-modal {
   }
 
   .text-column {
-    /*         position: absolute;
-            bottom: 1%; */
+    position: absolute;
+    left: 0;
     display: block;
     justify-content: center;
     align-items: center;
@@ -11787,7 +11843,7 @@ div.signOut-modal {
     min-width: auto;
   }
 
-  .modal-images .release-image-format {
+  .modal-images .release-image-format, .modal-images .release-image-format-slide {
     width: 250px !important;
     height: 250px !important;
   }

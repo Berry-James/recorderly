@@ -78,13 +78,15 @@ const Burger = {
         const aboutBtn = document.querySelector("#about-btn");
         const aboutContent = document.querySelector("#template-about-modal").innerHTML;
         aboutBtn.addEventListener("click", function() {
-            Modal.show(aboutContent)
+            Modal.show(aboutContent);
+            Burger.remove();
         });
 
         const helpBtn = document.querySelector("#help-btn");
         const helpContent = document.querySelector("#template-help-modal").innerHTML;
         helpBtn.addEventListener("click", function() {
-            Modal.show(helpContent)
+            Modal.show(helpContent);
+            Burger.remove();
         });
 
         const collection = document.querySelector("#burger-collection");

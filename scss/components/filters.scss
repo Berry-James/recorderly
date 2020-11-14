@@ -9,31 +9,34 @@
     right: 0;
     top: 0;
     width: 100vw;
-    height: 50px;
+    height: 60px;
     background-color: $yellow;
     box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.3);
     padding: 10px;
 
     .filter-content {
         width: 100vw;
-        height: 50px;
+        height: 70px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: flex-end;
     }
 
     
     .dropdown {
-        color: #fff;
+        color: $dark-grey;
         border-style: none;
         background: none;
         font-family: $body;
         font-size: 1rem;
         outline: none;
         position: relative;
-        border-bottom: 2px solid #fff;
         line-height: 100%;
+        background-color: rgba(255, 255, 255, 1);
+        padding: 10px;
+        border-radius: 20px;
+        margin: 0 10px;
 
         option {
             color: $dark-grey;

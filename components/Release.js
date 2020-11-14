@@ -89,10 +89,20 @@ const Release = {
             releaseObj.el.setAttribute('id', `${releaseObj.data.id}`);
 
             // set release ARTIST to artist name (string split);
-            let title = releaseObj.data.title.toString();
+            let title = releaseObj.data.title;
             let split = title.split(' - ');
+
+            if(split[1].length > 20) {
+                let newTitle = split[1].substr(0, 17);
+                newTitle += '...';
+                releaseObj.data.releaseName = newTitle;
+            } else {
+                let split = title.split(' - ');
+                releaseObj.data.releaseName = split[1];
+            }
             releaseObj.data.artistName = split[0];
-            releaseObj.data.releaseName = split[1];
+
+
 
             // set external Discogs URL
             let URI = releaseObj.data.uri;
@@ -133,6 +143,14 @@ const Release = {
         // show modal
         Modal.show(modalContent);
 
+        // add event listener if release name is too long
+        const rName = document.querySelector(".release_artist");
+        if(rName.innerText.length == 20) {
+            rName.addEventListener("click", () => {
+                Notify.show(releaseObj.data.title);
+            })
+        }
+
 
 
         // show more button listener
@@ -160,9 +178,7 @@ const Release = {
         const wishlistBtn = document.querySelector("#addToWishlistBtn");
         wishlistBtn.itag = wishlistBtn.querySelector("i");
         wishlistBtn.span = wishlistBtn.querySelector("span");
-/*         const itag = collectionBtn.querySelector("i");
- *//*         const wishTag = wish
- */
+
         // get wishlist button
         // DETERMINE COLLECTION BUTTON STATE
         // if user is signed in AND has release in collection, change button text
@@ -189,10 +205,6 @@ const Release = {
                     }
                 }); 
 
-                console.log(wishlistArray);
-                console.log(releaseObj.data.id);
-
-
                 if(Auth.authenticated && collectionArray.indexOf(releaseObj.data.id) === -1) {
                     collectionBtn.itag.className = 'fas fa-plus';
                     collectionBtn.span.innerText = 'Collection';
@@ -200,9 +212,10 @@ const Release = {
                         Collection.add();
                         Modal.remove();
                     });
+                } 
                 
                 if(Auth.authenticated && wishlistArray.indexOf(releaseObj.data.id) === -1) {
-                    wishlistBtn.span.innerText = 'Add to Wishlist';
+                    wishlistBtn.span.innerText = 'Wishlist';
                     wishlistBtn.itag.className = 'fas fa-heart';
                     wishlistBtn.addEventListener("click", () => {
                         Wishlist.add();
@@ -219,8 +232,8 @@ const Release = {
                         Wishlist.remove(releaseObj);
                     });
                 };
-
-                } if(Auth.authenticated && collectionArray.includes(releaseObj.data.id)) {
+                
+                if(Auth.authenticated && collectionArray.includes(releaseObj.data.id)) {
                     collectionBtn.itag.className = 'fas fa-check';
                     collectionBtn.setAttribute("data-tooltip", "Release already in collection");
                     collectionBtn.span.innerText = null;
@@ -232,11 +245,11 @@ const Release = {
                         window.location.href = '#collection';
                     });
                 } 
-                else if(!Auth.authenticated) {
+
+                else if(Auth.authenticated === false) {
                     collectionBtn.itag.className = 'fas fa-sign-in-alt';
-                    collectionBtn.querySelector("span").innerText = 'Sign in';
-                    wishlistBtn.itag.className = 'fas fa-sign-in-alt';
-                    wishlistBtn.querySelector("span").innerText = 'Sign in';
+                    collectionBtn.span.innerText = 'Please sign in';
+                    wishlistBtn.style.display = 'none';
                 };
             })
         collectionBtn.setAttribute("id", releaseObj.data.id);

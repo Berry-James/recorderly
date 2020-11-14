@@ -10,23 +10,22 @@ import { Modal } from '../components/Modal.js';
 import anime from './../node_modules/animejs/lib/anime.es.js';
 import { Wishlist } from '../components/Wishlist.js';
 
-
-
 function wishlistPageController(){
     let data = {
         title: ``
     } 
 
     let userName = `${User.email.split('@')[0]}'s`;
-    let suffix = ' Collection';
+    let suffix = ' Wish List';
     if(userName.length > 10) {
         let newName = userName.substr(0, 7);
         newName += '...';
         newName += suffix;
         data.title = newName;
     } else {
-        userName += suffix;
-        data.title = userName;
+        let newName = userName;
+        newName += suffix;
+        data.title = newName;
         console.log(data.title + ' fits');
 
     }

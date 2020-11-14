@@ -16,7 +16,7 @@ function collectionPageController(){
         title: ''
     } 
     
-    let userName = `${User.email.split('@')[0]}'sasdfasdf`;
+    let userName = `${User.email.split('@')[0]}'s`;
     let suffix = ' Collection';
     if(userName.length > 10) {
         let newName = userName.substr(0, 7);
@@ -24,8 +24,9 @@ function collectionPageController(){
         newName += suffix;
         data.title = newName;
     } else {
-        userName += suffix;
-        data.title = userName;
+        let newName = userName;
+        newName += suffix;
+        data.title = newName;
         console.log(data.title + ' fits');
 
     }
