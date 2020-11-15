@@ -34,6 +34,7 @@ const Wishlist = {
                         })
                     })
                     .then(Notify.show(`📀 <b>${wishObj.title}</b> added to Wishlist!`))
+                    User.wishCount++;
                 })
                 .catch(err => {
                     console.log(err);
@@ -66,6 +67,7 @@ const Wishlist = {
                     })
                     .then(Notify.show(`✅ <b>${wishObj.title}</b> removed from wishlist!`));
                     Wishlist.getUserWishlist();
+                    User.wishCount--;
                 })
                 .catch(err => {
                     reject(err);

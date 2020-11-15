@@ -34,6 +34,7 @@ const Collection = {
                         })
                     })
                     .then(Notify.show(`📀 <b>${collectionObj.title}</b> added to collection!`));
+                    User.collectionCount++;
                 })
                 .catch(err => {
                     reject(err);
@@ -67,6 +68,8 @@ const Collection = {
                     })
                     .then(Notify.show(`✅ <b>${collectionObj.title}</b> removed from collection!`));
                     Collection.getUserCollection();
+                    User.collectionCount--;
+
                 })
                 .catch(err => {
                     reject(err);
