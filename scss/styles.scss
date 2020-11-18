@@ -22,6 +22,201 @@ $primary: $yellow;
     font-size: 1rem !important  ;
 }
 
+// DARK MODE TOGGLE
+.is-dark-mode {
+    color: #fff !important;
+    background: #171717 !important;
+
+    h1, h2, h3, h4, h5, p {
+        color: #fff;
+    }
+
+    .navbar {
+        background-color: #292929;
+
+        .navbar-brand {
+            #nav-home-logo {
+                color: #fff;
+            }
+        }
+    }
+
+    .control-bar {
+        background-color: #292929;
+        .button {
+            box-shadow: none;
+        }
+    }
+
+    .myModal {
+        background: #292929 !important;
+
+        .signOut-modal {
+            .content {
+                .signOutModal {
+                    .modal-text-container {
+                        background-color: #292929;
+
+                        .sign-out-button-wrapper {
+                            .button {
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .help-modal {
+            .content {
+                .modal-text-container {
+                    background-color: #292929;
+                }
+            }
+        }
+
+        .release-modal {
+            background: #292929 !important;
+
+            .content {
+                background: #292929 !important;
+
+                .modal-text-container {
+                    background: #292929 !important;
+
+                    .button {
+                        box-shadow: none;
+                    }
+
+                    .release-button-container {
+                        .button {
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .home-columns {
+        .text-column {
+            .main-text {
+                #see-more-btn {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .img-column {
+            .svg-wrapper {
+                .home-wave {
+                    filter: brightness(0.7);
+                }
+            }
+        }
+    }
+
+    .tutorialDiv {
+        background: #292929;
+        p {
+            color: #fff !important;
+
+        }
+    }
+
+    .navbar {
+        .navbar-end {
+            .level {
+                .hamburger {
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+
+    .page-content {
+        background: #171717;
+        color: #fff;
+
+        .columns {
+            .signInColumn {
+                .form-wrapper {
+                    background-color: #292929;
+                    .inline-form {
+                        .field {
+                            .control {
+                                .input {
+                                    background: #171717;
+                                    border: none;
+                                    color: #fff;
+                                }
+                                .input::placeholder {
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .sign-in-container {
+            .form-wrapper {
+                background-color: #292929;
+
+                .inline-form {
+                    .field {
+                        .control {
+                            .input {
+                                background-color: #171717;
+                                border: none;
+                                color: #fff;
+                            }
+                            .input::placeholder {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .control-bar {
+            background: #292929 !important;
+           
+            .size-slider {
+                label {
+                    color: #fff !important;
+                }
+            }
+
+            a {
+                color: #fff !important;
+            }
+        }
+    }
+
+    .burger-div {
+        background: #171717 !important;
+
+        .hamburger-content {
+            .burger-link {
+                i {
+                    div {
+                        background-color: #414141;
+                    }
+                }
+            }
+        }
+
+        .burger-footer {
+            a {
+                color: #fff !important;
+            }
+        }
+    }
+}
+
 // Body background
 html {
     background-color: $background;
@@ -200,8 +395,6 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 2% 2%;
-    background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639093137254902) 35%, rgba(223,223,223,1) 100%);
 }
 
 .release-container::after {

@@ -4,6 +4,7 @@ import { Burger } from './Burger.js';
 import { Nav } from './Nav.js';
 import { Collection } from './Collection.js';
 import { User } from "./User.js";
+import { Mode } from "./Mode.js";
 
 const App = {
     // App properties
@@ -16,6 +17,7 @@ const App = {
 
     // Initialise notification, check auth status, init router
     init: () => { 
+        Mode.init();
         Notify.init();
         Auth.check(() => {
             App.router();
@@ -31,9 +33,8 @@ const App = {
                 }
             })
             window.addEventListener('hashchange', App.router);
-
-    });
-},
+        });
+    },
 
     addRoute: (path, pageController) => {
         // adding an entry to App.routes
@@ -73,6 +74,7 @@ const App = {
         // insert the output HTML into the rootEL
         App.rootEL.innerHTML = output;
         App.loadNav();
+        Mode.set();
 
         // run the callback (if it exists)
         if( typeof callback == 'function' ){
@@ -87,6 +89,7 @@ const App = {
 
         // get main nav div
         const collectionBtn = document.querySelector("#collectionBtn");
+        const wishBtn = document.querySelector("#wishlistBtn");
         const signInBtn = document.querySelector("#signInBtn");
         const burgerBtn = document.querySelector("#hamburger");
         const burgerTemplate = document.querySelector("#template-hamburger").innerHTML;
@@ -99,18 +102,16 @@ const App = {
             }
         });
 
-        if(Auth.authenticated == true){
+        if(Auth.authenticated){
             // User is signed in, show 'Collection' button and change Sign-in btn to 'Sign Out'
             collectionBtn.classList.remove("collection-btn-hide");
             collectionBtn.classList.add("collection-btn-show");
+            wishBtn.classList.remove("wishlist-btn-hide");
             signInBtn.innerText = "Sign Out";
             signInBtn.setAttribute('href', '#signOut');
             collectionBtn.setAttribute('href', '#collection');
         }
-        // if user is Not signed in, make 'Collection' button redirect to sign-in page
-        else{
-            collectionBtn.setAttribute('href', '#signIn');
-        }
+
     },
 }
 

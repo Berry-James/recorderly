@@ -9963,15 +9963,18 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   bottom: 0%;
   width: 100%;
   height: 75px;
-  background-color: #f8b920;
 }
 .burger-footer a {
   font-family: "Alatsi", sans-serif;
-  color: #ffffff;
+  color: #171717;
   display: flex;
   align-items: center;
   margin-left: 2vw;
   font-size: 1rem;
+}
+.burger-footer .mode-toggle {
+  text-shadow: 0 0 1rem #f8b920;
+  font-size: 1.5rem;
 }
 .burger-footer i {
   margin-right: 10px;
@@ -10135,6 +10138,9 @@ hr {
   align-items: center;
   justify-content: space-between;
   max-width: 100vw;
+}
+.navbar .collection-btn-hide, .navbar .wishlist-btn-hide {
+  display: none !important;
 }
 .navbar .RLogo {
   display: none;
@@ -10511,7 +10517,7 @@ hr {
   border-radius: 0;
 }
 .release-entry:hover .content {
-  display: flex;
+  display: none;
   z-index: 1;
   backdrop-filter: brightness(30%) blur(5px);
   animation: contentEntrance 0.2s linear;
@@ -10955,6 +10961,112 @@ hr {
   font-size: 1rem !important;
 }
 
+.is-dark-mode {
+  color: #fff !important;
+  background: #171717 !important;
+}
+.is-dark-mode h1, .is-dark-mode h2, .is-dark-mode h3, .is-dark-mode h4, .is-dark-mode h5, .is-dark-mode p {
+  color: #fff;
+}
+.is-dark-mode .navbar {
+  background-color: #292929;
+}
+.is-dark-mode .navbar .navbar-brand #nav-home-logo {
+  color: #fff;
+}
+.is-dark-mode .control-bar {
+  background-color: #292929;
+}
+.is-dark-mode .control-bar .button {
+  box-shadow: none;
+}
+.is-dark-mode .myModal {
+  background: #292929 !important;
+}
+.is-dark-mode .myModal .signOut-modal .content .signOutModal .modal-text-container {
+  background-color: #292929;
+}
+.is-dark-mode .myModal .signOut-modal .content .signOutModal .modal-text-container .sign-out-button-wrapper .button {
+  box-shadow: none;
+}
+.is-dark-mode .myModal .help-modal .content .modal-text-container {
+  background-color: #292929;
+}
+.is-dark-mode .myModal .release-modal {
+  background: #292929 !important;
+}
+.is-dark-mode .myModal .release-modal .content {
+  background: #292929 !important;
+}
+.is-dark-mode .myModal .release-modal .content .modal-text-container {
+  background: #292929 !important;
+}
+.is-dark-mode .myModal .release-modal .content .modal-text-container .button {
+  box-shadow: none;
+}
+.is-dark-mode .myModal .release-modal .content .modal-text-container .release-button-container .button {
+  box-shadow: none;
+}
+.is-dark-mode .home-columns .text-column .main-text #see-more-btn {
+  box-shadow: none;
+}
+.is-dark-mode .home-columns .img-column .svg-wrapper .home-wave {
+  filter: brightness(0.7);
+}
+.is-dark-mode .tutorialDiv {
+  background: #292929;
+}
+.is-dark-mode .tutorialDiv p {
+  color: #fff !important;
+}
+.is-dark-mode .navbar .navbar-end .level .hamburger {
+  color: #fff !important;
+}
+.is-dark-mode .page-content {
+  background: #171717;
+  color: #fff;
+}
+.is-dark-mode .page-content .columns .signInColumn .form-wrapper {
+  background-color: #292929;
+}
+.is-dark-mode .page-content .columns .signInColumn .form-wrapper .inline-form .field .control .input {
+  background: #171717;
+  border: none;
+  color: #fff;
+}
+.is-dark-mode .page-content .columns .signInColumn .form-wrapper .inline-form .field .control .input::placeholder {
+  color: #fff;
+}
+.is-dark-mode .page-content .sign-in-container .form-wrapper {
+  background-color: #292929;
+}
+.is-dark-mode .page-content .sign-in-container .form-wrapper .inline-form .field .control .input {
+  background-color: #171717;
+  border: none;
+  color: #fff;
+}
+.is-dark-mode .page-content .sign-in-container .form-wrapper .inline-form .field .control .input::placeholder {
+  color: #fff;
+}
+.is-dark-mode .page-content .control-bar {
+  background: #292929 !important;
+}
+.is-dark-mode .page-content .control-bar .size-slider label {
+  color: #fff !important;
+}
+.is-dark-mode .page-content .control-bar a {
+  color: #fff !important;
+}
+.is-dark-mode .burger-div {
+  background: #171717 !important;
+}
+.is-dark-mode .burger-div .hamburger-content .burger-link i div {
+  background-color: #414141;
+}
+.is-dark-mode .burger-div .burger-footer a {
+  color: #fff !important;
+}
+
 html {
   background-color: #f6f6f6;
 }
@@ -11116,8 +11228,6 @@ body {
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 2% 2%;
-  background: white;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(238, 238, 238, 0.6390931373) 35%, #dfdfdf 100%);
 }
 
 .release-container::after {

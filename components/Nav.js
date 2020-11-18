@@ -16,6 +16,7 @@ const Nav = {
         navbar.el.innerHTML = Mustache.render(navbar.template, navbar.data);
         App.rootEL.appendChild(navbar.el);
 
+
         Nav.events();
     },
 
