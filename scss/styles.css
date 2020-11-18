@@ -11370,8 +11370,18 @@ div.signOut-modal {
   .myModal .help-modal {
     width: 90vw;
     margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 20%;
     border-radius: 25px;
     margin-top: auto;
+    border-radius: 25px;
+  }
+  .myModal .help-modal .modal-text-container {
+    border-radius: 25px;
   }
   .myModal .about-content .modal-text-container {
     border-radius: 25px;
@@ -11670,13 +11680,6 @@ div.signOut-modal {
   .release-mouseover .modal-text-container .release_artist, .release-modal .modal-text-container .release_artist {
     font-size: 12vw;
   }
-  .release-mouseover .modal-text-container #release-more-info-btn, .release-modal .modal-text-container #release-more-info-btn {
-    display: none;
-  }
-  .release-mouseover .modal-text-container #release-discogs-link, .release-modal .modal-text-container #release-discogs-link {
-    display: none;
-  }
-
   .release-button-container {
     flex-wrap: wrap;
   }

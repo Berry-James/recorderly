@@ -33,7 +33,7 @@ const Wishlist = {
                                 format      
                         })
                     })
-                    .then(Notify.show(`📀 <b>${wishObj.title}</b> added to Wishlist!`))
+                    .then(Notify.show(`💝 <b>${wishObj.title}</b> added to Wishlist!`))
                     User.wishCount++;
                 })
                 .catch(err => {

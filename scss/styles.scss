@@ -488,8 +488,19 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
         .help-modal {
             width: 90vw;
             margin: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 20%;
             border-radius: 25px;
             margin-top: auto;
+            border-radius: 25px;
+
+            .modal-text-container {
+                border-radius: 25px;
+            }
         }
 
         .about-content {
@@ -843,10 +854,8 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(238,238,238,0.639
             }
 
             #release-more-info-btn {
-                display: none;
             }
             #release-discogs-link {
-                display: none;
             }
         }
 

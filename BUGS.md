@@ -18,3 +18,12 @@ MOBILE {
     remove collection and wishlist links when not auth
     help/about modals should close burger menu when they are opened
 }
+
+TO ADD
+- Mobile button for 'MORE INFO'
+
+TO FIX
+- Load more
+- add notification when pagination reaches null
+    if error is 404, notify.show(bruh)
+- QR loader
