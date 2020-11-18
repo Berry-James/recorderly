@@ -1,6 +1,7 @@
 import { Notify } from "./Notify.js";
 import { Collection } from "./Collection.js";
 import { Auth } from "./Auth.js";
+import { Loader } from "./Loader.js";
 
 
 const User = {
@@ -20,6 +21,10 @@ const User = {
         },
    
     create: (userData) => {
+
+        // loader
+        Loader.show('Creating account...')
+
         // send userData to backend API using fetch - POST
         fetch('https://recorderly-backend.herokuapp.com/api/users', {
             method: 'post',
@@ -32,11 +37,13 @@ const User = {
                 Notify.show("Problem Creating User");
             }else{
                 // user created successfully
-                Notify.show("User Account Created");
+                Notify.show("🎉 User Account Created");
                 // redirect user to the sign in page #signIn
                 location.hash = '#signIn';
-                Notify.show("Please Sign in");
+                Notify.show("🔒 Please Sign in");
             }
+            // loader
+            Loader.remove()
         })
         .catch(err => {
             console.log(err);

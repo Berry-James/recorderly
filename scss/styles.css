@@ -10415,6 +10415,13 @@ hr {
   margin-top: 2%;
   justify-content: center;
 }
+.modal-text-container .release-button-container button {
+  display: flex;
+  justify-content: center;
+}
+.modal-text-container .release-button-container button span {
+  text-align: center;
+}
 .modal-text-container .release-button-container i {
   color: #fff;
   margin-right: 10px;

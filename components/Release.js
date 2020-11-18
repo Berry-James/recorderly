@@ -246,17 +246,19 @@ const Release = {
                     });
                 } 
 
-                else if(Auth.authenticated === false) {
+/*                 else if(!Auth.authenticated) {
                     collectionBtn.itag.className = 'fas fa-sign-in-alt';
                     collectionBtn.span.innerText = 'Please sign in';
                     wishlistBtn.style.display = 'none';
-                };
+                }; */
             })
         collectionBtn.setAttribute("id", releaseObj.data.id);
 
         } else if(!Auth.authenticated) {
             const collectionBtn = document.querySelector("#addToCollectionBtn");
-            collectionBtn.querySelector("span").innerText = 'Sign in';
+            collectionBtn.querySelector("span").innerText = 'Please Sign in';
+            collectionBtn.querySelector("i").classList.add("fas", "fa-sign-in-alt");
+            wishlistBtn.style.display = 'none';
             collectionBtn.addEventListener("click", () => {
                 window.location.href = "#signIn";
             })
@@ -281,10 +283,7 @@ const Release = {
             formatImg.setAttribute("src", `./imgs/formats/${formatSelected}.svg`)
         }) 
 
-    },
-
-
-    
+    },    
 }
 
 export { Release }

@@ -183,6 +183,16 @@
         margin-top: 2%;
         justify-content: center;
 
+        button {
+            display: flex;
+            justify-content: center;
+
+            span {
+                text-align: center;
+
+            }
+        }
+
         i {
             color: #fff;
             margin-right: 10px;
