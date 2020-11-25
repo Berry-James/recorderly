@@ -133,9 +133,12 @@ const Filters = {
         styleFilter.className = "dropdown";
 
         // create sorts
-        const sortBtn = document.createElement('button');
-        sortBtn.classList.add('sort-btn', 'button');
+        const sortBtn = document.createElement('a');
+        sortBtn.classList.add('sort-btn');
+        sortBtn.icon = document.createElement("i");
+        sortBtn.icon.classList.add("fas", "fa-chevron-left");
         sortBtn.innerText = 'Sort';
+        sortBtn.appendChild(sortBtn.icon);
 
         const sortContainer = document.createElement("div");
         sortContainer.classList.add("sort-container", "is-hidden");
@@ -158,6 +161,7 @@ const Filters = {
         // TOGGLE SORT DROPDOWN
         sortBtn.addEventListener("click", () => {
             sortContainer.classList.toggle("is-hidden");
+            sortBtn.icon.classList.toggle('is-chev-rotated')
         })
 
         // add listeners for each func
@@ -183,7 +187,7 @@ const Filters = {
 
         // Create clear button
         const clearBtn = document.createElement("button");
-        clearBtn.innerText = 'Clear all filters';
+        clearBtn.innerText = 'Clear';
         clearBtn.classList.add("clear-filter-btn", "button");
         const releaseDiv = document.getElementById("myData");
 
@@ -215,7 +219,7 @@ const Filters = {
             targets: filterDiv, 
             keyframes: [
                 { opacity: 0, top: '65%', duration: 0, easing: 'easeOutCubic' },
-                { opacity: 1, top: '150px', right: 0, duration: 500, easing: 'easeOutCubic' }
+                { opacity: 1, top: '146px', right: 0, duration: 500, easing: 'easeOutCubic' }
             ]
         })
 

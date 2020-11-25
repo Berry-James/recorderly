@@ -16,7 +16,6 @@ const User = {
         .then(res => res.json())
             .then(user => {
                 resolve(user);
-                console.log(user);
             })
         },
    

@@ -9,6 +9,8 @@ import { Loader } from "./Loader.js";
 
 const Collection = {
 
+    local: [],
+
     add: () => {
         let userId = localStorage.getItem('userId');
         let releaseId = document.querySelector('.cart-btn').getAttribute("id");
@@ -67,7 +69,9 @@ const Collection = {
                         })
                     })
                     .then(Notify.show(`✅ <b>${collectionObj.title}</b> removed from collection!`));
-                    Collection.getUserCollection();
+                    Collection.local.filter((data) => {
+                        return data.data.id != data.data.id
+                    })
                     User.collectionCount--;
 
                 })
@@ -105,6 +109,10 @@ const Collection = {
             .then(releases => {
                 resolve(releases);
                 Loader.remove();
+                Collection.local = [];
+                releases.user_collection.forEach(release => {
+                    Collection.local.push(release);
+                })
             })
             .catch(err => {
                 reject(err);
@@ -168,15 +176,24 @@ const Collection = {
         const modalContent = Mustache.render(modalTemplate, collectionObj.data);
         // show modal
         Modal.show(modalContent);
+        
+        // remove 'remove' btn if not on own collection
+        if(window.location.hash != '#collection') {
+            const removeBtn = document.querySelector("#removeFromCollectionBtn");
+            removeBtn.style.display = 'none';
+        }
 
         // ITEM REMOVE
         const removeBtn = document.querySelector("#removeFromCollectionBtn")
-        removeBtn.addEventListener("click", () => {
-            collectionObj.el.style.display = 'none';
-            Collection.remove(collectionObj);
-            User.collectionCount--;
-            Modal.remove();
-        });
+        if(removeBtn) {
+            removeBtn.addEventListener("click", () => {
+                collectionObj.el.style.display = 'none';
+                Collection.remove(collectionObj);
+                User.collectionCount--;
+                Modal.remove();
+            });
+        }
+
 
         // show more button listener
         let showMoreBtn = document.querySelector("#release-more-info-btn");

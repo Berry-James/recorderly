@@ -869,7 +869,7 @@ body {
 
     // FILTERS POPUP
     .filterDiv {
-        top: 125px !important;
+        top: 122px !important;
         height: fit-content;
         padding: 30px 0;
         background-color: $dark-grey;
@@ -880,6 +880,7 @@ body {
             padding-right: 15px;
             justify-content: space-evenly;
             padding-left: 10px;
+            height: fit-content;
 
             select {
                 margin: 5px 0;

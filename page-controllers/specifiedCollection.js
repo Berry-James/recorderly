@@ -6,6 +6,7 @@ import { User } from '../components/User.js';
 import { Collection } from '../components/Collection.js';
 import { Auth } from '../components/Auth.js';
 import { Filters } from '../components/Filters.js';
+import { Intersection } from '../components/Intersection.js';
 import anime from './../node_modules/animejs/lib/anime.es.js';
 
 
@@ -75,16 +76,10 @@ function specifiedCollectionPageController(){
                         releaseDiv.appendChild(digitalContainer);    
                     }   
 
-                    let releasesToAnimate = document.querySelectorAll(".release-entry");         
-                    anime({
-                        targets: releasesToAnimate,
-                        keyframes: [
-                            { opacity: 0, translateY: '15px'},
-                            { opacity: 1, translateY: '0px'},
-                        ],
-                        easing: 'easeOutElastic(1, .6)',
-                        delay: anime.stagger(100, {easing: 'linear'})
-                    }); 
+                    let releaseThings = document.querySelectorAll(".release-entry");
+                    releaseThings.forEach(release => {
+                        Intersection.releases(release);
+                    })      
 
                 })
             })

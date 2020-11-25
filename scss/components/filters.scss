@@ -66,6 +66,16 @@
     }
 }
 
+.is-chev-rotated {
+    transform: rotate(180deg);
+}
+
+.clear-filter-btn {
+    background-image: none !important;
+    background: tomato;
+    padding: 0.8rem !important;
+}
+
 .filters-icon-wrapper {
     margin-left: 25px;  
     font-size: 1.5rem;
@@ -83,6 +93,20 @@
     font-size: 1.5rem;
     display: flex;
     place-items: center center;
+}
+
+.sort-btn {
+    color: #fff;
+    transition: 0.3s;
+
+    i {
+        margin-left: 7px;
+        transition: 0.3s;
+    }
+}
+
+.sort-btn:hover {
+    color: #fff;
 }
 
 .sort-container {

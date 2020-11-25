@@ -1,13 +1,8 @@
 // Imports
 import { App } from '../components/App.js';
-import { Release } from '../components/Release.js';
-import { Notify } from '../components/Notify.js';
 import { User } from '../components/User.js';
 import { Collection } from '../components/Collection.js';
-import { Auth } from '../components/Auth.js';
-import { Filters } from '../components/Filters.js';
-import { Modal } from '../components/Modal.js';
-import anime from './../node_modules/animejs/lib/anime.es.js';
+import { Intersection } from '../components/Intersection.js';
 import { Wishlist } from '../components/Wishlist.js';
 
 function wishlistPageController(){
@@ -26,7 +21,6 @@ function wishlistPageController(){
         let newName = userName;
         newName += suffix;
         data.title = newName;
-        console.log(data.title + ' fits');
 
     }
 
@@ -94,16 +88,10 @@ function wishlistPageController(){
                             releaseDiv.appendChild(digitalContainer);    
                         }   
     
-                        let releasesToAnimate = document.querySelectorAll(".release-entry");         
-                        anime({
-                            targets: releasesToAnimate,
-                            keyframes: [
-                                { opacity: 0, translateY: '15px'},
-                                { opacity: 1, translateY: '0px'},
-                            ],
-                            easing: 'easeOutElastic(1, .6)',
-                            delay: anime.stagger(100, {easing: 'linear'})
-                        }); 
+                        let releaseThings = document.querySelectorAll(".release-entry");
+                        releaseThings.forEach(release => {
+                            Intersection.releases(release);
+                        })         
     
                     })
                 })

@@ -1,15 +1,9 @@
 // Imports
 import { App } from '../components/App.js';
-import { Release } from '../components/Release.js';
-import { Notify } from '../components/Notify.js';
 import { User } from '../components/User.js';
 import { Collection } from '../components/Collection.js';
-import { Auth } from '../components/Auth.js';
-import { Filters } from '../components/Filters.js';
 import { Modal } from '../components/Modal.js';
-import anime from './../node_modules/animejs/lib/anime.es.js';
-
-
+import { Intersection } from '../components/Intersection.js';
 
 function collectionPageController(){
     let data = {
@@ -27,7 +21,6 @@ function collectionPageController(){
         let newName = userName;
         newName += suffix;
         data.title = newName;
-        console.log(data.title + ' fits');
 
     }
     App.loadPage('Collection', 'template-page-cart', data, () =>{
@@ -47,12 +40,7 @@ function collectionPageController(){
             let QRSource = document.querySelector("#QRSource");
             let QRURL = document.querySelector("#QRURL");
             QRURL.setAttribute("href", `${window.location.origin}/index.html#?user=${id}`)
-            QRURL.addEventListener("click", () => {
-                
-            })
             QRSource.setAttribute("src", `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.origin}/index.html#?user=${id}`)
-            console.log(QRSource.getAttribute("src"));
-            console.log('bruh')
         })
 
         // SEARCH COLLECTION
@@ -117,16 +105,10 @@ function collectionPageController(){
                             releaseDiv.appendChild(digitalContainer);    
                         }   
     
-                        let releasesToAnimate = document.querySelectorAll(".release-entry");         
-                        anime({
-                            targets: releasesToAnimate,
-                            keyframes: [
-                                { opacity: 0, translateY: '15px'},
-                                { opacity: 1, translateY: '0px'},
-                            ],
-                            easing: 'easeOutElastic(1, .6)',
-                            delay: anime.stagger(100, {easing: 'linear'})
-                        }); 
+                        let releaseThings = document.querySelectorAll(".release-entry");
+                        releaseThings.forEach(release => {
+                            Intersection.releases(release);
+                        })         
     
                     })
                 })

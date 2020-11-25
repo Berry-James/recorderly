@@ -9,6 +9,8 @@ import { Loader } from "./Loader.js";
 
 const Wishlist = {
 
+    local: [],
+
     add: () => {
         let userId = localStorage.getItem('userId');
         let releaseId = document.querySelector('.cart-btn').getAttribute("id");
@@ -66,7 +68,6 @@ const Wishlist = {
                         })
                     })
                     .then(Notify.show(`✅ <b>${wishObj.title}</b> removed from wishlist!`));
-                    Wishlist.getUserWishlist();
                     User.wishCount--;
                 })
                 .catch(err => {
