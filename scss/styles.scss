@@ -22,6 +22,38 @@ $primary: $yellow;
     font-size: 1rem !important  ;
 }
 
+// MODE OVERLAY
+@keyframes modeOver {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.mode-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+
+    i {
+        animation: modeOver 0.35s linear forwards;
+        font-size: 5rem;
+        color: #fff;
+    }
+}
+
 // DARK MODE TOGGLE
 .is-dark-mode {
     color: #fff !important;
@@ -45,6 +77,9 @@ $primary: $yellow;
         background-color: #292929;
         .button {
             box-shadow: none;
+        }
+        i {
+            color: #fff;
         }
     }
 
@@ -667,12 +702,66 @@ body {
     }
 }
 
+.about-content {
+    padding: 1rem;
+    text-align: left;
+    justify-content: flex-start;
+
+    .head {
+        margin-bottom: 35px;
+    }
+
+    .modal-text-container {
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .about-socials {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        a {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     .myModal {
         position: fixed;
         width: 100vw;
         height: 100vh;
+        
+        .modal-images:hover {
+            .release-image-modal {
+                transform: none;
+           }
+           .release-image-format {
+                transform: none;
+            }
+           .release-image-format-slide {
+                transform: none;
+            }
+        }
+
+        .modal-images:active {
+            .release-image-modal {
+                transform: translateX(-75px);
+           }
+           .release-image-format {
+               transform: translateX(75px) rotateZ(360deg);
+           }
+           .release-image-format-slide {
+               transform: translateX(75px);
+           }
+        }
 
         .modal-close-btn {
             top: 0;
@@ -700,6 +789,7 @@ body {
 
             .modal-text-container {
                 border-radius: 25px;
+
             }
         }
 
@@ -722,6 +812,7 @@ body {
     .profile-container {
         align-items: flex-start !important;
     }
+    
     
     .profile-img {
         width: 200px;
@@ -768,9 +859,6 @@ body {
         .content {
             .signOutModal {
                 height: 100vh;
-
-                .signOut-img {
-                }
 
                 .modal-text-container {
                     height: 100%;
@@ -1039,16 +1127,9 @@ body {
             grid-row-start: 2;
             grid-row-end: 3;
             justify-self: start;
-/*             min-height: 65vh;
- */            
 
             .release_artist {
                 font-size: 12vw;
-            }
-
-            #release-more-info-btn {
-            }
-            #release-discogs-link {
             }
         }
 
@@ -1129,9 +1210,9 @@ body {
         padding-right: 10px;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-/*         position: absolute;
- */        bottom: 0;
+        justify-content: flex-start;
+        padding-top: 50px;
+        bottom: 0;
         margin: 0 auto;
         left: 0;
         right: 0;
@@ -1154,7 +1235,7 @@ body {
         margin-top: auto;
         margin-bottom: 10%; 
         position: fixed;
-        bottom: 15px;
+        bottom: 50px;
         margin: 0 auto;
         left: 0;
         right: 0;

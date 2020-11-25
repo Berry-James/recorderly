@@ -9,6 +9,22 @@
     }
 }
 
+@keyframes releaseEntry {
+    from {
+        transform: scale(0.4);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// KEY
+.is-active-release {
+    animation: releaseEntry 0.2s ease-out forwards;
+}
+
 .modal-image-container {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -113,7 +129,7 @@
 
 }
 
-.modal-images:hover {
+.modal-images:hover, .modal-images:focus, .modal-images:active {
     .release-image-modal {
          transform: translateX(-75px);
     }
@@ -125,6 +141,7 @@
     }
     
 }
+
 
 .modal-text-container {
     background: white;

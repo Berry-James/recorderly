@@ -63,7 +63,9 @@ const Tutorial = {
                 duration: 100, 
                 easing: 'linear',
                 complete: () => {
-                    overlayDiv.remove();
+                    if(overlayDiv) {
+                        overlayDiv.remove();
+                    }
                 }
             })
             // modalDiv exit animation

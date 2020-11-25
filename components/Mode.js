@@ -1,3 +1,6 @@
+import { App } from "./App.js";
+import anime from './../node_modules/animejs/lib/anime.es.js';
+
 const Mode = {
 
     Is: 'light',
@@ -20,9 +23,11 @@ const Mode = {
         toggle: () => {
             // change to opposite mode locally and update token
             if(Mode.Is == 'light'){
+                Mode.animation('dark');
                 Mode.Is = 'dark'
                 window.localStorage.setItem("isMode", "dark");
             } else if(Mode.Is == 'dark'){
+                Mode.animation('light');
                 Mode.Is = 'light'
                 window.localStorage.setItem("isMode", "light");
             }
@@ -47,6 +52,30 @@ const Mode = {
                 app.classList.add("is-dark-mode");
                 header.classList.add("is-dark-mode");
             }
+        },
+
+        animation: (param) => {
+            const container = document.createElement("div");
+            container.classList.add("mode-bg");
+            const logo = document.createElement("i");
+            container.appendChild(logo);
+            console.log(param);
+            if(param == 'light') {
+                logo.classList.add('fas', 'fa-sun');
+            }
+            if(param == 'dark') {
+                logo.classList.add('fas', 'fa-moon');
+            }
+            anime({
+                begin: () => {
+                    App.rootEL.appendChild(container);
+                },
+                duration: 350,
+                complete: () => {
+                    App.rootEL.removeChild(container);
+                }
+            })
+            App.rootEL.appendChild(container);
         }
 }
 

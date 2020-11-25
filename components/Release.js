@@ -13,6 +13,7 @@ const Release = {
 
     id: null,
     results: null,
+    search: [],
     
     get: () => {
         // return new promise
@@ -23,7 +24,6 @@ const Release = {
         .then(releases => {
             resolve(releases.results);
             Release.results = releases.results;
-            
         })
         .catch(err => {
             reject(err);
@@ -227,7 +227,7 @@ const Release = {
                     wishlistBtn.itag.className = 'fas fa-check';
                     wishlistBtn.setAttribute("data-tooltip", "Release already in wish list")
                     wishlistBtn.classList.add("has-tooltip-active", "has-tooltip-bottom");
-                    wishlistBtn.
+                    wishlistBtn.querySelector("span").innerText = null;
                     collectionBtn.addEventListener("click", () => {
                         Wishlist.remove(releaseObj);
                     });

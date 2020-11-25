@@ -1,5 +1,6 @@
 import { App } from "./App.js";
 import { Release } from "./Release.js";
+import { Intersection } from "./Intersection.js";
 import anime from './../node_modules/animejs/lib/anime.es.js';
 
 const Filters = {
@@ -8,8 +9,7 @@ const Filters = {
         const releaseDiv = document.getElementById("myData");
         let genreDropDown = document.getElementById("genreDropdown");
         let optionSelected = genreDropDown.options[genreDropDown.selectedIndex].text;
-        Release.get()
-        let releaseArray = Release.results.filter(function (e) {
+        let releaseArray = Release.search.filter(function (e) {
             return e.genre[0] === optionSelected;
         });
         releaseDiv.innerHTML = null;
@@ -39,8 +39,7 @@ const Filters = {
         const releaseDiv = document.getElementById("myData");
         let styleDropdown = document.getElementById("styleDropdown");
         let optionSelected = styleDropdown.options[styleDropdown.selectedIndex].text;
-        Release.get()
-        let releaseArray = Release.results.filter(function (e) {
+        let releaseArray = Release.search.filter(function (e) {
             return e.style.includes(optionSelected);
         });
         releaseDiv.innerHTML = null;
@@ -64,6 +63,48 @@ const Filters = {
             ],
             delay: anime.stagger(75, {easing: 'linear'})
         });  
+    },
+
+    sort: (type) => {
+        const releaseDiv = document.getElementById("myData");
+        const filter = [];
+
+            Release.search.forEach(release => {
+                filter.push(release)
+            })
+
+            if(type == 'artist') {
+                filter.sort(function(a, b) {
+                    var textA = a.title.toUpperCase().split(' - ')[0];
+                    var textB = b.title.toUpperCase().split(' - ')[0];
+                    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                });
+            }
+
+            if(type == 'name') {
+                filter.sort(function(a, b) {
+                    var textA = a.title.toUpperCase().split(' - ')[1];
+                    var textB = b.title.toUpperCase().split(' - ')[1];
+                    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                });
+            }
+            
+            if(type == 'year') {
+            filter.sort(function(a, b){
+                return a.year - b.year;
+                });
+            }
+
+            releaseDiv.innerHTML = null;
+            filter.forEach(item => {
+                const releaseItem = Release.createReleaseObj(item);
+                releaseDiv.appendChild(releaseItem.el);
+            })
+            let releaseThings = document.querySelectorAll(".release-entry");
+            releaseThings.forEach(release => {
+                Intersection.releases(release);
+            })       
+        
     },
 
     showCloseBtn: true,
@@ -91,6 +132,35 @@ const Filters = {
         styleFilter.setAttribute("id", "styleDropdown");
         styleFilter.className = "dropdown";
 
+        // create sorts
+        const sortBtn = document.createElement('button');
+        sortBtn.classList.add('sort-btn', 'button');
+        sortBtn.innerText = 'Sort';
+
+        const sortContainer = document.createElement("div");
+        sortContainer.classList.add("sort-container", "is-hidden");
+        const yearBtn = document.createElement('a');
+        yearBtn.id = "yearBtn";
+        yearBtn.innerText = 'By year';
+        const artistBtn = document.createElement('a');
+        artistBtn.id = "artistBtn";
+        artistBtn.innerText = 'By artist name';
+        const nameBtn = document.createElement('a');
+        nameBtn.id = "nameBtn";
+        nameBtn.innerText = 'By release name';
+
+        sortContainer.appendChild(yearBtn);
+        sortContainer.appendChild(artistBtn);
+        sortContainer.appendChild(nameBtn);
+        filterContent.appendChild(sortBtn);
+        filterContent.appendChild(sortContainer);
+
+        // TOGGLE SORT DROPDOWN
+        sortBtn.addEventListener("click", () => {
+            sortContainer.classList.toggle("is-hidden");
+        })
+
+        // add listeners for each func
         genreFilter.addEventListener("change", () => {
             Filters.getInGenre();
         });
@@ -99,6 +169,38 @@ const Filters = {
             Filters.getInStyle();
         })
 
+        yearBtn.addEventListener("click", () => {
+            Filters.sort('year');
+        })
+
+        artistBtn.addEventListener("click", () => {
+            Filters.sort('artist');
+        })
+
+        nameBtn.addEventListener("click", () => {
+            Filters.sort('name');
+        })
+
+        // Create clear button
+        const clearBtn = document.createElement("button");
+        clearBtn.innerText = 'Clear all filters';
+        clearBtn.classList.add("clear-filter-btn", "button");
+        const releaseDiv = document.getElementById("myData");
+
+        clearBtn.addEventListener("click", () => {
+            releaseDiv.innerHTML = null;
+            Release.search.forEach(release => {
+                const obj = Release.createReleaseObj(release);
+                releaseDiv.appendChild(obj.el)
+            });
+            let releaseThings = document.querySelectorAll(".release-entry");
+            releaseThings.forEach(release => {
+                Intersection.releases(release);
+            })       
+        });
+
+        filterContent.appendChild(clearBtn);
+        
         // append genre filter to filter content
         filterContent.appendChild(genreFilter);
         filterContent.appendChild(styleFilter);

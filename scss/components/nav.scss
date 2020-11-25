@@ -39,6 +39,8 @@
             width: 90px;
             margin-right: 10px;
             box-shadow: none;
+            padding: 0;
+            display: flex;
         }
 
         #signInBtn:hover {
@@ -111,7 +113,6 @@
 
 .burger-rotate {
     transform: rotate(90deg);
-    color: #fff;
 }
 
 

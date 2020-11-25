@@ -36,19 +36,15 @@ const Burger = {
 
         // create profile icon+ sign in status
         const profile = document.createElement("div");
-        const profileImg = document.createElement("img");
         const profileText = document.createElement("h2");
         // if authenticated, append message w/ username
         if(Auth.authenticated) {
             profileText.innerText = `Signed in as ${User.email.split('@')[0].charAt(0).toUpperCase() + User.email.split('@')[0].slice(1)}`;
         }
         // set profile image (static image for now)
-        profileImg.src="./imgs/svg/casette.svg";
         profileText.className= "profile-text"
         profile.className = "profile-container";
-        profileImg.className = "profile-img";
         // append profile content
-        profile.appendChild(profileImg);
         profile.appendChild(profileText);
 
         // append burgerContent to burgerDiv
@@ -154,7 +150,7 @@ const Burger = {
         const icon = modeToggle.querySelector("i");
         if(Mode.Is == 'light'){
             icon.className = '';
-            icon.classList.add("fas", "fa-lightbulb");
+            icon.classList.add("fas", "fa-sun");
         } else if(Mode.Is == 'dark') {
             icon.className ='';
             icon.classList.add("fas", "fa-moon");
@@ -167,7 +163,7 @@ const Burger = {
 
             if(Mode.Is == 'light'){
                 modeToggle.querySelector("i").className = '';
-                modeToggle.querySelector("i").classList.add("fas", "fa-lightbulb");
+                modeToggle.querySelector("i").classList.add("fas", "fa-sun");
             } else if(Mode.Is == 'dark') {
                 modeToggle.querySelector("i").className = '';
                 modeToggle.querySelector("i").classList.add("fas", "fa-moon"); 

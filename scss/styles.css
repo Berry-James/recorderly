@@ -9925,7 +9925,6 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   font-weight: bold;
 }
 .burger-div .profile-container {
-  height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9969,7 +9968,6 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   color: #171717;
   display: flex;
   align-items: center;
-  margin-left: 2vw;
   font-size: 1rem;
 }
 .burger-footer .mode-toggle {
@@ -9983,6 +9981,22 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 hr {
   height: 1px;
   background-color: #312b2b;
+}
+
+.help-modal h4 {
+  display: inline-flex;
+}
+.help-modal h4 img {
+  margin-right: 15px;
+}
+.help-modal h4 b {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.help-modal .help-modal-img {
+  height: 32px;
+  width: 32px;
 }
 
 .signOutModal button {
@@ -10160,6 +10174,8 @@ hr {
   width: 90px;
   margin-right: 10px;
   box-shadow: none;
+  padding: 0;
+  display: flex;
 }
 .navbar #signInBtn:hover {
   filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.8));
@@ -10224,7 +10240,6 @@ hr {
 
 .burger-rotate {
   transform: rotate(90deg);
-  color: #fff;
 }
 
 .searchInput {
@@ -10273,6 +10288,20 @@ hr {
     opacity: 1;
   }
 }
+@keyframes releaseEntry {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.is-active-release {
+  animation: releaseEntry 0.2s ease-out forwards;
+}
+
 .modal-image-container {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -10362,13 +10391,13 @@ hr {
   font-family: "Alatsi", sans-serif;
 }
 
-.modal-images:hover .release-image-modal {
+.modal-images:hover .release-image-modal, .modal-images:focus .release-image-modal, .modal-images:active .release-image-modal {
   transform: translateX(-75px);
 }
-.modal-images:hover .release-image-format {
+.modal-images:hover .release-image-format, .modal-images:focus .release-image-format, .modal-images:active .release-image-format {
   transform: translateX(75px) rotateZ(360deg);
 }
-.modal-images:hover .release-image-format-slide {
+.modal-images:hover .release-image-format-slide, .modal-images:focus .release-image-format-slide, .modal-images:active .release-image-format-slide {
   transform: translateX(75px);
 }
 
@@ -10823,6 +10852,19 @@ hr {
   place-items: center center;
 }
 
+.sort-container {
+  position: relative;
+}
+.sort-container a {
+  margin: 0 8px;
+  color: #fff;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+.sort-container a:hover {
+  border-bottom: 2px solid #fff;
+}
+
 .sign-in-container {
   position: absolute;
   bottom: 0px;
@@ -10961,6 +11003,36 @@ hr {
   font-size: 1rem !important;
 }
 
+@keyframes modeOver {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.mode-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.mode-bg i {
+  animation: modeOver 0.35s linear forwards;
+  font-size: 5rem;
+  color: #fff;
+}
+
 .is-dark-mode {
   color: #fff !important;
   background: #171717 !important;
@@ -10979,6 +11051,9 @@ hr {
 }
 .is-dark-mode .control-bar .button {
   box-shadow: none;
+}
+.is-dark-mode .control-bar i {
+  color: #fff;
 }
 .is-dark-mode .myModal {
   background: #292929 !important;
@@ -11475,11 +11550,55 @@ div.signOut-modal {
     opacity: 100%;
   }
 }
+.about-content {
+  padding: 1rem;
+  text-align: left;
+  justify-content: flex-start;
+}
+.about-content .head {
+  margin-bottom: 35px;
+}
+.about-content .modal-text-container {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+.about-content .about-socials {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.about-content .about-socials a {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
   .myModal {
     position: fixed;
     width: 100vw;
     height: 100vh;
+  }
+  .myModal .modal-images:hover .release-image-modal {
+    transform: none;
+  }
+  .myModal .modal-images:hover .release-image-format {
+    transform: none;
+  }
+  .myModal .modal-images:hover .release-image-format-slide {
+    transform: none;
+  }
+  .myModal .modal-images:active .release-image-modal {
+    transform: translateX(-75px);
+  }
+  .myModal .modal-images:active .release-image-format {
+    transform: translateX(75px) rotateZ(360deg);
+  }
+  .myModal .modal-images:active .release-image-format-slide {
+    transform: translateX(75px);
   }
   .myModal .modal-close-btn {
     top: 0;
@@ -11791,12 +11910,11 @@ div.signOut-modal {
     grid-row-start: 2;
     grid-row-end: 3;
     justify-self: start;
-    /*             min-height: 65vh;
-     */
   }
   .release-mouseover .modal-text-container .release_artist, .release-modal .modal-text-container .release_artist {
     font-size: 12vw;
   }
+
   .release-button-container {
     flex-wrap: wrap;
   }
@@ -11855,9 +11973,8 @@ div.signOut-modal {
     padding-right: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    /*         position: absolute;
-     */
+    justify-content: flex-start;
+    padding-top: 50px;
     bottom: 0;
     margin: 0 auto;
     left: 0;
@@ -11879,7 +11996,7 @@ div.signOut-modal {
     margin-top: auto;
     margin-bottom: 10%;
     position: fixed;
-    bottom: 15px;
+    bottom: 50px;
     margin: 0 auto;
     left: 0;
     right: 0;

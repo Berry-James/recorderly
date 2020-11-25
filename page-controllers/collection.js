@@ -51,6 +51,8 @@ function collectionPageController(){
                 
             })
             QRSource.setAttribute("src", `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.origin}/index.html#?user=${id}`)
+            console.log(QRSource.getAttribute("src"));
+            console.log('bruh')
         })
 
         // SEARCH COLLECTION

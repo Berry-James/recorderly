@@ -67,7 +67,7 @@
 }
 
 .filters-icon-wrapper {
-    margin-left: 25px;
+    margin-left: 25px;  
     font-size: 1.5rem;
     transition: 0.2s;
     cursor: pointer;
@@ -84,6 +84,20 @@
     display: flex;
     place-items: center center;
 }
-    
-.filters-icon-wrapper:hover {
+
+.sort-container {
+    position: relative;
+
+    a {
+        margin: 0 8px;
+        color: #fff;
+        padding-bottom: 5px;
+        border-bottom: 2px solid transparent;
+    }
+
+    a:hover {
+        border-bottom: 2px solid #fff;
+
+    }
+
 }

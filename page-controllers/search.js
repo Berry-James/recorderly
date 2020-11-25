@@ -8,6 +8,7 @@ import { Collection } from '../components/Collection.js';
 import { Tutorial } from '../components/Tutorial.js';
 import { Filters } from '../components/Filters.js';
 import { Loader } from '../components/Loader.js';
+import { Intersection } from '../components/Intersection.js';
 
 
 function searchPageController(){
@@ -129,12 +130,16 @@ function searchPageController(){
 
         function getSearchResults(){
             releaseDiv.innerHTML = null;
+            Release.search = [];
             Loader.show('Searching...');
             Release.get()
             .then(releases => {
-                Loader.remove();
+                if(document.querySelector(".modal-overlay")) {
+                    Loader.remove();
+                }
                 // loop through releases array
                 releases.forEach(release => {
+                        Release.search.push(release);
                         let slider = document.querySelector("#releaseSizeRange");
                         slider.addEventListener("input",function()
                         {
@@ -145,17 +150,20 @@ function searchPageController(){
                         let releaseItem = Release.createReleaseObj(release);
                         releaseDiv.appendChild(releaseItem.el);
                 });
-                let releaseThings = document.querySelectorAll(".release-entry");         
-                anime({
+                let releaseThings = document.querySelectorAll(".release-entry");
+                releaseThings.forEach(release => {
+                    Intersection.releases(release);
+                })         
+/*                 anime({
                     targets: releaseThings,
                     keyframes: [
                         { opacity: 0, translateY: '25px',},
-                        { opacity: 1, translateY: '0px', /* rotateX: '-8deg', rotateY: '-16deg' */},
+                        { opacity: 1, translateY: '0px', },
                     ],
                     easing: 'easeOutElastic(1, .6)',
                     duration: 100,
                     delay: anime.stagger(15, {easing: 'linear'})
-                });  
+                });   */
 
                 // MOUSEOVER 
                 releaseThings.forEach(release => {
