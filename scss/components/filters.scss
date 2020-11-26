@@ -23,6 +23,10 @@
         justify-content: flex-end;
     }
 
+    #genreDropdown {
+        display: none;
+    }
+
     
     .dropdown {
         color: $dark-grey;

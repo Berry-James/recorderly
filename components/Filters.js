@@ -24,15 +24,10 @@ const Filters = {
             let releaseItem = Release.createReleaseObj(release);
             releaseDiv.appendChild(releaseItem.el);
         });
-        let releaseThings = document.querySelectorAll(".release-entry");         
-        anime({
-            targets: releaseThings,
-            keyframes: [
-                { opacity: 0, translateX: 0},
-                { opacity: 1, translateX: 0},
-            ],
-            delay: anime.stagger(75, {easing: 'linear'})
-        });  
+        let releaseThings = document.querySelectorAll(".release-entry");
+        releaseThings.forEach(release => {
+            Intersection.releases(release);
+        })      
     }, 
 
     getInStyle: () => {
@@ -54,15 +49,10 @@ const Filters = {
             let releaseItem = Release.createReleaseObj(release);
             releaseDiv.appendChild(releaseItem.el);
         });
-        let releaseThings = document.querySelectorAll(".release-entry");         
-        anime({
-            targets: releaseThings,
-            keyframes: [
-                { opacity: 0, translateX: 0},
-                { opacity: 1, translateX: 0},
-            ],
-            delay: anime.stagger(75, {easing: 'linear'})
-        });  
+        let releaseThings = document.querySelectorAll(".release-entry");
+        releaseThings.forEach(release => {
+            Intersection.releases(release);
+        })      
     },
 
     sort: (type) => {

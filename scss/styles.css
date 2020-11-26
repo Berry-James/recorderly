@@ -10798,6 +10798,9 @@ hr {
   align-items: center;
   justify-content: flex-end;
 }
+.filterDiv #genreDropdown {
+  display: none;
+}
 .filterDiv .dropdown {
   color: #312b2b;
   border-style: none;
