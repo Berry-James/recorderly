@@ -31,6 +31,9 @@ const Nav = {
         }if(hash == '#collection'){
             searchInput.placeholder = "Search Collection";
         };
+        if(hash == '#wishlist'){
+            searchInput.placeholder = 'Search Wishlist';
+        }
         
         if(hash == '#search'){
             searchbar.querySelector("input").setAttribute("id", 'searchBar');
