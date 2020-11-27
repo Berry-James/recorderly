@@ -10306,7 +10306,7 @@ hr {
 .modal-image-container {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  padding: 40px;
   flex-shrink: 0;
   flex-grow: 2;
 }
