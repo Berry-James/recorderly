@@ -13,9 +13,8 @@ const Burger = {
 
         // set burger status to active
         Burger.active = true;
-
+        // get hamburger button
         const hamburgerBtn = document.querySelector("#hamburger");
-
         // create backdrop overlay
         const burgerOverlay = document.createElement('div');
         burgerOverlay.className = 'burger-overlay';
@@ -196,12 +195,12 @@ const Burger = {
             easing:  'linear',
         });
         burgerDiv.remove();
+        // get burger btn and rotate it back
         const burgerBtn = document.querySelector("#hamburger");
         burgerBtn.classList.remove("burger-rotate");
 
         // stop listening for esc key
         document.removeEventListener('keydown', Burger.burgerEscKey);
-        
     }
 }
 

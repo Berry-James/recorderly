@@ -1,11 +1,7 @@
 // Imports
 import { App } from './../components/App.js';
-import { Notify } from '../components/Notify.js';
-import { Modal } from '../components/Modal.js';
 import { Auth } from '../components/Auth.js';
-import { Burger } from '../components/Burger.js';
 import { Random } from '../components/Random.js';
-import { Collection } from '../components/Collection.js';
 import { User } from '../components/User.js';
 import anime from './../node_modules/animejs/lib/anime.es.js';
 
@@ -19,34 +15,34 @@ function homePageController(){
         aboutEnd: "Start Collecting"
     }
 
-
-
     App.loadPage('Home', 'template-page-home', data, () => {
 
+        // load background particles
         particlesJS.load('particles-js', 'assets/home.json', function() {
-          });
+        });
 
+        // randomise home page
         Random.generateRandomHome();
-        
-        let imgArray = ["imgs/svg/turntable2.svg", "imgs/svg/record-stack.svg", "imgs/svg/casette.svg"]
-        let mainImg = document.querySelector("#main-img-id");
-        let button = document.getElementById("see-more-btn")    
-        let homeWave = document.querySelector(".svg-wrapper")
-        const homeText = document.querySelector(".main-text");
 
+        const button = document.getElementById("see-more-btn");
+        const homeWave = document.querySelector(".svg-wrapper");
+        const homeText = document.querySelector(".main-text");
+        
+        // if signed in...
         if(Auth.authenticated) {
+            // set title + body text to welcome back
             homeText.querySelector("h1").innerText = `Welcome Back ${User.email.split('@')[0].charAt(0).toUpperCase() + User.email.split('@')[0].slice(1)}!`;
             homeText.querySelector(".body-text").innerText = 'Your collection is waiting to be expanded upon.';
+            // get see more button, change redirect to #collection page
             const seeMore = homeText.querySelector('#see-more-btn');
             seeMore.innerText = 'My Collection';
             seeMore.addEventListener("click", () => {
                 window.location.href = '#collection';
-            })
+            });
 
-        }
+        };
 
-
-
+        // ANIM
         anime({
             targets: homeWave,
             keyframes: [
@@ -57,64 +53,43 @@ function homePageController(){
             easing: 'linear',
         });
 
-
-/* 
-        searchBar.addEventListener("click", function() {
-            location.hash = "#search";
-        }) */
-
-
-        function imgChange() {                
+        button.addEventListener("click", () => {
+            // ANIM
             anime({
-            targets: mainImg, 
-            keyframes: [
-                { opacity: 0, duration: 0, easing: 'easeOutCubic' },
-                { opacity: 1, duration: 500, easing: 'easeOutCubic' }
-            ]
-            })
-        }
+                targets: homeText,
+                opacity: 0,
+                translateX: '-100vw',
+                easing: 'linear',
+                duration: 400,
+                complete: () => {
+                    const h1 = homeText.querySelector("h1");
+                    h1.innerText = data.aboutTitle;
+                    h1.classList.add("about-title");
+                    h1.classList.remove('main-title');
+                    
+                    homeText.querySelector("p").innerText = data.aboutBody;
+                    homeText.querySelector("a").innerText = data.aboutEnd;
+                    homeText.querySelector("a").addEventListener("click", () => {
+                        window.location.href = '#search'
+                    });
+                    animate();
+                },
+            });
 
-        
-
-        button.addEventListener("click", function(){cool()})
-            function cool() {
-                const homePage = document.querySelector('.main-text');
-                const aboutPage = document.querySelector('.more-info-text');
-                const wave = document.querySelector(".home-wave");
-
+            function animate() {
+                // animate home text on changeover
                 anime({
-                    targets: homePage,
-                    opacity: 0,
-                    translateX: '-100vw',
+                    targets: homeText,
+                    opacity: 1,
+                    translateX: '-0vw',
                     easing: 'linear',
-                    duration: 400,
-                    complete: () => {
-                        const h1 = homePage.querySelector("h1");
-                        h1.innerText = data.aboutTitle;
-                        h1.classList.add("about-title");
-                        h1.classList.remove('main-title');
-                        
-                        homePage.querySelector("p").innerText = data.aboutBody;
-                        homePage.querySelector("a").innerText = data.aboutEnd;
-                        homePage.querySelector("a").addEventListener("click", () => {
-                            window.location.href = '#search'
-                        })
-                        animate();
-                    },
+                    duration: 400
                 })
+            };
+        })
 
-                function animate() {
-                    anime({
-                        targets: homePage,
-                        opacity: 1,
-                        translateX: '-0vw',
-                        easing: 'linear',
-                        duration: 400
-                    })
-                }
-            }
-
-        // Run Wavify function
+        // Run Wavify
+        // ISSUE => Would prefer to use all vanilla JS but wavify is throwing GSAP error when using vanilla JS
         var myWave = $('#myID').wavify({
             height: 10,
             bones: 5,
@@ -122,14 +97,8 @@ function homePageController(){
             color: 'rgba(248, 185, 32, 1)',
             speed: .25
         });
-
-        
-
-        imgChange();
     });
-    
-
-}
+};
 
 
 export { homePageController }

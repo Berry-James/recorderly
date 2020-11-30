@@ -1,13 +1,12 @@
 // Imports
 import { App } from './../components/App.js';
-import { Notify } from '../components/Notify.js';
 import { User } from '../components/User.js';
 
 function signUpPageController(){
 
+    // load particles backdrop
     particlesJS.load('particles-js', 'assets/particles.json', function() {
-      });
-
+    });
 
     App.loadPage('Sign Up', 'template-page-sign-up', {}, () => {
         // get sign up form
@@ -23,7 +22,6 @@ function signUpPageController(){
             // loop through formData entries
             for(let field of formData.entries()){
               formDataObj[field[0]] = field[1]
-
             }
             // send the form data object to User.create
             User.create(formDataObj);

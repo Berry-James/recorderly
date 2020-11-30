@@ -11,6 +11,7 @@ const User = {
     wishCount: null,
     id: null,
 
+    // GET specified user (for use with getting a specified collection)
     getSpecifiedUsers: () => {
         fetch(`https://recorderly-backend.herokuapp.com/api/users/${window.url.search}`)
         .then(res => res.json())
@@ -21,7 +22,7 @@ const User = {
    
     create: (userData) => {
 
-        // loader
+        // show loader
         Loader.show('Creating account...')
 
         // send userData to backend API using fetch - POST
@@ -41,7 +42,7 @@ const User = {
                 location.hash = '#signIn';
                 Notify.show("🔒 Please Sign in");
             }
-            // loader
+            // remove loader
             Loader.remove()
         })
         .catch(err => {
@@ -50,20 +51,8 @@ const User = {
         })
     },
 
-    update: () => {
-
-    },
-
-    delete: () => {
-
-    },
-
-    displayProfile: () => {
-
-    },
-
     updateCounts: () => {
-
+        // get user collection, and set counts based on array lengths
         Collection.getUserCollection()
         .then(releases => {
             User.collectionCount = releases.user_collection.length;

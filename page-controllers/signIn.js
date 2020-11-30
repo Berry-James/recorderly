@@ -1,12 +1,12 @@
 // Imports
 import { App } from './../components/App.js';
-import { Notify } from '../components/Notify.js';
-import { User } from '../components/User.js';
 import { Auth } from '../components/Auth.js';
 
 function signInPageController(){
+
+    // load particles backdrop
     particlesJS.load('particles-js', 'assets/particles.json', function() {
-      });
+    });
 
     App.loadPage('Sign In', 'template-page-sign-in', {}, () => {
         // get sign up form

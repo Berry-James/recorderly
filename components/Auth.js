@@ -1,8 +1,6 @@
 import { Notify } from "./Notify.js";
 import { User } from "./User.js";
 import { Modal } from "./Modal.js";
-import { Collection } from "./Collection.js";
-import { App } from "./App.js";
 import { Loader } from "./Loader.js";
 
 const Auth = {
@@ -10,12 +8,11 @@ const Auth = {
     authenticated: false,
 
     signIn: (userData) => {
-        // send userData to backend API using fetch - POST
 
-        // loader
+        // loader active
         Loader.show('Signing you in..')
-        
 
+        // send userData to backend API using fetch - POST
         fetch('https://recorderly-backend.herokuapp.com/api/auth/signin', {
             method: 'post',
             headers: { "Content-Type": "application/json"},
@@ -25,6 +22,7 @@ const Auth = {
             if(res.status !=200){
                 // problem signing in
                 res.json().then(res => {
+                    // notify the returned message & remove loader
                     Notify.show(res.message);
                     Loader.remove();
                 });
@@ -32,7 +30,9 @@ const Auth = {
             }else{
                 // sign in success
                 res.json().then(res => {
+                    // Remove loader
                     Loader.remove();
+
                     // 1. save the token to local storage
                     localStorage.setItem('token', res.token);
                     // 2. set Auth.authenticated to true
@@ -46,6 +46,7 @@ const Auth = {
                     location.hash = '#';
                     // 5. show welcome notification
                     Notify.show(`👋 Welcome ${User.email.split('@')[0]}!`)
+                    // 6. Update user collection/wishlist counts
                     User.updateCounts();
                 });
             }
@@ -57,7 +58,7 @@ const Auth = {
     },
 
     check: (callback) => {
-        // 1. check if jwt token exists in local storage
+        // 1. check if JWT token exists in local storage
         if(localStorage.getItem('token')){
             // validate token using backend API - make fetch request (GET)
             fetch('https://recorderly-backend.herokuapp.com/api/auth/validate', {
@@ -94,7 +95,9 @@ const Auth = {
             })
             .catch(err => {
                 console.log(err);
+                // Notify error
                 Notify.show('❌ Problem authorising');
+                // run callback function (if)
                 if(typeof callback == 'function'){
                     callback();
                 }
@@ -127,10 +130,12 @@ const Auth = {
                 Modal.remove(modalTemplate);
                 window.location.href="#";
             });
+            // Modal close btn listener
             document.querySelector(".modal-close-btn").addEventListener('click', () => {
                 Modal.remove(modalTemplate);
                 window.location.href="#";
             });
+            // Modal overlay (background) event listener
             document.querySelector(".modal-overlay").addEventListener("click", () => {
                 Modal.remove(modalTemplate);
                 window.location.href="#";
@@ -145,6 +150,7 @@ const Auth = {
         Auth.authenticated = false;
         // redirect to sign in page
         location.hash = '#';
+        // Show sign out notification
         Notify.show('✅ You have been signed out');
     }
 }

@@ -2,7 +2,6 @@ import { Notify } from "./Notify.js";
 import { Auth } from "./Auth.js";
 import { Burger } from './Burger.js';
 import { Nav } from './Nav.js';
-import { Collection } from './Collection.js';
 import { User } from "./User.js";
 import { Mode } from "./Mode.js";
 
@@ -17,21 +16,24 @@ const App = {
 
     // Initialise notification, check auth status, init router
     init: () => { 
+        // Set user specified light/dark mode
         Mode.init();
+        // Generate notification container
         Notify.init();
         Auth.check(() => {
+            // Run router
             App.router();
             if(Auth.authenticated) {
+                // Get collection/wishlist totals
                 User.updateCounts();
                 
             }
             window.addEventListener("hashchange", () => {
+                // If hamburger menu exists, remove it
                 if(document.querySelector(".burger-div")){
                     Burger.remove();
-                } else {
-                    
                 }
-            })
+            });
             window.addEventListener('hashchange', App.router);
         });
     },
@@ -52,14 +54,10 @@ const App = {
         if(route){
             route.controller();
         // run the route.controller
-        }/* if(!route){
-            alert('no route present');
-        } 
-        
-/*         else{
+        } else {
         // show 404 alert
             App.loadPage('404 Page/File Not Found', 'template-page-404', {});
-        } */
+        }
     },
 
     loadPage: (title, templateId, data, callback) => {
@@ -94,6 +92,7 @@ const App = {
         const burgerBtn = document.querySelector("#hamburger");
         const burgerTemplate = document.querySelector("#template-hamburger").innerHTML;
         
+        // Toggle showing of burger menu based on appearance
         burgerBtn.addEventListener("click", function(){
             if(!Burger.active) {
                 Burger.show(burgerTemplate);

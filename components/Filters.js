@@ -5,6 +5,7 @@ import anime from './../node_modules/animejs/lib/anime.es.js';
 
 const Filters = {
 
+    // GET RELEASE IN CHOSEN GENRE
     getInGenre: () => {
         const releaseDiv = document.getElementById("myData");
         let genreDropDown = document.getElementById("genreDropdown");
@@ -30,13 +31,17 @@ const Filters = {
         })      
     }, 
 
+    // GET RELEASE IN CHOSEN STYLE
     getInStyle: () => {
+        // get releaes container, style dropdown, selection from dropdown
         const releaseDiv = document.getElementById("myData");
         let styleDropdown = document.getElementById("styleDropdown");
         let optionSelected = styleDropdown.options[styleDropdown.selectedIndex].text;
+        // filter currently displayed releases based on option selected in dropdown
         let releaseArray = Release.search.filter(function (e) {
             return e.style.includes(optionSelected);
         });
+        // clear release container
         releaseDiv.innerHTML = null;
         releaseArray.forEach(release => {
             let slider = document.querySelector("#releaseSizeRange");
@@ -45,55 +50,64 @@ const Filters = {
                 releaseItem.el.style.width = `${slider.value}px`;
                 releaseItem.el.style.height = `${slider.value}px`;               
             }) 
-            releaseArray.push(release);
+            // create objects for each release and append to container
             let releaseItem = Release.createReleaseObj(release);
             releaseDiv.appendChild(releaseItem.el);
         });
         let releaseThings = document.querySelectorAll(".release-entry");
         releaseThings.forEach(release => {
+            // Add observer to each release
             Intersection.releases(release);
         })      
     },
 
+    // SORT SEARCH
     sort: (type) => {
         const releaseDiv = document.getElementById("myData");
         const filter = [];
-
+            // push each release from current search to 'filter' array
             Release.search.forEach(release => {
                 filter.push(release)
             })
 
+            // if filtering by artist name
             if(type == 'artist') {
                 filter.sort(function(a, b) {
-                    var textA = a.title.toUpperCase().split(' - ')[0];
-                    var textB = b.title.toUpperCase().split(' - ')[0];
+                    let textA = a.title.toUpperCase().split(' - ')[0];
+                    let textB = b.title.toUpperCase().split(' - ')[0];
                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                 });
             }
 
+            // if filtering by release title
             if(type == 'name') {
                 filter.sort(function(a, b) {
-                    var textA = a.title.toUpperCase().split(' - ')[1];
-                    var textB = b.title.toUpperCase().split(' - ')[1];
+                    let textA = a.title.toUpperCase().split(' - ')[1];
+                    let textB = b.title.toUpperCase().split(' - ')[1];
                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                 });
             }
-            
+
+            // if filtering by release year
             if(type == 'year') {
             filter.sort(function(a, b){
                 return a.year - b.year;
                 });
             }
 
+            // clear contents of release container
             releaseDiv.innerHTML = null;
+            // create release object for each release, append to container
             filter.forEach(item => {
                 const releaseItem = Release.createReleaseObj(item);
                 releaseDiv.appendChild(releaseItem.el);
-            })
-            let releaseThings = document.querySelectorAll(".release-entry");
-            releaseThings.forEach(release => {
+            });
+
+            // Add intersection observer to each release
+            let releases = document.querySelectorAll(".release-entry");
+            releases.forEach(release => {
                 Intersection.releases(release);
-            })       
+            });      
         
     },
 
@@ -122,7 +136,7 @@ const Filters = {
         styleFilter.setAttribute("id", "styleDropdown");
         styleFilter.className = "dropdown";
 
-        // create sorts
+        // create sorts menu
         const sortBtn = document.createElement('a');
         sortBtn.classList.add('sort-btn');
         sortBtn.icon = document.createElement("i");
@@ -130,18 +144,23 @@ const Filters = {
         sortBtn.innerText = 'Sort';
         sortBtn.appendChild(sortBtn.icon);
 
+        // create sort container
         const sortContainer = document.createElement("div");
         sortContainer.classList.add("sort-container", "is-hidden");
+        // create year sort btn
         const yearBtn = document.createElement('a');
         yearBtn.id = "yearBtn";
         yearBtn.innerText = 'By year';
+        // create artist sort btn
         const artistBtn = document.createElement('a');
         artistBtn.id = "artistBtn";
         artistBtn.innerText = 'By artist name';
+        // create title sort btn
         const nameBtn = document.createElement('a');
         nameBtn.id = "nameBtn";
         nameBtn.innerText = 'By release name';
 
+        // Append sort functions to filter div
         sortContainer.appendChild(yearBtn);
         sortContainer.appendChild(artistBtn);
         sortContainer.appendChild(nameBtn);
@@ -152,7 +171,7 @@ const Filters = {
         sortBtn.addEventListener("click", () => {
             sortContainer.classList.toggle("is-hidden");
             sortBtn.icon.classList.toggle('is-chev-rotated')
-        })
+        });
 
         // add listeners for each func
         genreFilter.addEventListener("change", () => {
@@ -161,19 +180,19 @@ const Filters = {
 
         styleFilter.addEventListener("change", () => {
             Filters.getInStyle();
-        })
+        });
 
         yearBtn.addEventListener("click", () => {
             Filters.sort('year');
-        })
+        });
 
         artistBtn.addEventListener("click", () => {
             Filters.sort('artist');
-        })
+        });
 
         nameBtn.addEventListener("click", () => {
             Filters.sort('name');
-        })
+        });
 
         // Create clear button
         const clearBtn = document.createElement("button");
@@ -181,20 +200,25 @@ const Filters = {
         clearBtn.classList.add("clear-filter-btn", "button");
         const releaseDiv = document.getElementById("myData");
 
+        // click
         clearBtn.addEventListener("click", () => {
+            // clear release container
             releaseDiv.innerHTML = null;
+            // create release objects and append for each item in search
             Release.search.forEach(release => {
                 const obj = Release.createReleaseObj(release);
                 releaseDiv.appendChild(obj.el)
             });
-            let releaseThings = document.querySelectorAll(".release-entry");
-            releaseThings.forEach(release => {
+
+            // add intersection observer to each release el
+            let releases = document.querySelectorAll(".release-entry");
+            releases.forEach(release => {
                 Intersection.releases(release);
             })       
         });
 
+        // append clear btn
         filterContent.appendChild(clearBtn);
-        
         // append genre filter to filter content
         filterContent.appendChild(genreFilter);
         filterContent.appendChild(styleFilter);
@@ -232,9 +256,10 @@ const Filters = {
     },
 
     remove: () => {
-        // get 
+        // get filter Div
         let filterDiv = document.querySelector('.filterDiv');
 
+        // if no filter div, do not try and remove
         if(filterDiv == null){
 
         }else{
@@ -248,7 +273,7 @@ const Filters = {
                     filterDiv.remove();
                 }
             });
-
+            // rotate dots back and change colour
             const dots = document.querySelector("#filters-btn");
             anime({
                 targets: dots,

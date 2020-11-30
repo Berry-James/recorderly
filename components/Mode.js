@@ -2,7 +2,7 @@ import { App } from "./App.js";
 import anime from './../node_modules/animejs/lib/anime.es.js';
 
 const Mode = {
-
+    // Default current colour scheme to 'light'
     Is: 'light',
 
         init: () => {
@@ -14,7 +14,6 @@ const Mode = {
                 
             } else {
                 // if token does not exist, create it and default to light mode
-                let isMode = window.localStorage.setItem("isMode", "light")
                 Mode.Is = 'light';
             }
 
@@ -23,8 +22,11 @@ const Mode = {
         toggle: () => {
             // change to opposite mode locally and update token
             if(Mode.Is == 'light'){
+                // play transition animation
                 Mode.animation('dark');
+                // set current mode to dark
                 Mode.Is = 'dark'
+                // change local storage token to dark
                 window.localStorage.setItem("isMode", "dark");
             } else if(Mode.Is == 'dark'){
                 Mode.animation('light');
@@ -40,7 +42,6 @@ const Mode = {
             const app = document.querySelector("#app");
             const header = document.querySelector(".page-header");
 
-
             // add/remove classes depending on Mode.Is value
             if(Mode.Is == 'light') {
                 body.classList.remove("is-dark-mode");
@@ -54,18 +55,24 @@ const Mode = {
             }
         },
 
+        // ANIM
         animation: (param) => {
+            // create background container
             const container = document.createElement("div");
             container.classList.add("mode-bg");
+            // create icon
             const logo = document.createElement("i");
+            // append icon to background
             container.appendChild(logo);
-            console.log(param);
+            // if light mode, show sun
             if(param == 'light') {
                 logo.classList.add('fas', 'fa-sun');
-            }
+            };
+            // if dark mode, show moon
             if(param == 'dark') {
                 logo.classList.add('fas', 'fa-moon');
-            }
+            };
+            // animate the changeover
             anime({
                 begin: () => {
                     App.rootEL.appendChild(container);
@@ -74,7 +81,8 @@ const Mode = {
                 complete: () => {
                     App.rootEL.removeChild(container);
                 }
-            })
+            });
+            // append container to rootEL
             App.rootEL.appendChild(container);
         }
 }

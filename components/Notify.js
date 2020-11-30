@@ -20,9 +20,7 @@ const Notify = {
         notificationEntryDiv.innerHTML = message;
         // Append notificationEntryDiv to container div
         Notify.container.appendChild(notificationEntryDiv);
-        // wait for showDuration
-
-       // anime.js version
+       // ANIM
         anime({
             targets: notificationEntryDiv,
             keyframes: [

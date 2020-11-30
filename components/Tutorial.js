@@ -3,8 +3,6 @@ import anime from './../node_modules/animejs/lib/anime.es.js';
 
 const Tutorial = {
 
-
-
     showCloseBtn: true,
     show: (content) => {
         // create overlay div
@@ -20,8 +18,12 @@ const Tutorial = {
         let tutorialContent = document.createElement('div');
         tutorialContent.classname = 'tutorial-content';
 
-        // insert content
-        tutorialContent.innerHTML = content;
+        // create p tag
+        const text = document.createElement("p");
+        // set inner text to parsed content
+        text.innerText = content;
+        // append p tag
+        tutorialContent.appendChild(text);
         // append modalContent to modalDiv
         tutorialDiv.appendChild(tutorialContent);
         // append modalDiv to rootEl
@@ -54,9 +56,12 @@ const Tutorial = {
         // get modalDiv
         let tutorialDiv = document.querySelector('.tutorialDiv');
 
+        // if tutorial div does not exist, do nothing
         if(tutorialDiv == null){
 
+        // if tutorialdiv does exist...
         }else{
+            // entrance ANIM
             anime({
                 targets: overlayDiv,
                 opacity: 0,
@@ -67,8 +72,9 @@ const Tutorial = {
                         overlayDiv.remove();
                     }
                 }
-            })
-            // modalDiv exit animation
+            });
+
+            // exit ANIM
             anime({
                 targets: tutorialDiv,
                 opacity: 0,
@@ -81,7 +87,6 @@ const Tutorial = {
             });
         }
 
-        
         // stop listening for esc key
         document.removeEventListener('keydown', Tutorial.tutorialEscKey);
     }
