@@ -1,3 +1,5 @@
 **README**
 
-live-server and you're all set :)
+#Recorderly is a site designed for those with a physical music collection that needs keeping track of.
+
+It is built in vanilla JS.
